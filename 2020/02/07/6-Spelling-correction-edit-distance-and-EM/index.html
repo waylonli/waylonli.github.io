@@ -235,35 +235,34 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Spelling-correction"><a href="#Spelling-correction" class="headerlink" title="Spelling correction"></a>Spelling correction</h1><p>##Simple version</p>
-<p><strong>Assumption:</strong></p>
+            <h1 id="Spelling-correction"><a href="#Spelling-correction" class="headerlink" title="Spelling correction"></a>Spelling correction</h1><h2 id="Simple-version"><a href="#Simple-version" class="headerlink" title="Simple version"></a>Simple version</h2><p>**Assumption:**</p>
 <ul>
 <li>have a large dictionary of real word</li>
 <li>only correct non-word</li>
-<li>only consider corrections differ by a <strong>single</strong> character from the non-word</li>
+<li>only consider corrections differ by a **single** character from the non-word</li>
 </ul>
-<p><strong>Idea:</strong></p>
+<p>**Idea:**</p>
 <ul>
 <li>generate a list of all words $y$ differ by 1 character from $x$</li>
 <li>compute the probability of each $y$ and choose the highest one</li>
 </ul>
-<h2 id="Alignments-and-edit-distance"><a href="#Alignments-and-edit-distance" class="headerlink" title="Alignments and edit distance"></a>Alignments and edit distance</h2><p><strong>Edit distance:</strong></p>
+<h2 id="Alignments-and-edit-distance"><a href="#Alignments-and-edit-distance" class="headerlink" title="Alignments and edit distance"></a>Alignments and edit distance</h2><p>**Edit distance:**</p>
 <ul>
 <li>substitution</li>
 <li>deletion</li>
 <li>insertion</li>
 </ul>
-<p><strong>Need to:</strong></p>
+<p>**Need to:**</p>
 <ul>
 <li><p>find the optimal character alignment between two words</p>
-<p>the optimal alignment is the one with <strong>minimum edit distance (MED)</strong></p>
+<p>the optimal alignment is the one with **minimum edit distance (MED)**</p>
 </li>
 </ul>
-<p><strong>How:</strong></p>
+<p>**How:**</p>
 <ul>
 <li>Dynamic programming: Viterbi, CKY</li>
 </ul>
-<p><strong>Uses:</strong></p>
+<p>**Uses:**</p>
 <ul>
 <li>spelling correction</li>
 <li>morphological analysis</li>

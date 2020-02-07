@@ -252,13 +252,14 @@
 <h1 id="N-gram-language-model-N-gram-LM"><a href="#N-gram-language-model-N-gram-LM" class="headerlink" title="N-gram language model (N-gram LM)"></a>N-gram language model (N-gram LM)</h1><h2 id="Markov-assumption-independence-assumption"><a href="#Markov-assumption-independence-assumption" class="headerlink" title="Markov assumption (independence assumption)"></a>Markov assumption (independence assumption)</h2><p>The probability of a word only depends on a ﬁxed number of previous words (history)</p>
 <ul>
 <li><p>not always a good assumption</p>
-<img src="https://waylonranee.com/image/mdimg/image-20200121104301500.png" alt="image-20200121104301500" style="zoom:42%;" />
-
+<p><img src="https://waylonranee.com/image/mdimg/image-20200121104301500.png" alt="image-20200121104301500" style="zoom:42%;" /></p>
 </li>
 </ul>
-<p>##Probaility calculation</p>
-<p>To estimate $ P(\vec{w}) $, use chain rule:<br>$$<br>P(w_1,\dots,w_n) = \prod_{i=1}^nP(w_i \mid w_1,w_2,\dots,w_{i-1}) \ \approx P(w_1)P(w_2\mid w_1)\prod_{i=3}^n P(w_i \mid w_{i-2}, w_{i-1})<br>$$<br>Problem: sentence boundaryet</p>
-<h2 id="Beginning-end-of-sequence"><a href="#Beginning-end-of-sequence" class="headerlink" title="Beginning / end of sequence"></a>Beginning / end of sequence</h2><img src="https://waylonranee.com/image/mdimg/image-20200121105220976.png" alt="image-20200121105220976" style="zoom:50%;" />
+<h2 id="Probaility-calculation"><a href="#Probaility-calculation" class="headerlink" title="Probaility calculation"></a>Probaility calculation</h2><p>To estimate $ P(\vec{w}) $, use chain rule:</p>
+<script type="math/tex; mode=display">
+P(w_1,\dots,w_n) = \prod_{i=1}^nP(w_i \mid w_1,w_2,\dots,w_{i-1}) \\ \approx P(w_1)P(w_2\mid w_1)\prod_{i=3}^n P(w_i \mid w_{i-2}, w_{i-1})</script><p>Problem: sentence boundaryet</p>
+<h2 id="Beginning-end-of-sequence"><a href="#Beginning-end-of-sequence" class="headerlink" title="Beginning / end of sequence"></a>Beginning / end of sequence</h2><p><img src="https://waylonranee.com/image/mdimg/image-20200121105220976.png" alt="image-20200121105220976" style="zoom:50%;" /></p>
+
         </div>
 
         

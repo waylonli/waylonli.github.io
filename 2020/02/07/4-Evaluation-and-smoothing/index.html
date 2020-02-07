@@ -242,19 +242,19 @@
 </li>
 <li>Intrinstic: design a measure that is inherent to the current task</li>
 </ul>
-<p><strong>Entropy:</strong> human need $H(X)$ of Y/N questions to determine the next word</p>
+<p>**Entropy:** human need $H(X)$ of Y/N questions to determine the next word</p>
 <script type="math/tex; mode=display">
-H(X)=\sum_x -P(x) \log_2P(x)</script><p><strong>Cross-entropy:</strong></p>
+H(X)=\sum_x -P(x) \log_2P(x)</script><p>**Cross-entropy:**</p>
 <script type="math/tex; mode=display">
 H(P,\hat{P}) = \sum_x -P(x) \log_2 \hat{P}(x)</script><ul>
 <li>cross-entropy $\ge$ entropy</li>
 <li>lower cross-entropy: model is better at predicting next word</li>
 </ul>
-<p><strong>Data compression:</strong></p>
+<p>**Data compression:**</p>
 <ul>
 <li>If we designed an optimal code based on our LM model, we could encode the entire sentence in $H(P,\hat{P}) \times \text{number of words}$ bits. ($H(P,\hat{P})$ of Y/N questions for each word)</li>
 </ul>
-<p><strong>Perplexity:</strong></p>
+<p>**Perplexity:**</p>
 <ul>
 <li>LM performance is often reported as perplexity</li>
 <li>$\text{perplexity} = 2^{\text{cross-entropy}}$</li>
@@ -278,14 +278,14 @@ P_{+\alpha}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+\alpha}{C(w_
 </ul>
 </li>
 </ul>
-<h2 id="Good-Turing"><a href="#Good-Turing" class="headerlink" title="Good-Turing"></a>Good-Turing</h2><p><strong>Idea:</strong></p>
+<h2 id="Good-Turing"><a href="#Good-Turing" class="headerlink" title="Good-Turing"></a>Good-Turing</h2><p>**Idea:**</p>
 <ul>
 <li>change the numerator</li>
 <li>use the frequency of singletons as a re-estimate of the frequency of zero-count bigrams</li>
 </ul>
-<p><strong>Adjusted counts:</strong> </p>
+<p>**Adjusted counts:** </p>
 <script type="math/tex; mode=display">
-c^* = (c+1)\frac{N_{c+1}}{N_c} \\ \ \\  P_{GT}=\frac{c^*}{n}</script><p><strong>Assumption:</strong></p>
+c^* = (c+1)\frac{N_{c+1}}{N_c} \\ \ \\  P_{GT}=\frac{c^*}{n}</script><p>**Assumption:**</p>
 <ul>
 <li><p>tye distribution of each bigram is binomail</p>
 </li>
@@ -293,24 +293,24 @@ c^* = (c+1)\frac{N_{c+1}}{N_c} \\ \ \\  P_{GT}=\frac{c^*}{n}</script><p><strong>
 <p><img src="https://waylonranee.com/image/mdimg/image-20200126162032253.png" alt="image-20200126162032253" style="zoom:40%;" /></p>
 </li>
 </ul>
-<p><strong>Cons:</strong></p>
+<p>**Cons:**</p>
 <ul>
 <li>assumes we know the vocabulary size</li>
 <li>do not allow “holes” in the counts (some frequency has zero count)</li>
 <li>applies discounts even to high-frequency items</li>
 </ul>
-<h1 id="Smoothing-2"><a href="#Smoothing-2" class="headerlink" title="Smoothing 2"></a>Smoothing 2</h1><p><strong>Problems of previous methods:</strong> assign equal probability to all unseen events</p>
-<p><strong>Two ways:</strong></p>
+<h1 id="Smoothing-2"><a href="#Smoothing-2" class="headerlink" title="Smoothing 2"></a>Smoothing 2</h1><p>**Problems of previous methods:** assign equal probability to all unseen events</p>
+<p>**Two ways:**</p>
 <ul>
 <li>interpolation</li>
 <li>backoff</li>
 </ul>
-<h2 id="Interpolation"><a href="#Interpolation" class="headerlink" title="Interpolation"></a>Interpolation</h2><p><strong>Idea:</strong> combine higher and lower order N-gram models</p>
+<h2 id="Interpolation"><a href="#Interpolation" class="headerlink" title="Interpolation"></a>Interpolation</h2><p>**Idea:** combine higher and lower order N-gram models</p>
 <ul>
 <li>high-order N-grams are sensitive to more context, but have sparse counts</li>
 <li>low-order N-grams have limited context, but robust counts</li>
 </ul>
-<p><strong>Model:</strong></p>
+<p>**Model:**</p>
 <script type="math/tex; mode=display">
 P_{INT}(w_3 \mid w_1,w_2) = \lambda_1P_1(w_3) + \lambda_2P_2(w_3 \mid w_2)+\lambda_3P_3(w_3\mid w_1,w_2)</script><ul>
 <li><p>$P_N$: N-gram estimate</p>
@@ -320,17 +320,17 @@ P_{INT}(w_3 \mid w_1,w_2) = \lambda_1P_1(w_3) + \lambda_2P_2(w_3 \mid w_2)+\lamb
 <p><img src="https://waylonranee.com/image/mdimg/image-20200127211855299.png" alt="image-20200127211855299" style="zoom:38%;" /></p>
 </li>
 </ul>
-<p><strong>Pick values of $\lambda_i$:</strong> machine learning method, optimise perplexity on a held-out data set</p>
-<h2 id="Katz-Back-off"><a href="#Katz-Back-off" class="headerlink" title="Katz Back-off"></a>Katz Back-off</h2><p><strong>Idea:</strong> discount the trigram-based probability estimates</p>
-<p><strong>Model:</strong></p>
+<p>**Pick values of $\lambda_i$:** machine learning method, optimise perplexity on a held-out data set</p>
+<h2 id="Katz-Back-off"><a href="#Katz-Back-off" class="headerlink" title="Katz Back-off"></a>Katz Back-off</h2><p>**Idea:** discount the trigram-based probability estimates</p>
+<p>**Model:**</p>
 <script type="math/tex; mode=display">
 T(n) = \begin{equation} \left\{ \begin{array}{lr} P^*(w_i \mid w_{i-N+1},\dots,w_{i-1}) \qquad \qquad  \ \text{if}\ \ \text{count}(w_{i-N+1},\dots,w_i)>0,  \\ \alpha(w_{i-N+1},\dots,w_{i-1})P_{BO}(w_i \mid w_{i-N+2},\dots,w_{i-1}) \qquad \qquad  \text{else}.  \end{array} \right. \end{equation}</script><ul>
 <li>$ P^*(w_i \mid w_{i-N+1},\dots,w_{i-1})$: adjusted predictoin model (Good Turing)</li>
 <li>$\alpha(w_1,w_{N-1})$: backoff weights</li>
 <li>G-T if count is not 0, back off if count is 0</li>
 </ul>
-<h2 id="Kneser-Ney-smoothing"><a href="#Kneser-Ney-smoothing" class="headerlink" title="Kneser-Ney smoothing"></a>Kneser-Ney smoothing</h2><p><strong>Idea:</strong> takes diversity of histories into account</p>
-<p><strong>Model:</strong></p>
+<h2 id="Kneser-Ney-smoothing"><a href="#Kneser-Ney-smoothing" class="headerlink" title="Kneser-Ney smoothing"></a>Kneser-Ney smoothing</h2><p>**Idea:** takes diversity of histories into account</p>
+<p>**Model:**</p>
 <script type="math/tex; mode=display">
 N_{1+}(\bullet w_i)=\left| \{w_{i-1}:c(w_{i-1}, w_i)>0\} \right |</script><script type="math/tex; mode=display">
 P_{KN}(w_i)= \frac{N_{1+}(\bullet w_i)}{\sum_w N_{1+}(\bullet w)}</script><div class="table-container">
