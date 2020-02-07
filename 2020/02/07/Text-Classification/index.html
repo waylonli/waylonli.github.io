@@ -264,7 +264,7 @@
 <h1 id="Naive-Bayes"><a href="#Naive-Bayes" class="headerlink" title="Naive Bayes"></a>Naive Bayes</h1><h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>$$<br>\hat{c} = \underset{c\in C}{\operatorname{argmax}} P(c\mid d) = \underset{c\in C}{\operatorname{argmax}} \frac{P(d \mid c)P(c)}{P(d)} = \underset{c\in C}{\operatorname{argmax}}P(d \mid c)P(c)<br>$$</p>
 <ul>
 <li><p>Naive Bayes assumption: </p>
-<p>$P(d \mid c) = P(f_1, f_2,\dots ,f_n \mid c) \approx P(f_1 \mid c)P(f_2\mid c)\dots P(f_n \mid c)$<br>$$<br>\ \ \hat{P}(f_i \mid c) = \frac{\text{count}(f_i,c)+\alpha}{\sum_{f \in F}(\text{count}(f,c)+\alpha)}<br>$$<br>PS: 每个class都要加一次$\alpha$, 所以总数等于加上$\left |F\right |*\alpha$ </p>
+<p>$P(d \mid c) = P(f_1, f_2,\dots ,f_n \mid c) \approx P(f_1 \mid c)P(f_2\mid c)\dots P(f_n \mid c)$<br>$$<br>\ \ \hat{P}(f_i \mid c) = \frac{\text{count}(f_i,c)+\alpha}{\sum_{f \in F}(\text{count}(f,c)+\alpha)}<br>$$<br>PS: </p>
 <ul>
 <li>$F$: the set of possible features</li>
 </ul>
@@ -275,9 +275,7 @@
 </ul>
 </li>
 <li><p>$P(c)$: estimated with MLE<br>$$<br>\hat{P}(c) = \frac{N_c}{N}<br>$$</p>
-</li>
-</ul>
-<h2 id="Step"><a href="#Step" class="headerlink" title="Step"></a>Step</h2><ul>
+<h2 id="Step"><a href="#Step" class="headerlink" title="Step"></a>Step</h2></li>
 <li><p>Test document $d$ </p>
 </li>
 <li><p>Calculate<br>$$<br>P(+ \mid d) \propto P(+) \prod_{i=1}^n P(f_i \mid +) \ \  \ P(-\mid d) \propto P(-) \prod_{i=1}^n P(f_i \mid -)<br>$$</p>

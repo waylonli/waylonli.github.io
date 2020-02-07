@@ -168,7 +168,7 @@ body {
   font-size: 12.6pt;
   font-weight: normal;
   line-height: 2em;
-  background-color: #b9b9b9;
+  background-color: #fff;
   color: #000;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 }
@@ -416,7 +416,7 @@ input[type="radio"]:not(:checked) + label:after {
 }
 .navbar .menu .active {
   font-weight: 900;
-  color: #161209;
+  color: #727272;
 }
 .dark-theme .navbar .menu .active {
   color: #fff;
@@ -1079,7 +1079,7 @@ header label {
     padding: 0;
     margin: 0;
     line-height: 5.5em;
-    background: #b9b9b9;
+    background: #fff;
   }
   .navbar-mobile .container .navbar-header {
     display: flex;
