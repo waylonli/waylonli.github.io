@@ -235,35 +235,35 @@
         </header>
 
         <div class="post-content">
-            <p><strong>Def:</strong> judging test suite thoroughness based on the structure of the program itself</p>
+            <p>**Def:** judging test suite thoroughness based on the structure of the program itself</p>
 <ul>
-<li>Also known as <strong>white-box testing</strong></li>
+<li>Also known as **white-box testing**</li>
 <li>Distinguish from functional testing (black-box testing)<ul>
 <li>structural testing is still testing product functionality against its specification</li>
 <li>only the measure of thoroughness has changed</li>
 </ul>
 </li>
 </ul>
-<p><strong>Why need structural testing:</strong></p>
+<p>**Why need structural testing:**</p>
 <ul>
 <li>Executing all control flow elements does not guarantee finding all faults</li>
 <li>Increase confidence in thoroughness of testing</li>
 </ul>
-<p><strong>Practical use:</strong></p>
+<p>**Practical use:**</p>
 <ul>
 <li>Firstly create functional test suite</li>
 <li>Then measure structural coverage to identify see what is missing</li>
 </ul>
-<h2 id="Statement-testing-amp-Branch-testing"><a href="#Statement-testing-amp-Branch-testing" class="headerlink" title="Statement testing &amp; Branch testing"></a>Statement testing &amp; Branch testing</h2><p><strong>Statement testing:</strong></p>
+<h2 id="Statement-testing-amp-Branch-testing"><a href="#Statement-testing-amp-Branch-testing" class="headerlink" title="Statement testing &amp; Branch testing"></a>Statement testing &amp; Branch testing</h2><p>**Statement testing:**</p>
 <ul>
 <li>Adequacy criterion: each statement must be executed at least once</li>
 <li>Rationale: a fault in a statement can only be revealed by executing the faulty statement</li>
 </ul>
-<p><strong>Branch testing:</strong></p>
+<p>**Branch testing:**</p>
 <ul>
 <li>Adequacy criterion: each branch (edge in the CFG) must be executed at least once</li>
 </ul>
-<p><strong>Comparison:</strong></p>
+<p>**Comparison:**</p>
 <p>Traversing all edges of a graph causes all nodes to be visited, so we have:</p>
 <ul>
 <li>Test suites that satisfy the branch adequacy criterion for a program P also satisfy the statement adequacy criterion for the same program</li>
@@ -308,23 +308,22 @@
     </div>
 </footer>
 
-    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="custom_mathjax_source">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>

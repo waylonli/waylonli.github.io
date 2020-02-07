@@ -242,8 +242,11 @@
 </li>
 <li>Intrinstic: design a measure that is inherent to the current task</li>
 </ul>
-<p><strong>Entropy:</strong> human need $H(X)$ of Y/N questions to determine the next word<br>$$<br>H(X)=\sum_x -P(x) \log_2P(x)<br>$$<br><strong>Cross-entropy:</strong><br>$$<br>H(P,\hat{P}) = \sum_x -P(x) \log_2 \hat{P}(x)<br>$$</p>
-<ul>
+<p><strong>Entropy:</strong> human need $H(X)$ of Y/N questions to determine the next word</p>
+<script type="math/tex; mode=display">
+H(X)=\sum_x -P(x) \log_2P(x)</script><p><strong>Cross-entropy:</strong></p>
+<script type="math/tex; mode=display">
+H(P,\hat{P}) = \sum_x -P(x) \log_2 \hat{P}(x)</script><ul>
 <li>cross-entropy $\ge$ entropy</li>
 <li>lower cross-entropy: model is better at predicting next word</li>
 </ul>
@@ -258,16 +261,15 @@
 </ul>
 <h1 id="Smoothing-1"><a href="#Smoothing-1" class="headerlink" title="Smoothing 1"></a>Smoothing 1</h1><p>Smoothing methods address the problem by stealing probability mass from seen events and reallocating it to unseen events.</p>
 <p>Otherwise, only using the N-gram model is useless since the assumption is too strict for natural language processing.</p>
-<p>##Add-One (Laplace) Smoothing</p>
-<p>$$<br>P_{+1}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+1}{C(w_{i-2},w_{i-1})+v} \ \ \ \text{where }\sum_{w_i \in V} \frac{C(w_{i-2},w_{i-1},w_i)+1}{C(w_{i-2},w_{i-1})+v}=1<br>$$</p>
-<ul>
+<h2 id="Add-One-Laplace-Smoothing"><a href="#Add-One-Laplace-Smoothing" class="headerlink" title="Add-One (Laplace) Smoothing"></a>Add-One (Laplace) Smoothing</h2><script type="math/tex; mode=display">
+P_{+1}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+1}{C(w_{i-2},w_{i-1})+v} \\ \ \\ \text{where }\sum_{w_i \in V} \frac{C(w_{i-2},w_{i-1},w_i)+1}{C(w_{i-2},w_{i-1})+v}=1</script><ul>
 <li>$v = \text{vocabulary size}$</li>
 <li>Cons: changed the denominator, which can have big eﬀects even on frequent events</li>
 </ul>
-<h2 id="Add-alpha-Lidstone-Smoothing"><a href="#Add-alpha-Lidstone-Smoothing" class="headerlink" title="Add-$\alpha$ (Lidstone) Smoothing"></a>Add-$\alpha$ (Lidstone) Smoothing</h2><p>$$<br>P_{+\alpha}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+\alpha}{C(w_{i-2},w_{i-1})+\alpha v}<br>$$</p>
-<ul>
+<h2 id="Add-alpha-Lidstone-Smoothing"><a href="#Add-alpha-Lidstone-Smoothing" class="headerlink" title="Add-$\alpha$ (Lidstone) Smoothing"></a>Add-$\alpha$ (Lidstone) Smoothing</h2><script type="math/tex; mode=display">
+P_{+\alpha}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+\alpha}{C(w_{i-2},w_{i-1})+\alpha v}</script><ul>
 <li><p>Optimising $\alpha$ </p>
-<img src="https://waylonranee.com/image/mdimg/image-20200124104610419.png" alt="image-20200124104610419" style="zoom:46%;" />
+<p><img src="https://waylonranee.com/image/mdimg/image-20200124104610419.png" alt="image-20200124104610419" style="zoom:46%;" /></p>
 </li>
 <li><p>Cons: </p>
 <ul>
@@ -281,13 +283,14 @@
 <li>change the numerator</li>
 <li>use the frequency of singletons as a re-estimate of the frequency of zero-count bigrams</li>
 </ul>
-<p>Adjusted counts: $c^<em>$<br>$$<br>c^</em> = (c+1)\frac{N_{c+1}}{N_c} \ \ \  P_{GT}=\frac{c^<em>}{n}<br>$$<br>*</em>Assumption:**</p>
+<p><strong>Adjusted counts:</strong> </p>
+<script type="math/tex; mode=display">
+c^* = (c+1)\frac{N_{c+1}}{N_c} \\ \ \\  P_{GT}=\frac{c^*}{n}</script><p><strong>Assumption:</strong></p>
 <ul>
 <li><p>tye distribution of each bigram is binomail</p>
 </li>
 <li><p>each count is reduced slightly (Zipf): discounting</p>
-<img src="https://waylonranee.com/image/mdimg/image-20200126162032253.png" alt="image-20200126162032253" style="zoom:40%;" />
-
+<p><img src="https://waylonranee.com/image/mdimg/image-20200126162032253.png" alt="image-20200126162032253" style="zoom:40%;" /></p>
 </li>
 </ul>
 <p><strong>Cons:</strong></p>
@@ -307,27 +310,30 @@
 <li>high-order N-grams are sensitive to more context, but have sparse counts</li>
 <li>low-order N-grams have limited context, but robust counts</li>
 </ul>
-<p><strong>Model:</strong><br>$$<br>P_{INT}(w_3 \mid w_1,w_2) = \lambda_1P_1(w_3) + \lambda_2P_2(w_3 \mid w_2)+\lambda_3P_3(w_3\mid w_1,w_2)<br>$$</p>
-<ul>
+<p><strong>Model:</strong></p>
+<script type="math/tex; mode=display">
+P_{INT}(w_3 \mid w_1,w_2) = \lambda_1P_1(w_3) + \lambda_2P_2(w_3 \mid w_2)+\lambda_3P_3(w_3\mid w_1,w_2)</script><ul>
 <li><p>$P_N$: N-gram estimate</p>
 </li>
 <li><p>$\lambda_i$: interpolation parameters / mixture weights</p>
 <p>must sum to 1</p>
-<img src="https://waylonranee.com/image/mdimg/image-20200127211855299.png" alt="image-20200127211855299" style="zoom:38%;" />
-
+<p><img src="https://waylonranee.com/image/mdimg/image-20200127211855299.png" alt="image-20200127211855299" style="zoom:38%;" /></p>
 </li>
 </ul>
 <p><strong>Pick values of $\lambda_i$:</strong> machine learning method, optimise perplexity on a held-out data set</p>
 <h2 id="Katz-Back-off"><a href="#Katz-Back-off" class="headerlink" title="Katz Back-off"></a>Katz Back-off</h2><p><strong>Idea:</strong> discount the trigram-based probability estimates</p>
-<p><strong>Model:</strong><br>$$<br>T(n) = \begin{equation} \left{ \begin{array}{lr} P^*(w_i \mid w_{i-N+1},\dots,w_{i-1}) \qquad \qquad  \ \text{if}\ \ \text{count}(w_{i-N+1},\dots,w_i)&gt;0,  \ \alpha(w_{i-N+1},\dots,w_{i-1})P_{BO}(w_i \mid w_{i-N+2},\dots,w_{i-1}) \qquad \qquad  \text{else}.  \end{array} \right. \end{equation}<br>$$</p>
-<ul>
+<p><strong>Model:</strong></p>
+<script type="math/tex; mode=display">
+T(n) = \begin{equation} \left\{ \begin{array}{lr} P^*(w_i \mid w_{i-N+1},\dots,w_{i-1}) \qquad \qquad  \ \text{if}\ \ \text{count}(w_{i-N+1},\dots,w_i)>0,  \\ \alpha(w_{i-N+1},\dots,w_{i-1})P_{BO}(w_i \mid w_{i-N+2},\dots,w_{i-1}) \qquad \qquad  \text{else}.  \end{array} \right. \end{equation}</script><ul>
 <li>$ P^*(w_i \mid w_{i-N+1},\dots,w_{i-1})$: adjusted predictoin model (Good Turing)</li>
 <li>$\alpha(w_1,w_{N-1})$: backoff weights</li>
 <li>G-T if count is not 0, back off if count is 0</li>
 </ul>
 <h2 id="Kneser-Ney-smoothing"><a href="#Kneser-Ney-smoothing" class="headerlink" title="Kneser-Ney smoothing"></a>Kneser-Ney smoothing</h2><p><strong>Idea:</strong> takes diversity of histories into account</p>
-<p><strong>Model:</strong><br>$$<br>N_{1+}(\bullet w_i)=\left| {w_{i-1}:c(w_{i-1}, w_i)&gt;0} \right |<br>$$</p>
-<p>$$<br>P_{KN}(w_i)= \frac{N_{1+}(\bullet w_i)}{\sum_w N_{1+}(\bullet w)}<br>$$</p>
+<p><strong>Model:</strong></p>
+<script type="math/tex; mode=display">
+N_{1+}(\bullet w_i)=\left| \{w_{i-1}:c(w_{i-1}, w_i)>0\} \right |</script><script type="math/tex; mode=display">
+P_{KN}(w_i)= \frac{N_{1+}(\bullet w_i)}{\sum_w N_{1+}(\bullet w)}</script><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -335,7 +341,8 @@
 <th>Methods</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Uniform probabilities</td>
 <td>add-$\alpha$, Good-Turing</td>
 </tr>
@@ -347,7 +354,9 @@
 <td>Probability of appering in new contexts</td>
 <td>Kneser-Ney</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 
         </div>
 
@@ -389,23 +398,22 @@
     </div>
 </footer>
 
-    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="custom_mathjax_source">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 </body>
 </html>
