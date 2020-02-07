@@ -12,7 +12,7 @@
 
 
 
-<title>1-Intro | Waylon &amp; Ranee</title>
+<title>3-N-gram | Waylon &amp; Ranee</title>
 
 
 
@@ -210,7 +210,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">1-Intro</h1>
+            <h1 class="post-title">3-N-gram</h1>
             
                 <div class="post-meta">
                     
@@ -219,7 +219,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">February 7, 2020&nbsp;&nbsp;22:38:57</a>
+                        Date: <a href="#">February 6, 2020&nbsp;&nbsp;22:20:32</a>
                         </span>
                     
                     
@@ -235,17 +235,33 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Why-hard"><a href="#Why-hard" class="headerlink" title="Why hard?"></a>Why hard?</h1><ul>
-<li><p>Ambiguity</p>
+            <p>#Application:</p>
+<ul>
+<li>spelling correction</li>
+<li>automatic speech recognition</li>
+<li>machine translatio</li>
+</ul>
+<p>#Estimate the probabilities: training</p>
+<ul>
+<li>training data: large corpus of general English text</li>
+<li>MLE: maximum likelihood estimation<ul>
+<li>MLE assigns 0 probability to anything hasn’t occurred</li>
+</ul>
 </li>
-<li><p>Sparse data (due to <strong>Zipf’s Law</strong>)</p>
-<p>$$f\times r \approx k$$</p>
-<p>𝑓 = frequency of a word</p>
-<p>𝑟 = rank of a word</p>
-<p>𝑘 = a constant</p>
+<li>we don’t know the true probabilities, we estimate instead</li>
+<li>sparse data problem: not enough observations to estimate probabilities well simply by counting observed data (for sentences, many will occur rarely in the training data, smater way: N-gram)</li>
+</ul>
+<h1 id="N-gram-language-model-N-gram-LM"><a href="#N-gram-language-model-N-gram-LM" class="headerlink" title="N-gram language model (N-gram LM)"></a>N-gram language model (N-gram LM)</h1><p>##Markov assumption (independence assumption)</p>
+<p>The probability of a word only depends on a ﬁxed number of previous words (history)</p>
+<ul>
+<li><p>not always a good assumption</p>
+<img src="/Users/waylon/OneDrive%20-%20University%20of%20Edinburgh/Documents/Notes/Courses/FNLP%20Notes/3-N-gram.assets/image-20200121104301500.png" alt="image-20200121104301500" align=left style="zoom:42%;" />
+
 </li>
 </ul>
-
+<p>##Probaility calculation</p>
+<p>To estimate $ P(\vec{w}) $, use chain rule:<br>$$<br>P(w_1,\dots,w_n) = \prod_{i=1}^nP(w_i \mid w_1,w_2,\dots,w_{i-1}) \ \approx P(w_1)P(w_2\mid w_1)\prod_{i=3}^n P(w_i \mid w_{i-2}, w_{i-1})<br>$$<br>Problem: sentence boundaryet</p>
+<h2 id="Beginning-end-of-sequence"><a href="#Beginning-end-of-sequence" class="headerlink" title="Beginning / end of sequence"></a>Beginning / end of sequence</h2><img src="https://waylonranee.com/image/mdimg/image-20200121105220976.png" alt="image-20200121105220976" style="zoom:50%;" />
         </div>
 
         
@@ -268,10 +284,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/02/07/8-POS-tagging-and-HMMs/">8-POS tagging and HMMs</a>
+                <a class="prev" rel="prev" href="/2020/02/06/1-Intro/">1-Intro</a>
             
             
-            <a class="next" rel="next" href="/2020/02/07/2-Corpora/">2-Corpora</a>
+            <a class="next" rel="next" href="/2020/02/06/2-Corpora/">2-Corpora</a>
             
         </section>
 
