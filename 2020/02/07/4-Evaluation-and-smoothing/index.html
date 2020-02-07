@@ -326,7 +326,8 @@
 <li>G-T if count is not 0, back off if count is 0</li>
 </ul>
 <h2 id="Kneser-Ney-smoothing"><a href="#Kneser-Ney-smoothing" class="headerlink" title="Kneser-Ney smoothing"></a>Kneser-Ney smoothing</h2><p><strong>Idea:</strong> takes diversity of histories into account</p>
-<p><strong>Model:</strong><br>$$<br>N_{1+}(\bullet w_i)=\left| {w_{i-1}:c(w_{i-1}, w_i)&gt;0} \right | \ \ \ P_{KN}(w_i)= \frac{N_{1+}(\bullet w_i)}{\sum_w N_{1+}(\bullet w)}<br>$$</p>
+<p><strong>Model:</strong><br>$$<br>N_{1+}(\bullet w_i)=\left| {w_{i-1}:c(w_{i-1}, w_i)&gt;0} \right |<br>$$</p>
+<p>$$<br>P_{KN}(w_i)= \frac{N_{1+}(\bullet w_i)}{\sum_w N_{1+}(\bullet w)}<br>$$</p>
 <table>
 <thead>
 <tr>
