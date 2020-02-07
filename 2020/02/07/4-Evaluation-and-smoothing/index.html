@@ -244,7 +244,7 @@
 </ul>
 <p><strong>Entropy:</strong> human need $H(X)$ of Y/N questions to determine the next word<br>$$<br>H(X)=\sum_x -P(x) \log_2P(x)<br>$$<br><strong>Cross-entropy:</strong><br>$$<br>H(P,\hat{P}) = \sum_x -P(x) \log_2 \hat{P}(x)<br>$$</p>
 <ul>
-<li>==cross-entropy $\ge$ entropy== ?</li>
+<li>cross-entropy $\ge$ entropy</li>
 <li>lower cross-entropy: model is better at predicting next word</li>
 </ul>
 <p><strong>Data compression:</strong></p>
@@ -267,7 +267,7 @@
 <h2 id="Add-alpha-Lidstone-Smoothing"><a href="#Add-alpha-Lidstone-Smoothing" class="headerlink" title="Add-$\alpha$ (Lidstone) Smoothing"></a>Add-$\alpha$ (Lidstone) Smoothing</h2><p>$$<br>P_{+\alpha}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+\alpha}{C(w_{i-2},w_{i-1})+\alpha v}<br>$$</p>
 <ul>
 <li><p>Optimising $\alpha$ </p>
-<img src="/Users/waylon/OneDrive%20-%20University%20of%20Edinburgh/Documents/Notes/Courses/FNLP%20Notes/4-Evaluation%20and%20smoothing.assets/image-20200124104610419.png" alt="image-20200124104610419" align=left style="zoom:46%;" />
+<img src="https://waylonranee.com/image/mdimg/image-20200124104610419.png" alt="image-20200124104610419" style="zoom:46%;" />
 </li>
 <li><p>Cons: </p>
 <ul>
@@ -286,7 +286,7 @@
 <li><p>tye distribution of each bigram is binomail</p>
 </li>
 <li><p>each count is reduced slightly (Zipf): discounting</p>
-<img src="https://waylonranee.com/image/mdimg/image-20200126162032253.png" alt="image-20200126162032253" align=left style="zoom:40%;" />
+<img src="https://waylonranee.com/image/mdimg/image-20200126162032253.png" alt="image-20200126162032253" style="zoom:40%;" />
 
 </li>
 </ul>
