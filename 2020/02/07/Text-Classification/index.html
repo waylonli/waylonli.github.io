@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Waylon Li">
+
+
+
+
+
+<title>Text Classification | Waylon &amp; Ranee</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Waylon &amp; Ranee</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Waylon &amp; Ranee</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Text Classification</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Waylon Li</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 7, 2020&nbsp;&nbsp;17:44:48</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Natural-Language-Processing/">Natural Language Processing</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p><strong>Application:</strong></p>
+<ul>
+<li>spam detection (binary: spam / not spam)</li>
+<li>sentiment analysis (binary or multiway)<ul>
+<li>review (pos / neg or 1-5 stars)</li>
+<li>political argument (pro / con, or pro / con / neutral)</li>
+</ul>
+</li>
+<li>topic classification (multiway: sport / finance / travel, etc.)</li>
+<li>categorise the author<ul>
+<li>native language identification</li>
+<li>diagnosis of disease</li>
+<li>gender, dialect, educational background, political, orientation</li>
+</ul>
+</li>
+</ul>
+<p><strong>Why not N-gram:</strong></p>
+<ul>
+<li>sequential relationships are largely irrelevant for many tasks (bag of words assumption)</li>
+<li>want to include other features (e.g. POS tags) that N-gram models do not include</li>
+</ul>
+<p><strong>Two methods:</strong></p>
+<ul>
+<li>Naive Bayes</li>
+<li>Maximum Entropy (multinomial logistic regression)</li>
+</ul>
+<h1 id="Naive-Bayes"><a href="#Naive-Bayes" class="headerlink" title="Naive Bayes"></a>Naive Bayes</h1><h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>$$<br>\hat{c} = \underset{c\in C}{\operatorname{argmax}} P(c\mid d) = \underset{c\in C}{\operatorname{argmax}} \frac{P(d \mid c)P(c)}{P(d)} = \underset{c\in C}{\operatorname{argmax}}P(d \mid c)P(c)<br>$$</p>
+<ul>
+<li><p>Naive Bayes assumption: </p>
+<p>$P(d \mid c) = P(f_1, f_2,\dots ,f_n \mid c) \approx P(f_1 \mid c)P(f_2\mid c)\dots P(f_n \mid c)$<br>$$<br>\ \ \hat{P}(f_i \mid c) = \frac{\text{count}(f_i,c)+\alpha}{\sum_{f \in F}(\text{count}(f,c)+\alpha)}<br>$$<br>PS: 每个class都要加一次$\alpha$, 所以总数等于加上$\left |F\right |*\alpha$ </p>
+<ul>
+<li>$F$: the set of possible features</li>
+</ul>
+</li>
+<li><p>$\alpha$: smoothing parameter</p>
+<ul>
+<li>all features not shown earlier before have $\hat{P}(f_i \mid +) = \frac{\alpha}{68+\alpha \left |F\right |}$ </li>
+</ul>
+</li>
+<li><p>$P(c)$: estimated with MLE<br>$$<br>\hat{P}(c) = \frac{N_c}{N}<br>$$</p>
+</li>
+</ul>
+<h2 id="Step"><a href="#Step" class="headerlink" title="Step"></a>Step</h2><ul>
+<li><p>Test document $d$ </p>
+</li>
+<li><p>Calculate<br>$$<br>P(+ \mid d) \propto P(+) \prod_{i=1}^n P(f_i \mid +) \ \  \ P(-\mid d) \propto P(-) \prod_{i=1}^n P(f_i \mid -)<br>$$</p>
+</li>
+<li><p>Choose the one with larger value</p>
+</li>
+</ul>
+<h2 id="Choose-features"><a href="#Choose-features" class="headerlink" title="Choose features"></a>Choose features</h2><ul>
+<li>Binary value for $f_i$</li>
+<li>Use subset of $\left | F \right |$ (e.g. ignore stop words)</li>
+<li>Use more complex features (e.g. bigrams, etc.)</li>
+</ul>
+<h2 id="Deal-with-very-small-numbers-underflow-use-costs"><a href="#Deal-with-very-small-numbers-underflow-use-costs" class="headerlink" title="Deal with very small numbers (underflow): use costs"></a>Deal with very small numbers (underflow): use costs</h2><p>Find the lowest cost classification<br>$$<br>\hat{c} = \underset{c\in C}{\operatorname{argmin}}  (-\log P(c) + \sum_{i=1}^n - \log P(f_i \mid c))<br>$$</p>
+<ul>
+<li>Costs are negative log probabilities</li>
+<li>Can avoid underflow by turning multiplication to sum</li>
+<li>Look for the lowest cost overall</li>
+</ul>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><ul>
+<li>Naive Bayes is a <strong>linear classifier</strong> since it uses a  linear function of the input feature</li>
+<li>As is logistic regression</li>
+</ul>
+<h2 id="Problems-Pros-amp-Cons"><a href="#Problems-Pros-amp-Cons" class="headerlink" title="Problems, Pros &amp; Cons"></a>Problems, Pros &amp; Cons</h2><p><strong>Problem:</strong></p>
+<ul>
+<li><p>might need domain-specific non-sentiment words</p>
+<p>e.g. memory, CPU for computer product reviews</p>
+</li>
+<li><p>stopwords might be very useful features for some tasks</p>
+</li>
+<li><p>probably better to use too many irrelevant features than not enough relevant features</p>
+</li>
+</ul>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Easy to implement</li>
+<li>Fast to train</li>
+<li>Do not need much training data compared with other methods (good for small datasets)</li>
+<li>Usually works reasonably well</li>
+<li>Can be a baseline method for any classification task</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Assumption is naive!<ul>
+<li>features are not usually independent given the class</li>
+<li>adding feature types often leads to even stronger correlations between features</li>
+<li>accuracy can somtimes be OK, but will be highly <strong>overconfident</strong> in its decisions</li>
+</ul>
+</li>
+</ul>
+<h1 id="Maximum-Entropy-Model"><a href="#Maximum-Entropy-Model" class="headerlink" title="Maximum Entropy Model"></a>Maximum Entropy Model</h1><h2 id="Model-1"><a href="#Model-1" class="headerlink" title="Model"></a>Model</h2><p>$$<br>P(c \mid \vec{x}) = \frac{1}{Z}\exp(\sum_i w_i f_i(\vec{x},c)) \ \ \ \text{where } Z = \sum_{c’} \exp(\sum_iw_i f_i(\vec{x},c))<br>$$</p>
+<ul>
+<li><strong>Multinomial logistic regression</strong>, model $P(c \mid d)$ directly instead of using Bayes’ rule</li>
+<li>Use vector to represent the observed data</li>
+<li>End up choosing the class for whose $\vec{w} \cdot \vec{f}$ is the highest</li>
+</ul>
+<h2 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h2><p><strong>Conditional maximum likelihood estimation (CMLE):</strong></p>
+<p>Given instances $x^{(1)} \dots x^{(N)}$ with labels $c^{(1)}\dots c^{(N)}$<br>$$<br>\vec{w} = \underset{\vec{w}}{\operatorname{argmax}} \sum_j \log P(c^{(j)}\mid x^{(j)})<br>$$<br><strong>Avoid overfitting:</strong> regularisation</p>
+<h2 id="Pros-amp-Cons"><a href="#Pros-amp-Cons" class="headerlink" title="Pros &amp; Cons"></a>Pros &amp; Cons</h2><p><strong>Pros:</strong></p>
+<ul>
+<li>Better performance</li>
+<li>Do not need conditionally independent assumption</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li><strong>Time-consuming</strong> if there are a large number of classes and / or thousands of features to extract from each training example</li>
+</ul>
+<h2 id="Why-is-called-MaxEnt"><a href="#Why-is-called-MaxEnt" class="headerlink" title="Why is called MaxEnt?"></a>Why is called MaxEnt?</h2><ul>
+<li>The probabilistic model we are building should follow whatever constraints we impose on it</li>
+<li>But beyond these constraints we should follow Occam’s Razor, make the fewest possible assumptions</li>
+</ul>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><h2 id="Differences"><a href="#Differences" class="headerlink" title="Differences"></a>Differences</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">Naive Bayes</th>
+<th align="center">MaxEnt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Model</td>
+<td align="center">MLE (maximum likelihood estimation)<br />Bayes’ rule</td>
+<td align="center">CMLE (conditional maximum likelihood estimation)<br />Multinomial logistic regression</td>
+</tr>
+<tr>
+<td align="center">Features</td>
+<td align="center">Directly observed</td>
+<td align="center">Use vector representation<br />Features are functions that depend on both observation $\vec{x}$ and class $c$</td>
+</tr>
+<tr>
+<td align="center">Assumption</td>
+<td align="center">Conditionally independent assumption</td>
+<td align="center">None</td>
+</tr>
+</tbody></table>
+<h2 id="Similarity"><a href="#Similarity" class="headerlink" title="Similarity"></a>Similarity</h2><ul>
+<li>Both are easily available in standard ML toolkits</li>
+<li>Both need to choose what features are good to use </li>
+</ul>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Notes/"># Notes</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/02/07/Structural-Testing/">Structural Testing</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        Think in the morning. Act in the noon. Eat in the evening. Sleep in the night.
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
