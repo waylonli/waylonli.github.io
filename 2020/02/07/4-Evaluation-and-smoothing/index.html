@@ -313,13 +313,13 @@
 </li>
 <li><p>$\lambda_i$: interpolation parameters / mixture weights</p>
 <p>must sum to 1</p>
-<img src="/Users/waylon/OneDrive%20-%20University%20of%20Edinburgh/Documents/Notes/Courses/FNLP%20Notes/4-Evaluation%20and%20smoothing.assets/image-20200127211855299.png" alt="image-20200127211855299" align=left style="zoom:38%;" />
+<img src="https://waylonranee.com/image/mdimg/image-20200127211855299.png" alt="image-20200127211855299" style="zoom:38%;" />
 
 </li>
 </ul>
 <p><strong>Pick values of $\lambda_i$:</strong> machine learning method, optimise perplexity on a held-out data set</p>
 <h2 id="Katz-Back-off"><a href="#Katz-Back-off" class="headerlink" title="Katz Back-off"></a>Katz Back-off</h2><p><strong>Idea:</strong> discount the trigram-based probability estimates</p>
-<p><strong>Model:</strong><br>$$<br>T(n) = \begin{equation} \left{ \begin{array}{lr} P^*(w_i \mid w_{i-N+1},\dots,w_{i-1}) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \text{if}\ \ \text{count}(w_{i-N+1},\dots,w_i)&gt;0,  \ \alpha(w_{i-N+1},\dots,w_{i-1})P_{BO}(w_i \mid w_{i-N+2},\dots,w_{i-1}) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \text{else}.  \end{array} \right. \end{equation}<br>$$</p>
+<p><strong>Model:</strong><br>$$<br>T(n) = \begin{equation} \left{ \begin{array}{lr} P^*(w_i \mid w_{i-N+1},\dots,w_{i-1}) \qquad \qquad  \ \text{if}\ \ \text{count}(w_{i-N+1},\dots,w_i)&gt;0,  \ \alpha(w_{i-N+1},\dots,w_{i-1})P_{BO}(w_i \mid w_{i-N+2},\dots,w_{i-1}) \qquad \qquad  \text{else}.  \end{array} \right. \end{equation}<br>$$</p>
 <ul>
 <li>$ P^*(w_i \mid w_{i-N+1},\dots,w_{i-1})$: adjusted predictoin model (Good Turing)</li>
 <li>$\alpha(w_1,w_{N-1})$: backoff weights</li>
