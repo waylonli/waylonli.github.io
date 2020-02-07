@@ -12,7 +12,7 @@
 
 
 
-<title>Structural Testing | Waylon &amp; Ranee</title>
+<title>4-Evaluation and smoothing | Waylon &amp; Ranee</title>
 
 
 
@@ -210,7 +210,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Structural Testing</h1>
+            <h1 class="post-title">4-Evaluation and smoothing</h1>
             
                 <div class="post-meta">
                     
@@ -219,14 +219,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">February 7, 2020&nbsp;&nbsp;15:40:30</a>
+                        Date: <a href="#">February 7, 2020&nbsp;&nbsp;19:48:28</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Software-Testing/">Software Testing</a>
+                                <a href="/categories/Natural-Language-Processing/">Natural Language Processing</a>
                             
                         </span>
                     
@@ -235,40 +235,118 @@
         </header>
 
         <div class="post-content">
-            <p><strong>Def:</strong> judging test suite thoroughness based on the structure of the program itself</p>
+            <h1 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h1><ul>
+<li>Extrinstic: measure performance on a downstream application<ul>
+<li>plug different models into the system, test on the same dataset and compare the accuracy</li>
+</ul>
+</li>
+<li>Intrinstic: design a measure that is inherent to the current task</li>
+</ul>
+<p><strong>Entropy:</strong> human need $H(X)$ of Y/N questions to determine the next word<br>$$<br>H(X)=\sum_x -P(x) \log_2P(x)<br>$$<br><strong>Cross-entropy:</strong><br>$$<br>H(P,\hat{P}) = \sum_x -P(x) \log_2 \hat{P}(x)<br>$$</p>
 <ul>
-<li>Also known as <strong>white-box testing</strong></li>
-<li>Distinguish from functional testing (black-box testing)<ul>
-<li>structural testing is still testing product functionality against its specification</li>
-<li>only the measure of thoroughness has changed</li>
+<li>==cross-entropy $\ge$ entropy== ?</li>
+<li>lower cross-entropy: model is better at predicting next word</li>
+</ul>
+<p><strong>Data compression:</strong></p>
+<ul>
+<li>If we designed an optimal code based on our LM model, we could encode the entire sentence in $H(P,\hat{P}) \times \text{number of words}$ bits. ($H(P,\hat{P})$ of Y/N questions for each word)</li>
+</ul>
+<p><strong>Perplexity:</strong></p>
+<ul>
+<li>LM performance is often reported as perplexity</li>
+<li>$\text{perplexity} = 2^{\text{cross-entropy}}$</li>
+</ul>
+<h1 id="Smoothing-1"><a href="#Smoothing-1" class="headerlink" title="Smoothing 1"></a>Smoothing 1</h1><p>Smoothing methods address the problem by stealing probability mass from seen events and reallocating it to unseen events.</p>
+<p>Otherwise, only using the N-gram model is useless since the assumption is too strict for natural language processing.</p>
+<p>##Add-One (Laplace) Smoothing</p>
+<p>$$<br>P_{+1}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+1}{C(w_{i-2},w_{i-1})+v} \ \ \ \text{where }\sum_{w_i \in V} \frac{C(w_{i-2},w_{i-1},w_i)+1}{C(w_{i-2},w_{i-1})+v}=1<br>$$</p>
+<ul>
+<li>$v = \text{vocabulary size}$</li>
+<li>Cons: changed the denominator, which can have big eﬀects even on frequent events</li>
+</ul>
+<h2 id="Add-alpha-Lidstone-Smoothing"><a href="#Add-alpha-Lidstone-Smoothing" class="headerlink" title="Add-$\alpha$ (Lidstone) Smoothing"></a>Add-$\alpha$ (Lidstone) Smoothing</h2><p>$$<br>P_{+\alpha}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+\alpha}{C(w_{i-2},w_{i-1})+\alpha v}<br>$$</p>
+<ul>
+<li><p>Optimising $\alpha$ </p>
+<img src="/Users/waylon/OneDrive%20-%20University%20of%20Edinburgh/Documents/Notes/Courses/FNLP%20Notes/4-Evaluation%20and%20smoothing.assets/image-20200124104610419.png" alt="image-20200124104610419" align=left style="zoom:46%;" />
+</li>
+<li><p>Cons: </p>
+<ul>
+<li>changed the denominator, which can have big eﬀects even on frequent events</li>
+<li>no good when vocabulary size is large</li>
 </ul>
 </li>
 </ul>
-<p><strong>Why need structural testing:</strong></p>
+<h2 id="Good-Turing"><a href="#Good-Turing" class="headerlink" title="Good-Turing"></a>Good-Turing</h2><p>*<em>Idea: *</em></p>
 <ul>
-<li>Executing all control flow elements does not guarantee finding all faults</li>
-<li>Increase confidence in thoroughness of testing</li>
+<li>change the numerator</li>
+<li>use the frequency of singletons as a re-estimate of the frequency of zero-count bigrams</li>
 </ul>
-<p><strong>Practical use:</strong></p>
+<p>Adjusted counts: $c^<em>$<br>$$<br>c^</em> = (c+1)\frac{N_{c+1}}{N_c} \ \ \  P_{GT}=\frac{c^<em>}{n}<br>$$<br>*</em>Assumption:**</p>
 <ul>
-<li>Firstly create functional test suite</li>
-<li>Then measure structural coverage to identify see what is missing</li>
+<li><p>tye distribution of each bigram is binomail</p>
+</li>
+<li><p>each count is reduced slightly (Zipf): discounting</p>
+<img src="https://waylonranee.com/image/mdimg/image-20200126162032253.png" alt="image-20200126162032253" align=left style="zoom:40%;" />
+
+</li>
 </ul>
-<h2 id="Statement-testing-amp-Branch-testing"><a href="#Statement-testing-amp-Branch-testing" class="headerlink" title="Statement testing &amp; Branch testing"></a>Statement testing &amp; Branch testing</h2><p><strong>Statement testing:</strong></p>
+<p><strong>Cons:</strong></p>
 <ul>
-<li>Adequacy criterion: each statement must be executed at least once</li>
-<li>Rationale: a fault in a statement can only be revealed by executing the faulty statement</li>
+<li>assumes we know the vocabulary size</li>
+<li>do not allow “holes” in the counts (some frequency has zero count)</li>
+<li>applies discounts even to high-frequency items</li>
 </ul>
-<p><strong>Branch testing:</strong></p>
+<h1 id="Smoothing-2"><a href="#Smoothing-2" class="headerlink" title="Smoothing 2"></a>Smoothing 2</h1><p><strong>Problems of previous methods:</strong> assign equal probability to all unseen events</p>
+<p><strong>Two ways:</strong></p>
 <ul>
-<li>Adequacy criterion: each branch (edge in the CFG) must be executed at least once</li>
+<li>interpolation</li>
+<li>backoff</li>
 </ul>
-<p><strong>Comparison:</strong></p>
-<p>Traversing all edges of a graph causes all nodes to be visited, so we have:</p>
+<h2 id="Interpolation"><a href="#Interpolation" class="headerlink" title="Interpolation"></a>Interpolation</h2><p><strong>Idea:</strong> combine higher and lower order N-gram models</p>
 <ul>
-<li>Test suites that satisfy the branch adequacy criterion for a program P also satisfy the statement adequacy criterion for the same program</li>
-<li>A statement-adequate (or node-adequate) test suite may not be branch-adequate (edge-adequate)</li>
+<li>high-order N-grams are sensitive to more context, but have sparse counts</li>
+<li>low-order N-grams have limited context, but robust counts</li>
 </ul>
+<p><strong>Model:</strong><br>$$<br>P_{INT}(w_3 \mid w_1,w_2) = \lambda_1P_1(w_3) + \lambda_2P_2(w_3 \mid w_2)+\lambda_3P_3(w_3\mid w_1,w_2)<br>$$</p>
+<ul>
+<li><p>$P_N$: N-gram estimate</p>
+</li>
+<li><p>$\lambda_i$: interpolation parameters / mixture weights</p>
+<p>must sum to 1</p>
+<img src="/Users/waylon/OneDrive%20-%20University%20of%20Edinburgh/Documents/Notes/Courses/FNLP%20Notes/4-Evaluation%20and%20smoothing.assets/image-20200127211855299.png" alt="image-20200127211855299" align=left style="zoom:38%;" />
+
+</li>
+</ul>
+<p><strong>Pick values of $\lambda_i$:</strong> machine learning method, optimise perplexity on a held-out data set</p>
+<h2 id="Katz-Back-off"><a href="#Katz-Back-off" class="headerlink" title="Katz Back-off"></a>Katz Back-off</h2><p><strong>Idea:</strong> discount the trigram-based probability estimates</p>
+<p><strong>Model:</strong><br>$$<br>T(n) = \begin{equation} \left{ \begin{array}{lr} P^*(w_i \mid w_{i-N+1},\dots,w_{i-1}) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \text{if}\ \ \text{count}(w_{i-N+1},\dots,w_i)&gt;0,  \ \alpha(w_{i-N+1},\dots,w_{i-1})P_{BO}(w_i \mid w_{i-N+2},\dots,w_{i-1}) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \text{else}.  \end{array} \right. \end{equation}<br>$$</p>
+<ul>
+<li>$ P^*(w_i \mid w_{i-N+1},\dots,w_{i-1})$: adjusted predictoin model (Good Turing)</li>
+<li>$\alpha(w_1,w_{N-1})$: backoff weights</li>
+<li>G-T if count is not 0, back off if count is 0</li>
+</ul>
+<h2 id="Kneser-Ney-smoothing"><a href="#Kneser-Ney-smoothing" class="headerlink" title="Kneser-Ney smoothing"></a>Kneser-Ney smoothing</h2><p><strong>Idea:</strong> takes diversity of histories into account</p>
+<p><strong>Model:</strong><br>$$<br>N_{1+}(\bullet w_i)=\left| {w_{i-1}:c(w_{i-1}, w_i)&gt;0} \right | \ \ \ P_{KN}(w_i)= \frac{N_{1+}(\bullet w_i)}{\sum_w N_{1+}(\bullet w)}<br>$$</p>
+<table>
+<thead>
+<tr>
+<th>Types</th>
+<th>Methods</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Uniform probabilities</td>
+<td>add-$\alpha$, Good-Turing</td>
+</tr>
+<tr>
+<td>Probabilities from lower-order n-grams</td>
+<td>interpolation, backoff</td>
+</tr>
+<tr>
+<td>Probability of appering in new contexts</td>
+<td>Kneser-Ney</td>
+</tr>
+</tbody></table>
 
         </div>
 
@@ -292,8 +370,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/02/07/7-Text-Classification/">Text Classification</a>
+                <a class="prev" rel="prev" href="/2020/02/07/3-N-gram/">3-N-gram</a>
             
+            
+            <a class="next" rel="next" href="/2020/02/07/5-Distributed-representations/">Distributed representations</a>
             
         </section>
 

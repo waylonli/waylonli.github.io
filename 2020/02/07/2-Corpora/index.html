@@ -12,7 +12,7 @@
 
 
 
-<title>Distributed representations | Waylon &amp; Ranee</title>
+<title>2-Corpora | Waylon &amp; Ranee</title>
 
 
 
@@ -210,7 +210,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Distributed representations</h1>
+            <h1 class="post-title">2-Corpora</h1>
             
                 <div class="post-meta">
                     
@@ -219,7 +219,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">February 7, 2020&nbsp;&nbsp;18:23:05</a>
+                        Date: <a href="#">February 7, 2020&nbsp;&nbsp;22:37:48</a>
                         </span>
                     
                     
@@ -235,67 +235,44 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Distributed-word-representation-Word2Vec"><a href="#Distributed-word-representation-Word2Vec" class="headerlink" title="Distributed word representation (Word2Vec)"></a>Distributed word representation (Word2Vec)</h1><p>Can represent the similarity of two words</p>
-<p><strong>Early:</strong> </p>
+            <h1 id="1-Corpora"><a href="#1-Corpora" class="headerlink" title="1. Corpora"></a>1. Corpora</h1><p><strong>Def:</strong> a large or complete collection of writings</p>
 <ul>
-<li>define classes $c$ of words, by hand or automatically</li>
-<li>$P_{CL}(w_i \mid w_{i-1})=P(c_i \mid c_{i-1})P(w_i \mid c_i)$</li>
+<li>For NLP, we need corpora with <strong>linguistic annotations</strong></li>
+<li>Markup formats: XML, JSON, CoNLL-style</li>
+<li>e.g. <em>Brown, WSJ, ECI, BNC, Redwoods, Gigaword, AMI, Google Books N-grams, Flickr 8K, English Visual Genome</em></li>
 </ul>
-<p><strong>Recent idea:</strong> use neural networks to project words into a continuous space, so words that appear in similar contexts have similar representation (usually 50 or 100 dimensions)</p>
-<p><strong>Pros:</strong></p>
+<p><strong>Why need corpora</strong></p>
 <ul>
-<li>can represent the similarity (distance) between different words</li>
+<li>manual rules or database (rule-based, symbolic, knowledge-driven)</li>
+<li>learning: provide example input/output pairs for supervised learning</li>
 </ul>
-<h2 id="How-to-train"><a href="#How-to-train" class="headerlink" title="How to train?"></a>How to train?</h2><p>No direct way to train word vectors, but we can get word vectors while training our language model</p>
-<p><strong>Models for one-hot representation:</strong> neural network language model (NNLM), recurrent neural network language model (RNNLM)</p>
+<p>#2. Sentiment Analysis</p>
+<p><strong>Goal:</strong> predict the opinion expressed in a piece of text (e.g. + or -, positive or negative)</p>
+<p><strong>Method:</strong> attach gold labels to the reviews (+ or -)</p>
 <ul>
-<li>calculations are too complicated</li>
-<li>too many parameters</li>
-</ul>
-<p><strong>Models for Word2Vec:</strong> </p>
-<ul>
-<li>Continuous Bag of Words (CBOW): predict central word based on the context</li>
-<li>Skip-gram: predict context based on the central word</li>
-</ul>
-<h3 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h3><img src = "https://waylonranee.com/image/mdimg/image-20200128213558577.png" style="zoom:50%;"/>
-
-<p><strong>Loss function:</strong><br>$$<br>L=\sum_{w \in C} \log P(w \mid \text{Context}(w))<br>$$</p>
-<ul>
-<li>no hidden layer (just one projection layer)</li>
-<li>two directions window</li>
-<li>input: one-hot representations</li>
-<li>simplify projection layer as a sum and a mean operation</li>
-</ul>
-<p>After getting the weights matrix $w$, multiply one-hot representation and $w$, we can get the distributed representation of that word</p>
-<ul>
-<li>accelerating method: Hierarchical softmax, Negative sampling</li>
-</ul>
-<h3 id="Skip-gram"><a href="#Skip-gram" class="headerlink" title="Skip-gram"></a>Skip-gram</h3><img src = "https://waylonranee.com/image/mdimg/image-20200128214415619.png" style="zoom:50%;"/>
-
-<p><strong>Loss function:</strong><br>$$<br>L=\sum_{w \in C} \log P(\text{context}(w) \mid w)<br>$$</p>
-<ul>
-<li><p>two parameters</p>
-<ul>
-<li><p>skip_window: window size = 2*skip_window + 1</p>
+<li><p>can be derived automatically from the original data artifact (metadata such as star ratings)</p>
 </li>
-<li><p>num_skips: pick num_skips pairs of words</p>
-<p>e.g. I am a boy who loves football.</p>
-<p>for num_skips = 2, skip_window = 2, word = a</p>
-<p>=&gt; (a, I), (a, am), (a,boy), (a,who)</p>
+<li><p>can be added by a human annotator who reads the text</p>
+<p>Issue: annotators consistent or not</p>
 </li>
 </ul>
-</li>
-<li><p>input: one-hot representation of $w(t)$ </p>
-</li>
-</ul>
-<p>##Problem</p>
+<p><strong>Simple sentiment classification algorithm</strong></p>
 <ul>
-<li>the use of window size ignore the information contained in the whole text</li>
-<li>Word vector cannot represent different meanings of a single word</li>
+<li>Use a sentiment lexicon to count positive and negative words</li>
+<li>Issues<ul>
+<li>sense ambiguity: need more data -&gt; use frequency counts to ascertain</li>
+<li>sarcasm</li>
+<li>text could mention expectation (expectation, not comment)</li>
+<li>words may describe a character’s attitude, not the author’s</li>
+<li>phrases like “can’t believe how great it is”</li>
 </ul>
-<p>Solution: Glove</p>
-<h1 id="Noisy-channel-model"><a href="#Noisy-channel-model" class="headerlink" title="Noisy channel model"></a>Noisy channel model</h1><img src = "https://waylonranee.com/image/mdimg/image-20200128104730602.png" style="zoom:50%;"/>
-
+</li>
+</ul>
+<p><strong>Choice of training evalution data</strong></p>
+<ul>
+<li>Assume that the training data and the test data are sampled from the same distribution</li>
+<li>Method: domain adaptation techniques</li>
+</ul>
 
         </div>
 
@@ -319,8 +296,10 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/2020/02/07/1-Intro/">1-Intro</a>
             
-            <a class="next" rel="next" href="/2020/02/07/Spelling-correction-edit-distance-and-EM/">Spelling correction, edit distance and EM</a>
+            
+            <a class="next" rel="next" href="/2020/02/07/3-N-gram/">3-N-gram</a>
             
         </section>
 

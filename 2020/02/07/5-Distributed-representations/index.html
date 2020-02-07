@@ -12,7 +12,7 @@
 
 
 
-<title>Structural Testing | Waylon &amp; Ranee</title>
+<title>Distributed representations | Waylon &amp; Ranee</title>
 
 
 
@@ -210,7 +210,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Structural Testing</h1>
+            <h1 class="post-title">Distributed representations</h1>
             
                 <div class="post-meta">
                     
@@ -219,14 +219,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">February 7, 2020&nbsp;&nbsp;15:40:30</a>
+                        Date: <a href="#">February 7, 2020&nbsp;&nbsp;18:23:05</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Software-Testing/">Software Testing</a>
+                                <a href="/categories/Natural-Language-Processing/">Natural Language Processing</a>
                             
                         </span>
                     
@@ -235,40 +235,67 @@
         </header>
 
         <div class="post-content">
-            <p><strong>Def:</strong> judging test suite thoroughness based on the structure of the program itself</p>
+            <h1 id="Distributed-word-representation-Word2Vec"><a href="#Distributed-word-representation-Word2Vec" class="headerlink" title="Distributed word representation (Word2Vec)"></a>Distributed word representation (Word2Vec)</h1><p>Can represent the similarity of two words</p>
+<p><strong>Early:</strong> </p>
 <ul>
-<li>Also known as <strong>white-box testing</strong></li>
-<li>Distinguish from functional testing (black-box testing)<ul>
-<li>structural testing is still testing product functionality against its specification</li>
-<li>only the measure of thoroughness has changed</li>
+<li>define classes $c$ of words, by hand or automatically</li>
+<li>$P_{CL}(w_i \mid w_{i-1})=P(c_i \mid c_{i-1})P(w_i \mid c_i)$</li>
 </ul>
+<p><strong>Recent idea:</strong> use neural networks to project words into a continuous space, so words that appear in similar contexts have similar representation (usually 50 or 100 dimensions)</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>can represent the similarity (distance) between different words</li>
+</ul>
+<h2 id="How-to-train"><a href="#How-to-train" class="headerlink" title="How to train?"></a>How to train?</h2><p>No direct way to train word vectors, but we can get word vectors while training our language model</p>
+<p><strong>Models for one-hot representation:</strong> neural network language model (NNLM), recurrent neural network language model (RNNLM)</p>
+<ul>
+<li>calculations are too complicated</li>
+<li>too many parameters</li>
+</ul>
+<p><strong>Models for Word2Vec:</strong> </p>
+<ul>
+<li>Continuous Bag of Words (CBOW): predict central word based on the context</li>
+<li>Skip-gram: predict context based on the central word</li>
+</ul>
+<h3 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h3><img src = "https://waylonranee.com/image/mdimg/image-20200128213558577.png" style="zoom:50%;"/>
+
+<p><strong>Loss function:</strong><br>$$<br>L=\sum_{w \in C} \log P(w \mid \text{Context}(w))<br>$$</p>
+<ul>
+<li>no hidden layer (just one projection layer)</li>
+<li>two directions window</li>
+<li>input: one-hot representations</li>
+<li>simplify projection layer as a sum and a mean operation</li>
+</ul>
+<p>After getting the weights matrix $w$, multiply one-hot representation and $w$, we can get the distributed representation of that word</p>
+<ul>
+<li>accelerating method: Hierarchical softmax, Negative sampling</li>
+</ul>
+<h3 id="Skip-gram"><a href="#Skip-gram" class="headerlink" title="Skip-gram"></a>Skip-gram</h3><img src = "https://waylonranee.com/image/mdimg/image-20200128214415619.png" style="zoom:50%;"/>
+
+<p><strong>Loss function:</strong><br>$$<br>L=\sum_{w \in C} \log P(\text{context}(w) \mid w)<br>$$</p>
+<ul>
+<li><p>two parameters</p>
+<ul>
+<li><p>skip_window: window size = 2*skip_window + 1</p>
+</li>
+<li><p>num_skips: pick num_skips pairs of words</p>
+<p>e.g. I am a boy who loves football.</p>
+<p>for num_skips = 2, skip_window = 2, word = a</p>
+<p>=&gt; (a, I), (a, am), (a,boy), (a,who)</p>
 </li>
 </ul>
-<p><strong>Why need structural testing:</strong></p>
-<ul>
-<li>Executing all control flow elements does not guarantee finding all faults</li>
-<li>Increase confidence in thoroughness of testing</li>
+</li>
+<li><p>input: one-hot representation of $w(t)$ </p>
+</li>
 </ul>
-<p><strong>Practical use:</strong></p>
+<p>##Problem</p>
 <ul>
-<li>Firstly create functional test suite</li>
-<li>Then measure structural coverage to identify see what is missing</li>
+<li>the use of window size ignore the information contained in the whole text</li>
+<li>Word vector cannot represent different meanings of a single word</li>
 </ul>
-<h2 id="Statement-testing-amp-Branch-testing"><a href="#Statement-testing-amp-Branch-testing" class="headerlink" title="Statement testing &amp; Branch testing"></a>Statement testing &amp; Branch testing</h2><p><strong>Statement testing:</strong></p>
-<ul>
-<li>Adequacy criterion: each statement must be executed at least once</li>
-<li>Rationale: a fault in a statement can only be revealed by executing the faulty statement</li>
-</ul>
-<p><strong>Branch testing:</strong></p>
-<ul>
-<li>Adequacy criterion: each branch (edge in the CFG) must be executed at least once</li>
-</ul>
-<p><strong>Comparison:</strong></p>
-<p>Traversing all edges of a graph causes all nodes to be visited, so we have:</p>
-<ul>
-<li>Test suites that satisfy the branch adequacy criterion for a program P also satisfy the statement adequacy criterion for the same program</li>
-<li>A statement-adequate (or node-adequate) test suite may not be branch-adequate (edge-adequate)</li>
-</ul>
+<p>Solution: Glove</p>
+<h1 id="Noisy-channel-model"><a href="#Noisy-channel-model" class="headerlink" title="Noisy channel model"></a>Noisy channel model</h1><img src = "https://waylonranee.com/image/mdimg/image-20200128104730602.png" style="zoom:50%;"/>
+
 
         </div>
 
@@ -292,8 +319,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/02/07/7-Text-Classification/">Text Classification</a>
+                <a class="prev" rel="prev" href="/2020/02/07/4-Evaluation-and-smoothing/">4-Evaluation and smoothing</a>
             
+            
+            <a class="next" rel="next" href="/2020/02/07/6-Spelling-correction-edit-distance-and-EM/">Spelling correction, edit distance and EM</a>
             
         </section>
 

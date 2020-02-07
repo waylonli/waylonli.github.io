@@ -12,7 +12,7 @@
 
 
 
-<title>Structural Testing | Waylon &amp; Ranee</title>
+<title>Spelling correction, edit distance and EM | Waylon &amp; Ranee</title>
 
 
 
@@ -210,7 +210,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Structural Testing</h1>
+            <h1 class="post-title">Spelling correction, edit distance and EM</h1>
             
                 <div class="post-meta">
                     
@@ -219,14 +219,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">February 7, 2020&nbsp;&nbsp;15:40:30</a>
+                        Date: <a href="#">February 7, 2020&nbsp;&nbsp;18:20:21</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Software-Testing/">Software Testing</a>
+                                <a href="/categories/Natural-Language-Processing/">Natural Language Processing</a>
                             
                         </span>
                     
@@ -235,39 +235,38 @@
         </header>
 
         <div class="post-content">
-            <p><strong>Def:</strong> judging test suite thoroughness based on the structure of the program itself</p>
+            <h1 id="Spelling-correction"><a href="#Spelling-correction" class="headerlink" title="Spelling correction"></a>Spelling correction</h1><p>##Simple version</p>
+<p><strong>Assumption:</strong></p>
 <ul>
-<li>Also known as <strong>white-box testing</strong></li>
-<li>Distinguish from functional testing (black-box testing)<ul>
-<li>structural testing is still testing product functionality against its specification</li>
-<li>only the measure of thoroughness has changed</li>
+<li>have a large dictionary of real word</li>
+<li>only correct non-word</li>
+<li>only consider corrections differ by a <strong>single</strong> character from the non-word</li>
 </ul>
+<p><strong>Idea:</strong></p>
+<ul>
+<li>generate a list of all words $y$ differ by 1 character from $x$</li>
+<li>compute the probability of each $y$ and choose the highest one</li>
+</ul>
+<h2 id="Alignments-and-edit-distance"><a href="#Alignments-and-edit-distance" class="headerlink" title="Alignments and edit distance"></a>Alignments and edit distance</h2><p><strong>Edit distance:</strong></p>
+<ul>
+<li>substitution</li>
+<li>deletion</li>
+<li>insertion</li>
+</ul>
+<p><strong>Need to:</strong></p>
+<ul>
+<li><p>find the optimal character alignment between two words</p>
+<p>the optimal alignment is the one with <strong>minimum edit distance (MED)</strong></p>
 </li>
 </ul>
-<p><strong>Why need structural testing:</strong></p>
+<p><strong>How:</strong></p>
 <ul>
-<li>Executing all control flow elements does not guarantee finding all faults</li>
-<li>Increase confidence in thoroughness of testing</li>
+<li>Dynamic programming: Viterbi, CKY</li>
 </ul>
-<p><strong>Practical use:</strong></p>
+<p><strong>Uses:</strong></p>
 <ul>
-<li>Firstly create functional test suite</li>
-<li>Then measure structural coverage to identify see what is missing</li>
-</ul>
-<h2 id="Statement-testing-amp-Branch-testing"><a href="#Statement-testing-amp-Branch-testing" class="headerlink" title="Statement testing &amp; Branch testing"></a>Statement testing &amp; Branch testing</h2><p><strong>Statement testing:</strong></p>
-<ul>
-<li>Adequacy criterion: each statement must be executed at least once</li>
-<li>Rationale: a fault in a statement can only be revealed by executing the faulty statement</li>
-</ul>
-<p><strong>Branch testing:</strong></p>
-<ul>
-<li>Adequacy criterion: each branch (edge in the CFG) must be executed at least once</li>
-</ul>
-<p><strong>Comparison:</strong></p>
-<p>Traversing all edges of a graph causes all nodes to be visited, so we have:</p>
-<ul>
-<li>Test suites that satisfy the branch adequacy criterion for a program P also satisfy the statement adequacy criterion for the same program</li>
-<li>A statement-adequate (or node-adequate) test suite may not be branch-adequate (edge-adequate)</li>
+<li>spelling correction</li>
+<li>morphological analysis</li>
 </ul>
 
         </div>
@@ -292,8 +291,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/02/07/7-Text-Classification/">Text Classification</a>
+                <a class="prev" rel="prev" href="/2020/02/07/5-Distributed-representations/">Distributed representations</a>
             
+            
+            <a class="next" rel="next" href="/2020/02/07/7-Text-Classification/">Text Classification</a>
             
         </section>
 
