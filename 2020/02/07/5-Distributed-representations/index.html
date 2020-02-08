@@ -236,29 +236,29 @@
 
         <div class="post-content">
             <h1 id="Distributed-word-representation-Word2Vec"><a href="#Distributed-word-representation-Word2Vec" class="headerlink" title="Distributed word representation (Word2Vec)"></a>Distributed word representation (Word2Vec)</h1><p>Can represent the similarity of two words</p>
-<p>**Early:** </p>
+<p><strong>Early:</strong> </p>
 <ul>
 <li>define classes $c$ of words, by hand or automatically</li>
 <li>$P_{CL}(w_i \mid w_{i-1})=P(c_i \mid c_{i-1})P(w_i \mid c_i)$</li>
 </ul>
-<p>**Recent idea:** use neural networks to project words into a continuous space, so words that appear in similar contexts have similar representation (usually 50 or 100 dimensions)</p>
-<p>**Pros:**</p>
+<p><strong>Recent idea:</strong> use neural networks to project words into a continuous space, so words that appear in similar contexts have similar representation (usually 50 or 100 dimensions)</p>
+<p><strong>Pros:</strong></p>
 <ul>
 <li>can represent the similarity (distance) between different words</li>
 </ul>
 <h2 id="How-to-train"><a href="#How-to-train" class="headerlink" title="How to train?"></a>How to train?</h2><p>No direct way to train word vectors, but we can get word vectors while training our language model</p>
-<p>**Models for one-hot representation:** neural network language model (NNLM), recurrent neural network language model (RNNLM)</p>
+<p><strong>Models for one-hot representation:</strong> neural network language model (NNLM), recurrent neural network language model (RNNLM)</p>
 <ul>
 <li>calculations are too complicated</li>
 <li>too many parameters</li>
 </ul>
-<p>**Models for Word2Vec:** </p>
+<p><strong>Models for Word2Vec:</strong> </p>
 <ul>
 <li>Continuous Bag of Words (CBOW): predict central word based on the context</li>
 <li>Skip-gram: predict context based on the central word</li>
 </ul>
 <h3 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h3><p><img src = "https://waylonranee.com/image/mdimg/image-20200128213558577.png" style="zoom:50%;"/></p>
-<p>**Loss function:**</p>
+<p><strong>Loss function:</strong></p>
 <script type="math/tex; mode=display">
 L=\sum_{w \in C} \log P(w \mid \text{Context}(w))</script><ul>
 <li>no hidden layer (just one projection layer)</li>
@@ -271,7 +271,7 @@ L=\sum_{w \in C} \log P(w \mid \text{Context}(w))</script><ul>
 <li>accelerating method: Hierarchical softmax, Negative sampling</li>
 </ul>
 <h3 id="Skip-gram"><a href="#Skip-gram" class="headerlink" title="Skip-gram"></a>Skip-gram</h3><p><img src = "https://waylonranee.com/image/mdimg/image-20200128214415619.png" style="zoom:50%;"/></p>
-<p>**Loss function:**</p>
+<p><strong>Loss function:</strong></p>
 <script type="math/tex; mode=display">
 L=\sum_{w \in C} \log P(\text{context}(w) \mid w)</script><ul>
 <li><p>two parameters</p>
@@ -350,7 +350,24 @@ L=\sum_{w \in C} \log P(\text{context}(w) \mid w)</script><ul>
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 </body>
 </html>

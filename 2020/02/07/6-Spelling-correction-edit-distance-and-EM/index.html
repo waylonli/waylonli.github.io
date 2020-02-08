@@ -235,34 +235,34 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Spelling-correction"><a href="#Spelling-correction" class="headerlink" title="Spelling correction"></a>Spelling correction</h1><h2 id="Simple-version"><a href="#Simple-version" class="headerlink" title="Simple version"></a>Simple version</h2><p>**Assumption:**</p>
+            <h1 id="Spelling-correction"><a href="#Spelling-correction" class="headerlink" title="Spelling correction"></a>Spelling correction</h1><h2 id="Simple-version"><a href="#Simple-version" class="headerlink" title="Simple version"></a>Simple version</h2><p><strong>Assumption:</strong></p>
 <ul>
 <li>have a large dictionary of real word</li>
 <li>only correct non-word</li>
-<li>only consider corrections differ by a **single** character from the non-word</li>
+<li>only consider corrections differ by a <strong>single</strong> character from the non-word</li>
 </ul>
-<p>**Idea:**</p>
+<p><strong>Idea:</strong></p>
 <ul>
 <li>generate a list of all words $y$ differ by 1 character from $x$</li>
 <li>compute the probability of each $y$ and choose the highest one</li>
 </ul>
-<h2 id="Alignments-and-edit-distance"><a href="#Alignments-and-edit-distance" class="headerlink" title="Alignments and edit distance"></a>Alignments and edit distance</h2><p>**Edit distance:**</p>
+<h2 id="Alignments-and-edit-distance"><a href="#Alignments-and-edit-distance" class="headerlink" title="Alignments and edit distance"></a>Alignments and edit distance</h2><p><strong>Edit distance:</strong></p>
 <ul>
 <li>substitution</li>
 <li>deletion</li>
 <li>insertion</li>
 </ul>
-<p>**Need to:**</p>
+<p><strong>Need to:</strong></p>
 <ul>
 <li><p>find the optimal character alignment between two words</p>
-<p>the optimal alignment is the one with **minimum edit distance (MED)**</p>
+<p>the optimal alignment is the one with <strong>minimum edit distance (MED)</strong></p>
 </li>
 </ul>
-<p>**How:**</p>
+<p><strong>How:</strong></p>
 <ul>
 <li>Dynamic programming: Viterbi, CKY</li>
 </ul>
-<p>**Uses:**</p>
+<p><strong>Uses:</strong></p>
 <ul>
 <li>spelling correction</li>
 <li>morphological analysis</li>
@@ -323,7 +323,24 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 </body>
 </html>

@@ -238,7 +238,7 @@
             <h1 id="Why-hard"><a href="#Why-hard" class="headerlink" title="Why hard?"></a>Why hard?</h1><ul>
 <li><p>Ambiguity</p>
 </li>
-<li><p>Sparse data (due to **Zipf’s Law**)</p>
+<li><p>Sparse data (due to <strong>Zipf’s Law</strong>)</p>
 <script type="math/tex; mode=display">f\times r \approx k</script><p>𝑓 = frequency of a word</p>
 <p>𝑟 = rank of a word</p>
 <p>𝑘 = a constant</p>
@@ -300,7 +300,24 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 </body>
 </html>
