@@ -235,7 +235,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h1><ul>
+            <h1 id="1-Evaluation"><a href="#1-Evaluation" class="headerlink" title="1 Evaluation"></a>1 Evaluation</h1><ul>
 <li>Extrinstic: measure performance on a downstream application<ul>
 <li>plug different models into the system, test on the same dataset and compare the accuracy</li>
 </ul>
@@ -259,14 +259,14 @@ H(P,\hat{P}) = \sum_x -P(x) \log_2 \hat{P}(x)</script><ul>
 <li>LM performance is often reported as perplexity</li>
 <li>$\text{perplexity} = 2^{\text{cross-entropy}}$</li>
 </ul>
-<h1 id="Smoothing-1"><a href="#Smoothing-1" class="headerlink" title="Smoothing 1"></a>Smoothing 1</h1><p>Smoothing methods address the problem by stealing probability mass from seen events and reallocating it to unseen events.</p>
+<h1 id="2-Smoothing-1"><a href="#2-Smoothing-1" class="headerlink" title="2 Smoothing 1"></a>2 Smoothing 1</h1><p>Smoothing methods address the problem by stealing probability mass from seen events and reallocating it to unseen events.</p>
 <p>Otherwise, only using the N-gram model is useless since the assumption is too strict for natural language processing.</p>
-<h2 id="Add-One-Laplace-Smoothing"><a href="#Add-One-Laplace-Smoothing" class="headerlink" title="Add-One (Laplace) Smoothing"></a>Add-One (Laplace) Smoothing</h2><script type="math/tex; mode=display">
+<h2 id="2-1-Add-One-Laplace-Smoothing"><a href="#2-1-Add-One-Laplace-Smoothing" class="headerlink" title="2.1 Add-One (Laplace) Smoothing"></a>2.1 Add-One (Laplace) Smoothing</h2><script type="math/tex; mode=display">
 P_{+1}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+1}{C(w_{i-2},w_{i-1})+v} \\ \ \\ \text{where }\sum_{w_i \in V} \frac{C(w_{i-2},w_{i-1},w_i)+1}{C(w_{i-2},w_{i-1})+v}=1</script><ul>
 <li>$v = \text{vocabulary size}$</li>
 <li>Cons: changed the denominator, which can have big eﬀects even on frequent events</li>
 </ul>
-<h2 id="Add-alpha-Lidstone-Smoothing"><a href="#Add-alpha-Lidstone-Smoothing" class="headerlink" title="Add-$\alpha$ (Lidstone) Smoothing"></a>Add-$\alpha$ (Lidstone) Smoothing</h2><script type="math/tex; mode=display">
+<h2 id="2-2-Add-alpha-Lidstone-Smoothing"><a href="#2-2-Add-alpha-Lidstone-Smoothing" class="headerlink" title="2.2 Add-$\alpha$ (Lidstone) Smoothing"></a>2.2 Add-$\alpha$ (Lidstone) Smoothing</h2><script type="math/tex; mode=display">
 P_{+\alpha}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+\alpha}{C(w_{i-2},w_{i-1})+\alpha v}</script><ul>
 <li><p>Optimising $\alpha$ </p>
 <p><img src="https://waylonranee.com/image/mdimg/image-20200124104610419.png" alt="image-20200124104610419" style="zoom:46%;" /></p>
@@ -278,7 +278,7 @@ P_{+\alpha}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+\alpha}{C(w_
 </ul>
 </li>
 </ul>
-<h2 id="Good-Turing"><a href="#Good-Turing" class="headerlink" title="Good-Turing"></a>Good-Turing</h2><p><strong>Idea:</strong></p>
+<h2 id="2-3-Good-Turing"><a href="#2-3-Good-Turing" class="headerlink" title="2.3 Good-Turing"></a>2.3 Good-Turing</h2><p><strong>Idea:</strong></p>
 <ul>
 <li>change the numerator</li>
 <li>use the frequency of singletons as a re-estimate of the frequency of zero-count bigrams</li>
@@ -299,13 +299,13 @@ c^* = (c+1)\frac{N_{c+1}}{N_c} \\ \ \\  P_{GT}=\frac{c^*}{n}</script><p><strong>
 <li>do not allow “holes” in the counts (some frequency has zero count)</li>
 <li>applies discounts even to high-frequency items</li>
 </ul>
-<h1 id="Smoothing-2"><a href="#Smoothing-2" class="headerlink" title="Smoothing 2"></a>Smoothing 2</h1><p><strong>Problems of previous methods:</strong> assign equal probability to all unseen events</p>
+<h1 id="3-Smoothing-2"><a href="#3-Smoothing-2" class="headerlink" title="3 Smoothing 2"></a>3 Smoothing 2</h1><p><strong>Problems of previous methods:</strong> assign equal probability to all unseen events</p>
 <p><strong>Two ways:</strong></p>
 <ul>
 <li>interpolation</li>
 <li>backoff</li>
 </ul>
-<h2 id="Interpolation"><a href="#Interpolation" class="headerlink" title="Interpolation"></a>Interpolation</h2><p><strong>Idea:</strong> combine higher and lower order N-gram models</p>
+<h2 id="3-1-Interpolation"><a href="#3-1-Interpolation" class="headerlink" title="3.1 Interpolation"></a>3.1 Interpolation</h2><p><strong>Idea:</strong> combine higher and lower order N-gram models</p>
 <ul>
 <li>high-order N-grams are sensitive to more context, but have sparse counts</li>
 <li>low-order N-grams have limited context, but robust counts</li>
@@ -321,7 +321,7 @@ P_{INT}(w_3 \mid w_1,w_2) = \lambda_1P_1(w_3) + \lambda_2P_2(w_3 \mid w_2)+\lamb
 </li>
 </ul>
 <p><strong>Pick values of $\lambda_i$:</strong> machine learning method, optimise perplexity on a held-out data set</p>
-<h2 id="Katz-Back-off"><a href="#Katz-Back-off" class="headerlink" title="Katz Back-off"></a>Katz Back-off</h2><p><strong>Idea:</strong> discount the trigram-based probability estimates</p>
+<h2 id="3-2-Katz-Back-off"><a href="#3-2-Katz-Back-off" class="headerlink" title="3.2 Katz Back-off"></a>3.2 Katz Back-off</h2><p><strong>Idea:</strong> discount the trigram-based probability estimates</p>
 <p><strong>Model:</strong></p>
 <script type="math/tex; mode=display">
 T(n) = \begin{equation} \left\{ \begin{array}{lr} P^*(w_i \mid w_{i-N+1},\dots,w_{i-1}) \qquad \qquad  \ \text{if}\ \ \text{count}(w_{i-N+1},\dots,w_i)>0,  \\ \alpha(w_{i-N+1},\dots,w_{i-1})P_{BO}(w_i \mid w_{i-N+2},\dots,w_{i-1}) \qquad \qquad  \text{else}.  \end{array} \right. \end{equation}</script><ul>
@@ -329,7 +329,7 @@ T(n) = \begin{equation} \left\{ \begin{array}{lr} P^*(w_i \mid w_{i-N+1},\dots,w
 <li>$\alpha(w_1,w_{N-1})$: backoff weights</li>
 <li>G-T if count is not 0, back off if count is 0</li>
 </ul>
-<h2 id="Kneser-Ney-smoothing"><a href="#Kneser-Ney-smoothing" class="headerlink" title="Kneser-Ney smoothing"></a>Kneser-Ney smoothing</h2><p><strong>Idea:</strong> takes diversity of histories into account</p>
+<h2 id="3-3-Kneser-Ney-smoothing"><a href="#3-3-Kneser-Ney-smoothing" class="headerlink" title="3.3 Kneser-Ney smoothing"></a>3.3 Kneser-Ney smoothing</h2><p><strong>Idea:</strong> takes diversity of histories into account</p>
 <p><strong>Model:</strong></p>
 <script type="math/tex; mode=display">
 N_{1+}(\bullet w_i)=\left| \{w_{i-1}:c(w_{i-1}, w_i)>0\} \right |</script><script type="math/tex; mode=display">

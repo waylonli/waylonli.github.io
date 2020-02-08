@@ -235,12 +235,12 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Application"><a href="#Application" class="headerlink" title="Application:"></a>Application:</h1><ul>
+            <h1 id="1-Application"><a href="#1-Application" class="headerlink" title="1 Application:"></a>1 Application:</h1><ul>
 <li>spelling correction</li>
 <li>automatic speech recognition</li>
 <li>machine translatio</li>
 </ul>
-<h1 id="Estimate-the-probabilities-training"><a href="#Estimate-the-probabilities-training" class="headerlink" title="Estimate the probabilities: training"></a>Estimate the probabilities: training</h1><ul>
+<h1 id="2-Estimate-the-probabilities-training"><a href="#2-Estimate-the-probabilities-training" class="headerlink" title="2 Estimate the probabilities: training"></a>2 Estimate the probabilities: training</h1><ul>
 <li>training data: large corpus of general English text</li>
 <li>MLE: maximum likelihood estimation<ul>
 <li>MLE assigns 0 probability to anything hasn’t occurred</li>
@@ -249,16 +249,16 @@
 <li>we don’t know the true probabilities, we estimate instead</li>
 <li>sparse data problem: not enough observations to estimate probabilities well simply by counting observed data (for sentences, many will occur rarely in the training data, smater way: N-gram)</li>
 </ul>
-<h1 id="N-gram-language-model-N-gram-LM"><a href="#N-gram-language-model-N-gram-LM" class="headerlink" title="N-gram language model (N-gram LM)"></a>N-gram language model (N-gram LM)</h1><h2 id="Markov-assumption-independence-assumption"><a href="#Markov-assumption-independence-assumption" class="headerlink" title="Markov assumption (independence assumption)"></a>Markov assumption (independence assumption)</h2><p>The probability of a word only depends on a ﬁxed number of previous words (history)</p>
+<h1 id="3-N-gram-language-model-N-gram-LM"><a href="#3-N-gram-language-model-N-gram-LM" class="headerlink" title="3 N-gram language model (N-gram LM)"></a>3 N-gram language model (N-gram LM)</h1><h2 id="3-1-Markov-assumption-independence-assumption"><a href="#3-1-Markov-assumption-independence-assumption" class="headerlink" title="3.1 Markov assumption (independence assumption)"></a>3.1 Markov assumption (independence assumption)</h2><p>The probability of a word only depends on a ﬁxed number of previous words (history)</p>
 <ul>
 <li><p>not always a good assumption</p>
 <p><img src="https://waylonranee.com/image/mdimg/image-20200121104301500.png" alt="image-20200121104301500" style="zoom:42%;" /></p>
 </li>
 </ul>
-<h2 id="Probaility-calculation"><a href="#Probaility-calculation" class="headerlink" title="Probaility calculation"></a>Probaility calculation</h2><p>To estimate $ P(\vec{w}) $, use chain rule:</p>
+<h2 id="3-2-Probaility-calculation"><a href="#3-2-Probaility-calculation" class="headerlink" title="3.2 Probaility calculation"></a>3.2 Probaility calculation</h2><p>To estimate $ P(\vec{w}) $, use chain rule:</p>
 <script type="math/tex; mode=display">
 P(w_1,\dots,w_n) = \prod_{i=1}^nP(w_i \mid w_1,w_2,\dots,w_{i-1}) \\ \approx P(w_1)P(w_2\mid w_1)\prod_{i=3}^n P(w_i \mid w_{i-2}, w_{i-1})</script><p>Problem: sentence boundaryet</p>
-<h2 id="Beginning-end-of-sequence"><a href="#Beginning-end-of-sequence" class="headerlink" title="Beginning / end of sequence"></a>Beginning / end of sequence</h2><p><img src="https://waylonranee.com/image/mdimg/image-20200121105220976.png" alt="image-20200121105220976" style="zoom:50%;" /></p>
+<h2 id="3-3-Beginning-end-of-sequence"><a href="#3-3-Beginning-end-of-sequence" class="headerlink" title="3.3 Beginning / end of sequence"></a>3.3 Beginning / end of sequence</h2><p><img src="https://waylonranee.com/image/mdimg/image-20200121105220976.png" alt="image-20200121105220976" style="zoom:50%;" /></p>
 
         </div>
 

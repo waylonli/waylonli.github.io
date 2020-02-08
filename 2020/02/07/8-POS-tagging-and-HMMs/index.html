@@ -235,7 +235,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Pos-tagging"><a href="#Pos-tagging" class="headerlink" title="Pos tagging"></a>Pos tagging</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><strong>Uses:</strong></p>
+            <h1 id="1-Pos-tagging"><a href="#1-Pos-tagging" class="headerlink" title="1 Pos tagging"></a>1 Pos tagging</h1><h2 id="1-1-Introduction"><a href="#1-1-Introduction" class="headerlink" title="1.1 Introduction"></a>1.1 Introduction</h2><p><strong>Uses:</strong></p>
 <ul>
 <li>First step towards syntactic analysis</li>
 <li>Often useful for semantic analysis</li>
@@ -253,7 +253,7 @@
 <li>Ambiguity</li>
 <li>Sparse data</li>
 </ul>
-<h2 id="Probabilistic-model-for-tagging-forward-algorithm"><a href="#Probabilistic-model-for-tagging-forward-algorithm" class="headerlink" title="Probabilistic model for tagging (forward algorithm?)"></a>Probabilistic model for tagging (forward algorithm?)</h2><p><strong>Assumption:</strong></p>
+<h2 id="1-2-Probabilistic-model-for-tagging-forward-algorithm"><a href="#1-2-Probabilistic-model-for-tagging-forward-algorithm" class="headerlink" title="1.2 Probabilistic model for tagging (forward algorithm?)"></a>1.2 Probabilistic model for tagging (forward algorithm?)</h2><p><strong>Assumption:</strong></p>
 <ul>
 <li>Each tag depends only on previous tag (bigram tag model)</li>
 <li>Words are independent given tags</li>
@@ -266,7 +266,7 @@
 <li>Tags of the sentence: $T=t_1 \dots t_n$ </li>
 </ul>
 <script type="math/tex; mode=display">
-P(S,T) = \prod_{i=1}^n P(t_i \mid t_{i-1}) P(w_i \mid t_i)</script><h1 id="HMM"><a href="#HMM" class="headerlink" title="HMM"></a>HMM</h1><h2 id="Introduction-1"><a href="#Introduction-1" class="headerlink" title="Introduction"></a>Introduction</h2><p><strong>Purpose:</strong> find the best tag sequence for an untagged sentence</p>
+P(S,T) = \prod_{i=1}^n P(t_i \mid t_{i-1}) P(w_i \mid t_i)</script><h1 id="2-HMM"><a href="#2-HMM" class="headerlink" title="2 HMM"></a>2 HMM</h1><h2 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1 Introduction"></a>2.1 Introduction</h2><p><strong>Purpose:</strong> find the best tag sequence for an untagged sentence</p>
 <ul>
 <li>Markov: Markov independence assumption (each tag / state only depends on fixed number of previous tags / states)</li>
 <li>Hidden: at test time we only see the words / emissions, the tags / states are hidden variables</li>
@@ -279,7 +279,7 @@ P(S,T) = \prod_{i=1}^n P(t_i \mid t_{i-1}) P(w_i \mid t_i)</script><h1 id="HMM">
 <li>state transition probabilities (e.g. $P(t_i \mid t_{i-1})$)</li>
 <li>symbol emission probabilities (e.g. $P(w_i \mid t_i)$)</li>
 </ul>
-<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><script type="math/tex; mode=display">
+<h2 id="2-2-Model"><a href="#2-2-Model" class="headerlink" title="2.2 Model"></a>2.2 Model</h2><script type="math/tex; mode=display">
 \underset{T}{\operatorname{argmax}} P(T \mid S) = \underset{T}{\operatorname{argmax}} P(S \mid T) P(T)</script><ul>
 <li>$T$: best tag sequence</li>
 <li>$S$: untagged sentence</li>
@@ -287,8 +287,8 @@ P(S,T) = \prod_{i=1}^n P(t_i \mid t_{i-1}) P(w_i \mid t_i)</script><h1 id="HMM">
 <li>P(T) = \prod_i P(t_i \mid t_{i-1})</li>
 <li>$P(S \mid T) = \prod_i P(w_i \mid t_i)$</li>
 </ul>
-<h2 id="Searching-Viterbi-algorithm"><a href="#Searching-Viterbi-algorithm" class="headerlink" title="Searching: Viterbi algorithm"></a>Searching: Viterbi algorithm</h2><p><strong>Decoding</strong>: finding the best tag sequence for a sentence is called decoding</p>
-<h2 id="Three-main-problems"><a href="#Three-main-problems" class="headerlink" title="Three main problems"></a>Three main problems</h2><ol>
+<h2 id="2-3-Searching-Viterbi-algorithm"><a href="#2-3-Searching-Viterbi-algorithm" class="headerlink" title="2.3 Searching: Viterbi algorithm"></a>2.3 Searching: Viterbi algorithm</h2><p><strong>Decoding</strong>: finding the best tag sequence for a sentence is called decoding</p>
+<h2 id="2-4-Three-main-problems"><a href="#2-4-Three-main-problems" class="headerlink" title="2.4 Three main problems"></a>2.4 Three main problems</h2><ol>
 <li><strong>Evaluation problem</strong><ul>
 <li>Evaluation problem answers the question: what is the probability that a particular sequence of symbols is produced by a particular model?</li>
 <li>For evaluation we use two algorithms: the <em>forward algorithm</em> or the <em>backwards algorithm</em> (DO NOT confuse them with the forward-backward algorithm).</li>
