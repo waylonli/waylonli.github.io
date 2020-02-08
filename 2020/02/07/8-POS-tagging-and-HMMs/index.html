@@ -235,7 +235,8 @@
         </header>
 
         <div class="post-content">
-            <h1 id="1-Pos-tagging"><a href="#1-Pos-tagging" class="headerlink" title="1 Pos tagging"></a>1 Pos tagging</h1><h2 id="1-1-Introduction"><a href="#1-1-Introduction" class="headerlink" title="1.1 Introduction"></a>1.1 Introduction</h2><p><strong>Uses:</strong></p>
+            <h1 id="1-Pos-tagging"><a href="#1-Pos-tagging" class="headerlink" title="1 Pos tagging"></a>1 Pos tagging</h1><p>##1.1 Introduction</p>
+<p><strong>Uses:</strong></p>
 <ul>
 <li>First step towards syntactic analysis</li>
 <li>Often useful for semantic analysis</li>
@@ -247,7 +248,8 @@
 <li>The labels of surrounding words</li>
 </ul>
 <p><strong>Tags:</strong> Penn Treebank POS tags</p>
-<p><img src="https://waylonranee.com/image/mdimg/image-20200205210126948.png" alt="image-20200205210126948" style="zoom:43%;" /></p>
+<img src="https://waylonranee.com/image/mdimg/image-20200205210126948.png" alt="image-20200205210126948" style="zoom:43%;" />
+
 <p><strong>Difficulties:</strong></p>
 <ul>
 <li>Ambiguity</li>
@@ -265,8 +267,9 @@
 <li>Sentence: $S=w_1\dots w_n$ </li>
 <li>Tags of the sentence: $T=t_1 \dots t_n$ </li>
 </ul>
-<script type="math/tex; mode=display">
-P(S,T) = \prod_{i=1}^n P(t_i \mid t_{i-1}) P(w_i \mid t_i)</script><h1 id="2-HMM"><a href="#2-HMM" class="headerlink" title="2 HMM"></a>2 HMM</h1><h2 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1 Introduction"></a>2.1 Introduction</h2><p><strong>Purpose:</strong> find the best tag sequence for an untagged sentence</p>
+<p>$$<br>P(S,T) = \prod_{i=1}^n P(t_i \mid t_{i-1}) P(w_i \mid t_i)<br>$$</p>
+<h1 id="2-HMM"><a href="#2-HMM" class="headerlink" title="2 HMM"></a>2 HMM</h1><p>##2.1 Introduction</p>
+<p><strong>Purpose:</strong> find the best tag sequence for an untagged sentence</p>
 <ul>
 <li>Markov: Markov independence assumption (each tag / state only depends on fixed number of previous tags / states)</li>
 <li>Hidden: at test time we only see the words / emissions, the tags / states are hidden variables</li>
@@ -279,8 +282,8 @@ P(S,T) = \prod_{i=1}^n P(t_i \mid t_{i-1}) P(w_i \mid t_i)</script><h1 id="2-HMM
 <li>state transition probabilities (e.g. $P(t_i \mid t_{i-1})$)</li>
 <li>symbol emission probabilities (e.g. $P(w_i \mid t_i)$)</li>
 </ul>
-<h2 id="2-2-Model"><a href="#2-2-Model" class="headerlink" title="2.2 Model"></a>2.2 Model</h2><script type="math/tex; mode=display">
-\underset{T}{\operatorname{argmax}} P(T \mid S) = \underset{T}{\operatorname{argmax}} P(S \mid T) P(T)</script><ul>
+<h2 id="2-2-Model"><a href="#2-2-Model" class="headerlink" title="2.2 Model"></a>2.2 Model</h2><p>$$<br>\underset{T}{\operatorname{argmax}} P(T \mid S) = \underset{T}{\operatorname{argmax}} P(S \mid T) P(T)<br>$$</p>
+<ul>
 <li>$T$: best tag sequence</li>
 <li>$S$: untagged sentence</li>
 <li>Using Bayes’ rule</li>
