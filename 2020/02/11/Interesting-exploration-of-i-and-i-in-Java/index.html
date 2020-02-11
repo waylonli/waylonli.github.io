@@ -135,7 +135,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    197 words
+                    213 words
                   </span>&nbsp;
                 
 
@@ -214,6 +214,7 @@ System.out.println(output2);</code></pre>
     i++; // or ++i
 }</code></pre>
 <p>After searching for reasons, a developer introduces in a blog that though the output for using <code>i++</code> and <code>++i</code> are the same, <code>i++</code> needs a temporary variable to store the origin value before increasing, while there is no such a process in <code>++i</code>.$^{[1]}$ Therefore, the running time of <code>i++</code> is longer than <code>++i</code>, which is shown in the blog.</p>
+<p>This shows that we should use <code>++i</code> instead of <code>i++</code>, which can somehow improve the performance.   </p>
 <p><strong>References:</strong></p>
 <p>[1] <a href="https://blog.csdn.net/github_37847975/article/details/77369851" target="_blank" rel="noopener">https://blog.csdn.net/github_37847975/article/details/77369851</a></p>
 
