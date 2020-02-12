@@ -18,7 +18,7 @@
   <meta name="description" content="">
   <meta name="author" content="Waylon Li">
   <meta name="keywords" content="">
-  <title>1-Intro | Waylon &amp; Ranee</title>
+  <title>5-Distributed representations | Waylon &amp; Ranee</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -109,7 +109,7 @@
 </nav>
 
     <div class="view intro-2" id="background"
-         style="background: url('/img/postcover/intro-NLP.png')no-repeat center center;
+         style="background: url('/img/postcover/word-embedding.jpg')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -117,7 +117,7 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                1-Intro
+                5-Distributed representations
               
             </span>
 
@@ -126,7 +126,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  Thursday, February 6th 2020, 10:00 pm
+                  Tuesday, January 28th 2020, 8:23 pm
                 </p>
               
 
@@ -135,7 +135,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    29 words
+                    316 words
                   </span>&nbsp;
                 
 
@@ -176,19 +176,70 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <p>Brief introduction to NLP</p>
+            <p>Brief introduction to word embedding</p>
 <a id="more"></a>
 
-<h1 id="Why-hard"><a href="#Why-hard" class="headerlink" title="Why hard?"></a>Why hard?</h1><ul>
-<li><p>Ambiguity</p>
+<h1 id="1-Distributed-word-representation-Word2Vec"><a href="#1-Distributed-word-representation-Word2Vec" class="headerlink" title="1 Distributed word representation (Word2Vec)"></a>1 Distributed word representation (Word2Vec)</h1><p>Can represent the similarity of two words</p>
+<p><strong>Early:</strong> </p>
+<ul>
+<li>define classes $c$ of words, by hand or automatically</li>
+<li>$P_{CL}(w_i \mid w_{i-1})=P(c_i \mid c_{i-1})P(w_i \mid c_i)$</li>
+</ul>
+<p><strong>Recent idea:</strong> use neural networks to project words into a continuous space, so words that appear in similar contexts have similar representation (usually 50 or 100 dimensions)</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>can represent the similarity (distance) between different words</li>
+</ul>
+<h2 id="1-1-How-to-train"><a href="#1-1-How-to-train" class="headerlink" title="1.1 How to train?"></a>1.1 How to train?</h2><p>No direct way to train word vectors, but we can get word vectors while training our language model</p>
+<p><strong>Models for one-hot representation:</strong> neural network language model (NNLM), recurrent neural network language model (RNNLM)</p>
+<ul>
+<li>calculations are too complicated</li>
+<li>too many parameters</li>
+</ul>
+<p><strong>Models for Word2Vec:</strong> </p>
+<ul>
+<li>Continuous Bag of Words (CBOW): predict central word based on the context</li>
+<li>Skip-gram: predict context based on the central word</li>
+</ul>
+<h3 id="1-1-1-CBOW"><a href="#1-1-1-CBOW" class="headerlink" title="1.1.1 CBOW"></a>1.1.1 CBOW</h3><img src = "https://waylonranee.com/image/mdimg/image-20200128213558577.png" style="zoom:50%;"/>
+
+<p><strong>Loss function:</strong><br>$$<br>L=\sum_{w \in C} \log P(w \mid \text{Context}(w))<br>$$</p>
+<ul>
+<li>no hidden layer (just one projection layer)</li>
+<li>two directions window</li>
+<li>input: one-hot representations</li>
+<li>simplify projection layer as a sum and a mean operation</li>
+</ul>
+<p>After getting the weights matrix $w$, multiply one-hot representation and $w$, we can get the distributed representation of that word</p>
+<ul>
+<li>accelerating method: Hierarchical softmax, Negative sampling</li>
+</ul>
+<h3 id="1-1-2-Skip-gram"><a href="#1-1-2-Skip-gram" class="headerlink" title="1.1.2 Skip-gram"></a>1.1.2 Skip-gram</h3><img src = "https://waylonranee.com/image/mdimg/image-20200128214415619.png" style="zoom:50%;"/>
+
+<p><strong>Loss function:</strong><br>$$<br>L=\sum_{w \in C} \log P(\text{context}(w) \mid w)<br>$$</p>
+<ul>
+<li><p>two parameters</p>
+<ul>
+<li><p>skip_window: window size = 2*skip_window + 1</p>
 </li>
-<li><p>Sparse data (due to <strong>Zipf’s Law</strong>)</p>
-<p>$$f\times r \approx k$$</p>
-<p>𝑓 = frequency of a word</p>
-<p>𝑟 = rank of a word</p>
-<p>𝑘 = a constant</p>
+<li><p>num_skips: pick num_skips pairs of words</p>
+<p>e.g. I am a boy who loves football.</p>
+<p>for num_skips = 2, skip_window = 2, word = a</p>
+<p>=&gt; (a, I), (a, am), (a,boy), (a,who)</p>
 </li>
 </ul>
+</li>
+<li><p>input: one-hot representation of $w(t)$ </p>
+</li>
+</ul>
+<p>##1.2 Problem</p>
+<ul>
+<li>the use of window size ignore the information contained in the whole text</li>
+<li>Word vector cannot represent different meanings of a single word</li>
+</ul>
+<p>Solution: Glove</p>
+<h1 id="2-Noisy-channel-model"><a href="#2-Noisy-channel-model" class="headerlink" title="2 Noisy channel model"></a>2 Noisy channel model</h1><img src = "https://waylonranee.com/image/mdimg/image-20200128104730602.png" style="zoom:50%;"/>
+
 
             <hr>
           </div>
@@ -212,6 +263,8 @@
                 <i class="iconfont icon-tag"></i>
                 
                   <a class="hover-with-bg" href="/tags/NLP">NLP</a>
+                
+                  <a class="hover-with-bg" href="/tags/Word2Vec">Word2Vec</a>
                 
               </span>
             

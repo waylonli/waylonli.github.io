@@ -18,7 +18,7 @@
   <meta name="description" content="">
   <meta name="author" content="Waylon Li">
   <meta name="keywords" content="">
-  <title>2-Corpora | Waylon &amp; Ranee</title>
+  <title>Archives | Waylon &amp; Ranee</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -41,7 +41,7 @@
 
 
 <body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header style="height: 70vh;">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -109,7 +109,7 @@
 </nav>
 
     <div class="view intro-2" id="background"
-         style="background: url('/img/postcover/corpora.png')no-repeat center center;
+         style="background: url('/img/default.png')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -117,45 +117,10 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                2-Corpora
+                Archive
               
             </span>
 
-            
-              <br>
-              
-                <p class="mt-3">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  Thursday, February 6th 2020, 10:10 pm
-                </p>
-              
-
-              <p>
-                
-                  
-                  &nbsp;<i class="far fa-chart-bar"></i>
-                  <span class="post-count">
-                    200 words
-                  </span>&nbsp;
-                
-
-                
-                  
-                  &nbsp;<i class="far fa-clock"></i>
-                  <span class="post-count">
-                      1 mins
-                  </span>&nbsp;
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
-                  <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv"></span> times
-                  </span>&nbsp;
-                
-              </p>
             
           </div>
 
@@ -167,142 +132,65 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">10 posts in total.</p>
+  <hr>
+  
+    
       
+      <p class="h5">2020</p>
+    
+    <a href="/2020/01/30/6-Spelling-correction-edit-distance-and-EM/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">6-Spelling correction, edit distance and EM</span>
+      <span style="float: right;">01-30</span>
+    </a>
+  
+    
+    <a href="/2020/01/28/5-Distributed-representations/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">5-Distributed representations</span>
+      <span style="float: right;">01-28</span>
+    </a>
+  
+    
+    <a href="/2020/01/23/4-Evaluation-and-smoothing/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">4-Evaluation and smoothing</span>
+      <span style="float: right;">01-23</span>
+    </a>
+  
+    
+    <a href="/2020/01/21/3-N-gram/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">3-N-gram</span>
+      <span style="float: right;">01-21</span>
+    </a>
+  
+    
+    <a href="/2020/01/17/2-Corpora/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">2-Corpora</span>
+      <span style="float: right;">01-17</span>
+    </a>
+  
+    
+    <a href="/2020/01/14/1-Intro/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">1-Intro</span>
+      <span style="float: right;">01-14</span>
+    </a>
+  
+</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="py-5 z-depth-3" id="board">
-        <div class="post-content mx-auto" id="post">
-          <div class="markdown-body">
-            <p>What is a corpora?</p>
-<a id="more"></a>
 
-<h1 id="1-Corpora"><a href="#1-Corpora" class="headerlink" title="1. Corpora"></a>1. Corpora</h1><p><strong>Def:</strong> a large or complete collection of writings</p>
-<ul>
-<li>For NLP, we need corpora with <strong>linguistic annotations</strong></li>
-<li>Markup formats: XML, JSON, CoNLL-style</li>
-<li>e.g. <em>Brown, WSJ, ECI, BNC, Redwoods, Gigaword, AMI, Google Books N-grams, Flickr 8K, English Visual Genome</em></li>
-</ul>
-<p><strong>Why need corpora</strong></p>
-<ul>
-<li>manual rules or database (rule-based, symbolic, knowledge-driven)</li>
-<li>learning: provide example input/output pairs for supervised learning</li>
-</ul>
-<h1 id="2-Sentiment-Analysis"><a href="#2-Sentiment-Analysis" class="headerlink" title="2. Sentiment Analysis"></a>2. Sentiment Analysis</h1><p><strong>Goal:</strong> predict the opinion expressed in a piece of text (e.g. + or -, positive or negative)</p>
-<p><strong>Method:</strong> attach gold labels to the reviews (+ or -)</p>
-<ul>
-<li><p>can be derived automatically from the original data artifact (metadata such as star ratings)</p>
-</li>
-<li><p>can be added by a human annotator who reads the text</p>
-<p>Issue: annotators consistent or not</p>
-</li>
-</ul>
-<p><strong>Simple sentiment classification algorithm</strong></p>
-<ul>
-<li>Use a sentiment lexicon to count positive and negative words</li>
-<li>Issues<ul>
-<li>sense ambiguity: need more data -&gt; use frequency counts to ascertain</li>
-<li>sarcasm</li>
-<li>text could mention expectation (expectation, not comment)</li>
-<li>words may describe a character’s attitude, not the author’s</li>
-<li>phrases like “can’t believe how great it is”</li>
-</ul>
-</li>
-</ul>
-<p><strong>Choice of training evalution data</strong></p>
-<ul>
-<li>Assume that the training data and the test data are sampled from the same distribution</li>
-<li>Method: domain adaptation techniques</li>
-</ul>
-
-            <hr>
-          </div>
-          <br>
-          <div>
-            <p>
-            
-              <span>
-                <i class="iconfont icon-inbox"></i>
-                
-                  <a class="hover-with-bg" href="/categories/Natural-Language-Processing">Natural-Language-Processing</a>
-                  &nbsp;
-                
-                  <a class="hover-with-bg" href="/categories/Notes">Notes</a>
-                  &nbsp;
-                
-              </span>&nbsp;&nbsp;
-            
-            
-              <span>
-                <i class="iconfont icon-tag"></i>
-                
-                  <a class="hover-with-bg" href="/tags/NLP">NLP</a>
-                
-                  <a class="hover-with-bg" href="/tags/Corpora">Corpora</a>
-                
-              </span>
-            
-            </p>
-            
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
-    <div id="tocbot"></div>
-  </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- custom -->
-
-
-<!-- Comments -->
-<div class="col-lg-7 mx-auto nopadding-md">
-  <div class="container comments mx-auto" id="comments">
-    
-      <br><br>
-      
-      
-  <div id="vcomments" style="width: 90%; margin: 0 auto;"></div>
-  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
-  <script>
-    var notify = 'false' === true;
-    var verify = 'false' === true;
-    var oldLoad = window.onload;
-    window.onload = function () {
-      new Valine({
-        el: '#vcomments',
-	lang: 'en',
-        notify: notify,
-        verify: verify,
-        app_id: "7iGPIsAxoTYyjkXybT6IEgH7-MdYXbMMI",
-        app_key: "obmTFYbknTdYvr6gRyqlHKvq",
-        placeholder: "Say something...",
-        avatar: "retro",
-        meta: ['nick', 'mail', 'link'],
-        pageSize: "10",
-      });
-      oldLoad && oldLoad();
-    };
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
-
-
-    
-  </div>
-</div>
-
     
   </main>
 
@@ -375,11 +263,6 @@
   <script src="/js/lazyload.js" ></script>
 
 
-
-  
-    <script src="/lib/tocbot/tocbot.min.js" ></script>
-  
-  <script src="/js/post.js" ></script>
 
 
 

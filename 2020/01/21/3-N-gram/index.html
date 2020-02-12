@@ -18,7 +18,7 @@
   <meta name="description" content="">
   <meta name="author" content="Waylon Li">
   <meta name="keywords" content="">
-  <title>6-Spelling correction, edit distance and EM | Waylon &amp; Ranee</title>
+  <title>3-N-gram | Waylon &amp; Ranee</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -109,7 +109,7 @@
 </nav>
 
     <div class="view intro-2" id="background"
-         style="background: url('/img/postcover/spell-check.jpeg')no-repeat center center;
+         style="background: url('/img/postcover/N-gram.jpeg')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -117,7 +117,7 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                6-Spelling correction, edit distance and EM
+                3-N-gram
               
             </span>
 
@@ -126,7 +126,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  Friday, February 7th 2020, 8:40 pm
+                  Tuesday, January 21st 2020, 10:20 pm
                 </p>
               
 
@@ -135,7 +135,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    104 words
+                    171 words
                   </span>&nbsp;
                 
 
@@ -176,43 +176,32 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <p>Introduction to how to do spelling correction</p>
+            <p>Brief introduction to N-gram language model</p>
 <a id="more"></a>
 
-<h1 id="1-Spelling-correction"><a href="#1-Spelling-correction" class="headerlink" title="1 Spelling correction"></a>1 Spelling correction</h1><p>##1.1 Simple version</p>
-<p><strong>Assumption:</strong></p>
-<ul>
-<li>have a large dictionary of real word</li>
-<li>only correct non-word</li>
-<li>only consider corrections differ by a <strong>single</strong> character from the non-word</li>
+<h1 id="1-Application"><a href="#1-Application" class="headerlink" title="1 Application:"></a>1 Application:</h1><ul>
+<li>spelling correction</li>
+<li>automatic speech recognition</li>
+<li>machine translatio</li>
 </ul>
-<p><strong>Idea:</strong></p>
-<ul>
-<li>generate a list of all words $y$ differ by 1 character from $x$</li>
-<li>compute the probability of each $y$ and choose the highest one</li>
+<h1 id="2-Estimate-the-probabilities-training"><a href="#2-Estimate-the-probabilities-training" class="headerlink" title="2 Estimate the probabilities: training"></a>2 Estimate the probabilities: training</h1><ul>
+<li>training data: large corpus of general English text</li>
+<li>MLE: maximum likelihood estimation<ul>
+<li>MLE assigns 0 probability to anything hasn’t occurred</li>
 </ul>
-<h2 id="1-2-Alignments-and-edit-distance"><a href="#1-2-Alignments-and-edit-distance" class="headerlink" title="1.2 Alignments and edit distance"></a>1.2 Alignments and edit distance</h2><p><strong>Edit distance:</strong></p>
-<ul>
-<li>substitution</li>
-<li>deletion</li>
-<li>insertion</li>
+</li>
+<li>we don’t know the true probabilities, we estimate instead</li>
+<li>sparse data problem: not enough observations to estimate probabilities well simply by counting observed data (for sentences, many will occur rarely in the training data, smater way: N-gram)</li>
 </ul>
-<p><strong>Need to:</strong></p>
+<h1 id="3-N-gram-language-model-N-gram-LM"><a href="#3-N-gram-language-model-N-gram-LM" class="headerlink" title="3 N-gram language model (N-gram LM)"></a>3 N-gram language model (N-gram LM)</h1><h2 id="3-1-Markov-assumption-independence-assumption"><a href="#3-1-Markov-assumption-independence-assumption" class="headerlink" title="3.1 Markov assumption (independence assumption)"></a>3.1 Markov assumption (independence assumption)</h2><p>The probability of a word only depends on a ﬁxed number of previous words (history)</p>
 <ul>
-<li><p>find the optimal character alignment between two words</p>
-<p>the optimal alignment is the one with <strong>minimum edit distance (MED)</strong></p>
+<li><p>not always a good assumption</p>
+<img src="https://waylonranee.com/image/mdimg/image-20200121104301500.png" srcset="/img/loading.gif" alt="image-20200121104301500" style="zoom:42%;" />
+
 </li>
 </ul>
-<p><strong>How:</strong></p>
-<ul>
-<li>Dynamic programming: Viterbi, CKY</li>
-</ul>
-<p><strong>Uses:</strong></p>
-<ul>
-<li>spelling correction</li>
-<li>morphological analysis</li>
-</ul>
-
+<h2 id="3-2-Probaility-calculation"><a href="#3-2-Probaility-calculation" class="headerlink" title="3.2 Probaility calculation"></a>3.2 Probaility calculation</h2><p>To estimate $ P(\vec{w}) $, use chain rule:<br>$$<br>P(w_1,\dots,w_n) = \prod_{i=1}^nP(w_i \mid w_1,w_2,\dots,w_{i-1}) \ \approx P(w_1)P(w_2\mid w_1)\prod_{i=3}^n P(w_i \mid w_{i-2}, w_{i-1})<br>$$<br>Problem: sentence boundaryet</p>
+<h2 id="3-3-Beginning-end-of-sequence"><a href="#3-3-Beginning-end-of-sequence" class="headerlink" title="3.3 Beginning / end of sequence"></a>3.3 Beginning / end of sequence</h2><img src="https://waylonranee.com/image/mdimg/image-20200121105220976.png" srcset="/img/loading.gif" alt="image-20200121105220976" style="zoom:50%;" />
             <hr>
           </div>
           <br>
@@ -236,7 +225,7 @@
                 
                   <a class="hover-with-bg" href="/tags/NLP">NLP</a>
                 
-                  <a class="hover-with-bg" href="/tags/Edit-distance">Edit-distance</a>
+                  <a class="hover-with-bg" href="/tags/N-gram">N-gram</a>
                 
               </span>
             
