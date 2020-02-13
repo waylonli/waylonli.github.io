@@ -53,6 +53,10 @@ body a:hover {
 #local-search-result .search-list-content {
   padding: 0 1.25rem;
 }
+.markdown-body {
+  font-size: 18px;
+  line-height: 2rem;
+}
 .markdown-body hr {
   height: 0.2em;
   margin: 2rem 0;
