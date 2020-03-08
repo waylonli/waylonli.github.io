@@ -149,6 +149,87 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/03/05/Real-Time-Speech-Recognition-Using-Python/" target="_self">
+          <img src="/img/postcover/python-sp.jpg" srcset="/img/loading.gif" alt="Real-Time Speech Recognition Using Python" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/03/05/Real-Time-Speech-Recognition-Using-Python/">
+        <p class="h4 index-header">Real-Time Speech Recognition Using Python</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">1. Environment1.1 Pyaudio
+Windows: pip install pyaudio
+Linux: sudo apt-get install python-pyaudio python3-pyaudio 
+Mac OSX: brew install portaudio (need to install Homebrew on your mac first); then pip install pyaudio
+
+1.2 SpeechRecognition packagepip install SpeechRecognition
+2. Example codeHere is an example for recognising ‘yes’ and ‘no’:
+import speech_recognition as sr
+import os
+
+
+# obtain audio from the microphone
+r = sr.Recognizer()
+t = True
+
+while t:
+    with sr.Microphone() as source:
+        r.adjust_for_ambient_noise(source, duration = 0.5)  
+        print(&#39;say something&#39;)
+
+        audio = r.record(source, duration = 2)    # listen for 2 seconds
+
+    output = r.recognize_google(audio, show_all = True)
+
+    if (len(output) &lt; 1):
+        print(&quot;Say louder&quot;)    # if the recogniser did not recognise anything from the microphone, ask speaker to say louder
+    else:
+        possible = [word[&#39;transcript&#39;] for word in output[&#39;alternative&#39;]]    # extract all the possible phrase from return dictionary
+
+        if (&quot;yes&quot; in possible):
+            print(&quot;yes&quot;)
+        if (&quot;no&quot; in possible):
+            print(&quot;no&quot;)
+        else:
+            print(&quot;Say it again&quot;)
+
+</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-05&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Natural-Language-Processing">Natural-Language-Processing</a>&nbsp;
+          
+            <a href="/categories/Tutorials">Tutorials</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/NLP">NLP</a>&nbsp;
+          
+            <a href="/tags/Speech-Recognition">Speech-Recognition</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/02/11/8,9-POS-tagging-and-HMMs/" target="_self">
           <img src="/img/postcover/HMM.jpg" srcset="/img/loading.gif" alt="8,9-POS tagging and HMMs" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -187,50 +268,6 @@
             <a href="/tags/POS-Tagging">POS-Tagging</a>&nbsp;
           
             <a href="/tags/HMM">HMM</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/02/11/Interesting-exploration-of-i-and-i-in-Java/" target="_self">
-          <img src="/img/postcover/java.jpeg" srcset="/img/loading.gif" alt="Interesting exploration of i++ and ++i in Java" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2020/02/11/Interesting-exploration-of-i-and-i-in-Java/">
-        <p class="h4 index-header">Interesting exploration of i++ and ++i in Java</p>
-        
-        
-          
-          
-        
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">An interesting discover of using i++ and ++i in Java loop...</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-02-11&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/Java">Java</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Java">Java</a>&nbsp;
-          
-            <a href="/tags/Coding">Coding</a>&nbsp;
           
         
       </div>

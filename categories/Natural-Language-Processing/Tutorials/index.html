@@ -18,7 +18,7 @@
   <meta name="description" content="">
   <meta name="author" content="Waylon Li">
   <meta name="keywords" content="">
-  <title>Interesting exploration of i++ and ++i in Java | Waylon&#39;s blog</title>
+  <title>Categories - Tutorials | Waylon&#39;s blog</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -41,7 +41,7 @@
 
 
 <body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header style="height: 70vh;">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -109,7 +109,7 @@
 </nav>
 
     <div class="view intro-2" id="background"
-         style="background: url('/img/postcover/java.jpeg')no-repeat center center;
+         style="background: url('/img/default.png')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -117,45 +117,10 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                Interesting exploration of i++ and ++i in Java
+                Category - Tutorials
               
             </span>
 
-            
-              <br>
-              
-                <p class="mt-3">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  Tuesday, February 11th 2020, 1:11 am
-                </p>
-              
-
-              <p>
-                
-                  
-                  &nbsp;<i class="far fa-chart-bar"></i>
-                  <span class="post-count">
-                    213 words
-                  </span>&nbsp;
-                
-
-                
-                  
-                  &nbsp;<i class="far fa-clock"></i>
-                  <span class="post-count">
-                      1 mins
-                  </span>&nbsp;
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
-                  <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv"></span> times
-                  </span>&nbsp;
-                
-              </p>
             
           </div>
 
@@ -167,145 +132,36 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+<!--  <p class="h4">1 posts in total.</p>-->
+  <hr>
+  
+    
       
+      <p class="h5">2020</p>
+    
+    <a href="/2020/03/05/Real-Time-Speech-Recognition-Using-Python/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Real-Time Speech Recognition Using Python</span>
+      <span style="float: right;">03-05</span>
+    </a>
+  
+</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="py-5 z-depth-3" id="board">
-        <div class="post-content mx-auto" id="post">
-          <div class="markdown-body">
-            <p>An interesting discover of using <code>i++</code> and <code>++i</code> in Java loop</p>
-<a id="more"></a>
-<p>In general cases,</p>
-<ul>
-<li><code>i++</code> in Java means use the value of <code>i</code> and increase it by 1 after finish.</li>
-<li><code>++i</code> in Java means firstly increase <code>i</code> by 1 and use it afterwards</li>
-</ul>
-<p>E.g.</p>
-<pre><code class="lang-java">int i = 1;
-int output1 = i++;
-i = 1;
-int output2 = ++i;
-System.out.println(output1);
-System.out.println(output2);
-</code></pre>
-<p>Output:</p>
-<pre><code class="lang-java">1
-2
-</code></pre>
-<p>However, in for loop:</p>
-<pre><code class="lang-java">for (int i = 1; i &lt;= 5; i++) {
-    System.out.println(i);
-}
-</code></pre>
-<p>And:</p>
-<pre><code class="lang-java">for (int i = 1; i &lt;= 5; ++i) {
-    System.out.println(i);
-}
-</code></pre>
-<p>The output are both:</p>
-<pre><code class="lang-java">1
-2
-3
-4
-5
-</code></pre>
-<p>These two methods can basically be rewritten as:</p>
-<pre><code class="lang-java">for (int i = 1; i &lt;= 5;) {
-    System.out.println(i);
-    i++; // or ++i
-}
-</code></pre>
-<p>After searching for reasons, a developer introduces in a blog that though the output for using <code>i++</code> and <code>++i</code> are the same, <code>i++</code> needs a temporary variable to store the origin value before increasing, while there is no such a process in <code>++i</code>.$^{[1]}$ Therefore, the running time of <code>i++</code> is longer than <code>++i</code>, which is shown in the blog.</p>
-<p>This shows that we should use <code>++i</code> instead of <code>i++</code>, which can somehow improve the performance.   </p>
-<p><strong>References:</strong></p>
-<p>[1] <a href="https://blog.csdn.net/github_37847975/article/details/77369851" target="_blank" rel="noopener">https://blog.csdn.net/github_37847975/article/details/77369851</a></p>
 
-            <hr>
-          </div>
-          <br>
-          <div>
-            <p>
-            
-              <span>
-                <i class="iconfont icon-inbox"></i>
-                
-                  <a class="hover-with-bg" href="/categories/Java">Java</a>
-                  &nbsp;
-                
-              </span>&nbsp;&nbsp;
-            
-            
-              <span>
-                <i class="iconfont icon-tag"></i>
-                
-                  <a class="hover-with-bg" href="/tags/Java">Java</a>
-                
-                  <a class="hover-with-bg" href="/tags/Coding">Coding</a>
-                
-              </span>
-            
-            </p>
-            
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
-    <div id="tocbot"></div>
-  </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- custom -->
-
-
-<!-- Comments -->
-<div class="col-lg-7 mx-auto nopadding-md">
-  <div class="container comments mx-auto" id="comments">
-    
-      <br><br>
-      
-      
-  <div id="vcomments" style="width: 90%; margin: 0 auto;"></div>
-  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
-  <script>
-    var notify = 'false' === true;
-    var verify = 'false' === true;
-    var oldLoad = window.onload;
-    window.onload = function () {
-      new Valine({
-        el: '#vcomments',
-	lang: 'en',
-        notify: notify,
-        verify: verify,
-        app_id: "7iGPIsAxoTYyjkXybT6IEgH7-MdYXbMMI",
-        app_key: "obmTFYbknTdYvr6gRyqlHKvq",
-        placeholder: "Say something...",
-        avatar: "retro",
-        meta: ['nick', 'mail', 'link'],
-        pageSize: "10",
-      });
-      oldLoad && oldLoad();
-    };
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
-
-
-    
-  </div>
-</div>
-
     
   </main>
 
@@ -378,11 +234,6 @@ System.out.println(output2);
   <script src="/js/lazyload.js" ></script>
 
 
-
-  
-    <script src="/lib/tocbot/tocbot.min.js" ></script>
-  
-  <script src="/js/post.js" ></script>
 
 
 
