@@ -160,46 +160,10 @@
         
         
           
+          
         
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">1. Environment1.1 Pyaudio
-Windows: pip install pyaudio
-Linux: sudo apt-get install python-pyaudio python3-pyaudio 
-Mac OSX: brew install portaudio (need to install Homebrew on your mac first); then pip install pyaudio
-
-1.2 SpeechRecognition packagepip install SpeechRecognition
-Package webpage
-2. Example codeHere is an example for recognising ‘yes’ and ‘no’:
-import speech_recognition as sr
-import os
-
-
-# obtain audio from the microphone
-r = sr.Recognizer()
-t = True
-
-while t:
-    with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source, duration = 0.5)  
-        print(&#39;say something&#39;)
-
-        audio = r.record(source, duration = 2)    # listen for 2 seconds
-
-    output = r.recognize_google(audio, show_all = True)
-
-    if (len(output) &lt; 1):
-        print(&quot;Say louder&quot;)    # if the recogniser did not recognise anything from the microphone, ask speaker to say louder
-    else:
-        possible = [word[&#39;transcript&#39;] for word in output[&#39;alternative&#39;]]    # extract all the possible phrase from return dictionary
-
-        if (&quot;yes&quot; in possible):
-            print(&quot;yes&quot;)
-        if (&quot;no&quot; in possible):
-            print(&quot;no&quot;)
-        else:
-            print(&quot;Say it again&quot;)
-
-</div>
+        <div class="index-excerpt" style="max-height: none;">
+          <div class="index-text mb-1">1. Environment1.1 Pyaudio...</div>
         </div>
       </a>
 
