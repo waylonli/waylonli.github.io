@@ -160,8 +160,9 @@
         
         
           
+          
         
-        <div class="index-excerpt" >
+        <div class="index-excerpt" style="max-height: none;">
           <div class="index-text mb-1">1. AnnotationPenn Treebank: 36 POS tags (excluding punctuation)
 Factors in Annotation: 
 
@@ -170,45 +171,7 @@ annotation scheme (complexity? guidelines?)
 annotators (expertise? training?)
 annotation software (graphical interface?)
 quality control procedures (multiple annotation, adjudication?)
-
-2. Evaluation2.1 HypothesesAbout existing linguistic objects:
-
-Is this text by Shakespeare or Marlowe?
-
-About output of a language system:
-
-How well does this language model predict the data?
-How accurate is this segmenter / tagger / parser?
-Is this segmenter / tagger / parser better than that one?
-
-
-
-About human beings:
-
-How reliable is this person’s annotation?
-To what extent do these two annotators agree? ( IAA )
-
-2.2 Gold Standard Evaluation
-Gold standards used both for training and for evaluation
-But testing must be done on unseen data
-
-2.3 Tuning
-Lidstone (add-$\lambda$) smoothing
-Choosing features for text classification
-
-Overfitting: the test set is no longer a reliable proxy for new data.
-Solution: hold out a second set for tuning, called a development set, save the test set for the very end
-2.4 Cross-validationUse when the dataset is too small to have a nice train / test or train / dev / test split
-$k$-fold cross-validationPartition the data into $k$ pieces and treat them as mini held-out sets. Each fold is an experiment with a diﬀerent held-out set, using the rest of the data for training
-PS: If tuning the system via cross-validation, still important to have a separate blind test set.
-2.5 Measurement$$\text{precision} = \frac{TP}{TP+FP} \\ \ \\\text{recall (true positive rate)} = \frac{TP}{TP+FN}\\ \ \\F_1 = \  \frac{\text{precision} \cdot \text{recall}}{\text{precision}+\text{recall}}$$
-Upper bound: Turing test
-
-When using a human Gold Standard, check the agreement of humans against that standard.
-
-Lower bound: performance of baseline model
-Confusion matrix 
-</div>
+...</div>
         </div>
       </a>
 
