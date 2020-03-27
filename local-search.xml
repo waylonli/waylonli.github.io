@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>10-Annotation &amp; Evaluation</title>
+    <link href="/2020/03/26/10-Annotation-and-Evaluation/"/>
+    <url>/2020/03/26/10-Annotation-and-Evaluation/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-Annotation"><a href="#1-Annotation" class="headerlink" title="1. Annotation"></a>1. Annotation</h1><p>Penn Treebank: 36 POS tags (excluding punctuation)</p><p><strong>Factors in Annotation:</strong> </p><ul><li>source data (genre? size? licensing?)</li><li>annotation scheme (complexity? guidelines?)</li><li>annotators (expertise? training?)</li><li>annotation software (graphical interface?)</li><li>quality control procedures (multiple annotation, adjudication?)</li></ul><h1 id="2-Evaluation"><a href="#2-Evaluation" class="headerlink" title="2. Evaluation"></a>2. Evaluation</h1><h2 id="2-1-Hypotheses"><a href="#2-1-Hypotheses" class="headerlink" title="2.1 Hypotheses"></a>2.1 Hypotheses</h2><p>About existing linguistic objects:</p><ul><li>Is this text by Shakespeare or Marlowe?</li></ul><p>About output of a language system:</p><ul><li>How well does this language model predict the data?</li><li>How accurate is this segmenter / tagger / parser?<ul><li>Is this segmenter / tagger / parser better than that one?</li></ul></li></ul><p>About human beings:</p><ul><li>How reliable is this person’s annotation?</li><li>To what extent do these two annotators agree? ( IAA )</li></ul><h2 id="2-2-Gold-Standard-Evaluation"><a href="#2-2-Gold-Standard-Evaluation" class="headerlink" title="2.2 Gold Standard Evaluation"></a>2.2 Gold Standard Evaluation</h2><ul><li>Gold standards used both for training and for evaluation</li><li>But testing must be done on unseen data</li></ul><h2 id="2-3-Tuning"><a href="#2-3-Tuning" class="headerlink" title="2.3 Tuning"></a>2.3 Tuning</h2><ul><li>Lidstone (add-$\lambda$) smoothing</li><li>Choosing features for text classification</li></ul><p><strong>Overfitting:</strong> the test set is no longer a reliable proxy for new data.</p><p><strong>Solution:</strong> hold out a second set for tuning, called a <strong>development</strong> set, save the test set for the very end</p><h2 id="2-4-Cross-validation"><a href="#2-4-Cross-validation" class="headerlink" title="2.4 Cross-validation"></a>2.4 Cross-validation</h2><p>Use when the dataset is too small to have a nice train / test or train / dev / test split</p><h3 id="k-fold-cross-validation"><a href="#k-fold-cross-validation" class="headerlink" title="$k$-fold cross-validation"></a>$k$-fold cross-validation</h3><p>Partition the data into $k$ pieces and treat them as mini held-out sets. Each fold is an experiment with a diﬀerent held-out set, using the rest of the data for training</p><p>PS: If tuning the system via cross-validation, still important to have a separate blind test set.</p><h2 id="2-5-Measurement"><a href="#2-5-Measurement" class="headerlink" title="2.5 Measurement"></a>2.5 Measurement</h2><p>$$<br>\text{precision} = \frac{TP}{TP+FP} \\ \ \\<br>\text{recall (true positive rate)} = \frac{TP}{TP+FN}\\ \ \\<br>F_1 = \  \frac{\text{precision} \cdot \text{recall}}{\text{precision}+\text{recall}}<br>$$</p><p><strong>Upper bound:</strong> Turing test</p><ul><li>When using a human Gold Standard, check the agreement of humans against that standard.</li></ul><p><strong>Lower bound:</strong> performance of baseline model</p><p><strong>Confusion matrix</strong> </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Natural-Language-Processing</category>
+      
+      <category>Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>NLP</tag>
+      
+      <tag>Evaluation</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Real-Time Speech Recognition Using Python</title>
     <link href="/2020/03/05/Real-Time-Speech-Recognition-Using-Python/"/>
     <url>/2020/03/05/Real-Time-Speech-Recognition-Using-Python/</url>

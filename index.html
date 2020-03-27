@@ -149,6 +149,97 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/03/26/10-Annotation-and-Evaluation/" target="_self">
+          <img src="/img/postcover/evaluation.jpeg" srcset="/img/loading.gif" alt="10-Annotation &amp; Evaluation" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/03/26/10-Annotation-and-Evaluation/">
+        <p class="h4 index-header">10-Annotation &amp; Evaluation</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">1. AnnotationPenn Treebank: 36 POS tags (excluding punctuation)
+Factors in Annotation: 
+
+source data (genre? size? licensing?)
+annotation scheme (complexity? guidelines?)
+annotators (expertise? training?)
+annotation software (graphical interface?)
+quality control procedures (multiple annotation, adjudication?)
+
+2. Evaluation2.1 HypothesesAbout existing linguistic objects:
+
+Is this text by Shakespeare or Marlowe?
+
+About output of a language system:
+
+How well does this language model predict the data?
+How accurate is this segmenter / tagger / parser?
+Is this segmenter / tagger / parser better than that one?
+
+
+
+About human beings:
+
+How reliable is this person’s annotation?
+To what extent do these two annotators agree? ( IAA )
+
+2.2 Gold Standard Evaluation
+Gold standards used both for training and for evaluation
+But testing must be done on unseen data
+
+2.3 Tuning
+Lidstone (add-$\lambda$) smoothing
+Choosing features for text classification
+
+Overfitting: the test set is no longer a reliable proxy for new data.
+Solution: hold out a second set for tuning, called a development set, save the test set for the very end
+2.4 Cross-validationUse when the dataset is too small to have a nice train / test or train / dev / test split
+$k$-fold cross-validationPartition the data into $k$ pieces and treat them as mini held-out sets. Each fold is an experiment with a diﬀerent held-out set, using the rest of the data for training
+PS: If tuning the system via cross-validation, still important to have a separate blind test set.
+2.5 Measurement$$\text{precision} = \frac{TP}{TP+FP} \\ \ \\\text{recall (true positive rate)} = \frac{TP}{TP+FN}\\ \ \\F_1 = \  \frac{\text{precision} \cdot \text{recall}}{\text{precision}+\text{recall}}$$
+Upper bound: Turing test
+
+When using a human Gold Standard, check the agreement of humans against that standard.
+
+Lower bound: performance of baseline model
+Confusion matrix 
+</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-26&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Natural-Language-Processing">Natural-Language-Processing</a>&nbsp;
+          
+            <a href="/categories/Notes">Notes</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/NLP">NLP</a>&nbsp;
+          
+            <a href="/tags/Evaluation">Evaluation</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/03/05/Real-Time-Speech-Recognition-Using-Python/" target="_self">
           <img src="/img/postcover/python-sp.jpg" srcset="/img/loading.gif" alt="Real-Time Speech Recognition Using Python" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -559,51 +650,19 @@
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/01/14/1-Intro/" target="_self">
-          <img src="/img/postcover/intro-NLP.png" srcset="/img/loading.gif" alt="1-Intro" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2020/01/14/1-Intro/">
-        <p class="h4 index-header">1-Intro</p>
-        
-        
-          
-          
-        
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">Brief introduction to NLP...</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-01-14&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/Natural-Language-Processing">Natural-Language-Processing</a>&nbsp;
-          
-            <a href="/categories/Notes">Notes</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/NLP">NLP</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
 
 
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-double-right"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
