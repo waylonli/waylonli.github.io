@@ -135,7 +135,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    29 words
+                    167 words
                   </span>&nbsp;
                 
 
@@ -178,16 +178,37 @@
           <div class="markdown-body">
             <p>Brief introduction to NLP</p>
 <a id="more"></a>
-
-<h1 id="Why-hard"><a href="#Why-hard" class="headerlink" title="Why hard?"></a>Why hard?</h1><ul>
+<h1 id="1-Why-hard"><a href="#1-Why-hard" class="headerlink" title="1. Why hard?"></a>1. Why hard?</h1><ul>
 <li><p>Ambiguity</p>
 </li>
 <li><p>Sparse data (due to <strong>Zipf’s Law</strong>)</p>
-<p>$$f\times r \approx k$$</p>
-<p>𝑓 = frequency of a word</p>
+<p>not enough observations to estimate probabilities well simply by counting observed data.</p>
+<script type="math/tex; mode=display">f\times r \approx k</script><p>𝑓 = frequency of a word</p>
 <p>𝑟 = rank of a word</p>
 <p>𝑘 = a constant</p>
 </li>
+<li><p>Variation</p>
+</li>
+<li><p>Expressivity: one form can have different meanings and the same meaning can be expressed with different forms</p>
+</li>
+<li><p>Context dependence: correct interpretation is context-dependent and often requires world knowledge</p>
+</li>
+<li><p>Unknown representation: we don’t know how to represent the knowledge a human has / needs</p>
+</li>
+</ul>
+<h1 id="2-Models"><a href="#2-Models" class="headerlink" title="2. Models"></a>2. Models</h1><ul>
+<li><p>Non-probabilistic methods: FSMs, CKY parsers</p>
+</li>
+<li><p>Probabilistic models: HMMs for POS tagging, PCFGs for syntax</p>
+<p>Probabilistic algorithms: Viterbi, probabilistic CKY</p>
+</li>
+</ul>
+<h1 id="3-Zipf’s-Law"><a href="#3-Zipf’s-Law" class="headerlink" title="3. Zipf’s Law"></a>3. Zipf’s Law</h1><p><img src = "https://waylonranee.com/img/mdimg/image-20200508003917288.png" style="zoom:50%;"/></p>
+<p><strong>Implications:</strong></p>
+<ul>
+<li>Regardless of how large the corpus is, there will be a lot of infrequent words</li>
+<li>Holds for many other levels of linguistic structure (e.g. syntactic rules in a CFG)</li>
+<li>Zipf’s Law shows that we need to find ways to estimate probabilities for things we have rarely or never seen during training</li>
 </ul>
 
             <hr>
