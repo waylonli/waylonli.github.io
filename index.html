@@ -149,6 +149,169 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/05/11/11,12-Syntax%20and%20Parsing/" target="_self">
+          <img src="/img/postcover/parsing.png" srcset="/img/loading.gif" alt="11,12-Syntax and Parsing" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/05/11/11,12-Syntax%20and%20Parsing/">
+        <p class="h4 index-header">11,12-Syntax and Parsing</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Two theories of syntax:**
+
+Context-free grammar
+Dependency grammar
+
+1. Context-free grammerSymbols:
+
+Terminals (t): words
+Non-terminals (NT): phrasal categories (e.g. S, NP, VP, PP) with S being the start symbol
+
+Chomsky Normal Form: only has rules of the form
+
+NT \rightarrow NT \ \  NT \\ \ \\ 
+NT\rightarrow t2. Syntactic analysis2.1 Global AmbibuityStructural ambiguityPOS ambiguity:
+
+Attachment ambiguity: Some sentences have structural ambiguity even without part-of-speech ambiguity
+
+Depends on where different phrases attach in the tree
+
+Different attachments have different meanings
+I saw the man with the telescope
+She ate the pizza on the floor
+Good boys and girls get presents from Santa
+
+
+
+
+Why we want parse trees:
+
+compositional semantics: the meaning of a constituent is a function of the meaning of its children
+rule-to-rule semantics: that function is determined by the rule which licenses the constituent
+
+Huge problem:
+
+correctness problem: need to ﬁnd the right structure to get the right meaning
+efficiency problem: searching all possible structures can be very slow; want to use parsing for large-scale language tasks (for example, as used to create Google’s “infoboxes”)
+
+2.2 Local ambiguityLocal ambiguity is also a big problem: multiple analyses for parts of sentence. 
+
+“The dog bit the child”: first three words could be NP (but aren’t)
+Building useless partial structures wastes time
+Avoiding useless computation is a major issue in parsing
+
+3. Parsing3.1 Normal Parsing
+Top-down: depth-first, breadth-firsts, best-first
+Bottom-up
+Mixed strategy (e.g. Earley algorithm)
+
+3.1.1 Recursive Descent ParsingIdea: top-down, depth-first parsing
+e.g. Slide 11 pp. 23-24
+3.1.2 Shift-reduce ParsingIdea: bottom-up, depth-first parsing
+e.g. Slide 11 pp. 27
+3.1.3 CKY algorithm (Cocke, Kasami, Younger)Idea: bottom-up, breadth-first parsing
+Assumption: grammar in Chomsky Normal Form
+Pseudocode:
+for len = 1 to n:                        # number of words in constituent
+    for i = 0 to (n-len):            # start position
+    j = i + len                            # end position
+    for each A-&gt;B where c[i,j] has B:
+      # process unary rules
+      add A to c[i,j] with a pointer to B
+    for k = (i+1) to (j-1):
+      # process binary rules
+      for each (A-&gt;B C) where c[i,k] has B and c[k,j] has C:
+        add A to c[i,j] with pointers to B and C
+
+Time complexity: $O(Gn^3)$ 
+e.g. Slide 11 pp.5-11
+
+Problem:
+
+Ambiguity is only clear if we go on to reconstruct the parses using our backpointers
+
+Pros &amp; Cons:
+Pros:
+
+much more efficient than depth-first
+
+Cons:
+
+still may compute a lot of unnecessary partial parses
+requires converting the grammar to CNF
+
+Can be implemented to probabilistic CKY
+3.1.4 Choose parsing algorithm==Probabilities ???==
+3.2 Statistical Parsing3.2.1 Treebank grammarsIdea: annotate real sentences with parse trees
+3.2.1.1 The Penn Treebank (Treebank PCFG)PCFG (probabilistic context-free grammar) 
+
+NT \rightarrow \beta \  \text{ with probability } P(\beta \mid NT)3.2.1.2 Create PCFGEasiest way: MLE
+
+Count all occurrences of $NT \rightarrow \beta$ in treebank
+Divide by the count of all rules whose left-hand-side is $NT$ to get $P(\beta \mid NT)$
+
+
+P(NT \rightarrow C_1, C_2 \dots C_n \mid NT) = \frac{count(NT \rightarrow C_1,C_2 \dots C_n)}{count(NT)}e.g. Slide 12 pp. 21-24
+3.2.2 Probability of a parse
+P(t) = \prod_{NT \rightarrow \beta \in t} NT \rightarrow \beta
+3.2.3 Probabilistic CKY
+When we find an $NT$ spanning $(i,j)$, store its probability along with its label in cell $(i,j)$ 
+If we later find an $NT$ with the same span but higher probability, replace the probability and the backpointers for $NT$ in cell $(i,j)$ 
+
+3.2.4 Other algorithms
+Inside algorithm
+Inside-outside algorithm
+
+3.2.5 Best-first probabilistic parsingBasic idea: use probabilities of subtrees to decide which ones to build up further
+
+How to score constituents:
+
+Why not probability: smaller constituents will almost always have higher scores
+
+Possible solution:
+
+divide by the number of words (but not guaranteed to find the best parse first)
+A*
+
+
+
+</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-11&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Natural-Language-Processing">Natural-Language-Processing</a>&nbsp;
+          
+            <a href="/categories/Notes">Notes</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/NLP">NLP</a>&nbsp;
+          
+            <a href="/tags/Parsing">Parsing</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/03/26/10-Annotation-and-Evaluation/" target="_self">
           <img src="/img/postcover/evaluation.jpeg" srcset="/img/loading.gif" alt="10-Annotation &amp; Evaluation" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -561,52 +724,6 @@ quality control procedures (multiple annotation, adjudication?)
             <a href="/tags/NLP">NLP</a>&nbsp;
           
             <a href="/tags/N-gram">N-gram</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/01/17/2-Corpora/" target="_self">
-          <img src="/img/postcover/corpora.png" srcset="/img/loading.gif" alt="2-Corpora" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2020/01/17/2-Corpora/">
-        <p class="h4 index-header">2-Corpora</p>
-        
-        
-          
-          
-        
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">What is a corpora?...</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-01-17&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/Natural-Language-Processing">Natural-Language-Processing</a>&nbsp;
-          
-            <a href="/categories/Notes">Notes</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/NLP">NLP</a>&nbsp;
-          
-            <a href="/tags/Corpora">Corpora</a>&nbsp;
           
         
       </div>
