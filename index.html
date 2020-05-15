@@ -172,9 +172,10 @@ Dependency grammar
 Terminals (t): words
 Non-terminals (NT): phrasal categories (e.g. S, NP, VP, PP) with S being the start symbol
 
-Chomsky Normal Form: only has rules of the form$$NT \rightarrow NT \ \  NT \\ \ \\NT\rightarrow t$$
-2. Syntactic analysis2.1 Global AmbibuityStructural ambiguityPOS ambiguity:
+Chomsky Normal Form: only has rules of the form
 
+NT \rightarrow NT \ \  NT \\ \ \\ 
+NT\rightarrow t2. Syntactic analysis2.1 Global AmbibuityStructural ambiguityPOS ambiguity:
 
 Attachment ambiguity: Some sentences have structural ambiguity even without part-of-speech ambiguity
 
@@ -184,8 +185,6 @@ Different attachments have different meanings
 I saw the man with the telescope
 She ate the pizza on the floor
 Good boys and girls get presents from Santa
-
-
 
 
 
@@ -228,9 +227,9 @@ for len = 1 to n:                        # number of words in constituent
       # process binary rules
       for each (A-&gt;B C) where c[i,k] has B and c[k,j] has C:
         add A to c[i,j] with pointers to B and C
+
 Time complexity: $O(Gn^3)$ 
 e.g. Slide 11 pp.5-11
-
 
 Problem:
 
@@ -249,17 +248,17 @@ requires converting the grammar to CNF
 Can be implemented to probabilistic CKY
 3.1.4 Choose parsing algorithm==Probabilities ???==
 3.2 Statistical Parsing3.2.1 Treebank grammarsIdea: annotate real sentences with parse trees
-3.2.1.1 The Penn Treebank (Treebank PCFG)PCFG (probabilistic context-free grammar)$$NT \rightarrow \beta \  \text{ with probability } P(\beta \mid NT)$$
-3.2.1.2 Create PCFGEasiest way: MLE
+3.2.1.1 The Penn Treebank (Treebank PCFG)PCFG (probabilistic context-free grammar) 
+
+NT \rightarrow \beta \  \text{ with probability } P(\beta \mid NT)3.2.1.2 Create PCFGEasiest way: MLE
 
 Count all occurrences of $NT \rightarrow \beta$ in treebank
 Divide by the count of all rules whose left-hand-side is $NT$ to get $P(\beta \mid NT)$
 
-$$P(NT \rightarrow C_1, C_2 \dots C_n \mid NT) = \frac{count(NT \rightarrow C_1,C_2 \dots C_n)}{count(NT)}$$
-e.g. Slide 12 pp. 21-24
-3.2.2 Probability of a parse$$P(t) = \prod_{NT \rightarrow \beta \in t} NT \rightarrow \beta$$
 
-
+P(NT \rightarrow C_1, C_2 \dots C_n \mid NT) = \frac{count(NT \rightarrow C_1,C_2 \dots C_n)}{count(NT)}e.g. Slide 12 pp. 21-24
+3.2.2 Probability of a parse
+P(t) = \prod_{NT \rightarrow \beta \in t} NT \rightarrow \beta
 3.2.3 Probabilistic CKY
 When we find an $NT$ spanning $(i,j)$, store its probability along with its label in cell $(i,j)$ 
 If we later find an $NT$ with the same span but higher probability, replace the probability and the backpointers for $NT$ in cell $(i,j)$ 
@@ -269,7 +268,6 @@ Inside algorithm
 Inside-outside algorithm
 
 3.2.5 Best-first probabilistic parsingBasic idea: use probabilities of subtrees to decide which ones to build up further
-
 
 How to score constituents:
 
