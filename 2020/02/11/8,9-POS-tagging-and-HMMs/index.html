@@ -13,30 +13,40 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
+  <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="Waylon Li">
   <meta name="keywords" content="">
   <title>8,9-POS tagging and HMMs | Waylon&#39;s blog</title>
 
-  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
-<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
-<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
-<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
 
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/tomorrow-night-eighties.min.css" />
+  
 
-<link rel="stylesheet" href="/css/main.css"  >
+  
 
 
-  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
 
 
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
@@ -45,7 +55,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Waylon's blog</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -61,41 +71,61 @@
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
         
           
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/archives/">Archives</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
         
           
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/categories/">Categories</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
         
           
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/tags/">Tags</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
         
           
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">About</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
         
         
           <li class="nav-item" id="search-btn">
@@ -108,12 +138,11 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background"
-         style="background: url('/img/postcover/HMM.jpg')no-repeat center center;
-           background-size: cover;
-           background-attachment: fixed;">
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/postcover/HMM.jpg') no-repeat center center;
+           background-size: cover;">
       <div class="full-bg-img">
-        <div class="mask rgba-black-light flex-center">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
@@ -122,40 +151,39 @@
             </span>
 
             
-              <br>
               
-                <p class="mt-3">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  Tuesday, February 11th 2020, 10:39 pm
-                </p>
-              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-02-11 22:39">
+      February 11, 2020 pm
+    </time>
+  </div>
 
-              <p>
-                
-                  
-                  &nbsp;<i class="far fa-chart-bar"></i>
-                  <span class="post-count">
-                    756 words
-                  </span>&nbsp;
-                
 
-                
-                  
-                  &nbsp;<i class="far fa-clock"></i>
-                  <span class="post-count">
-                      4 mins
-                  </span>&nbsp;
-                
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      756 字
+    </span>
+  
 
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
-                  <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv"></span> times
-                  </span>&nbsp;
-                
-              </p>
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
             
           </div>
 
@@ -173,11 +201,14 @@
   <div class="row">
     <div class="d-none d-lg-block col-lg-2"></div>
     <div class="col-lg-8 nopadding-md">
-      <div class="py-5 z-depth-3" id="board">
-        <div class="post-content mx-auto" id="post">
-          <div class="markdown-body">
-            <p>Use Hidden Markov Models to do POS tagging</p>
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <p>Use Hidden Markov Models to do POS tagging</p>
 <a id="more"></a>
+
 <p><strong>Notation:</strong></p>
 <ul>
 <li><p>Sequence of observation overtime (sentence): $ O=o_1\dots o_T $ </p>
@@ -212,7 +243,8 @@
 <li>The labels of surrounding words</li>
 </ul>
 <p><strong>Tags:</strong> Penn Treebank POS tags</p>
-<p><img src="https://waylonranee.com/img/mdimg/image-20200205210126948.png" srcset="/img/loading.gif" alt="image-20200205210126948" style="zoom:43%;" /></p>
+<img src="https://waylonranee.com/img/mdimg/image-20200205210126948.png" srcset="/img/loading.gif" alt="image-20200205210126948" style="zoom:43%;" />
+
 <p><strong>Difficulties:</strong></p>
 <ul>
 <li>Ambiguity</li>
@@ -228,8 +260,8 @@
 <ul>
 <li>The transition and output proabilities</li>
 </ul>
-<script type="math/tex; mode=display">
-P(O,Q) = \prod_{t=1}^n P(o_t \mid q_t) P(q_t \mid q_{t-1})</script><h1 id="2-HMM"><a href="#2-HMM" class="headerlink" title="2. HMM"></a>2. HMM</h1><h2 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1 Introduction"></a>2.1 Introduction</h2><p><strong>Purpose:</strong> find the best tag sequence for an untagged sentence</p>
+<p>$$<br>P(O,Q) = \prod_{t=1}^n P(o_t \mid q_t) P(q_t \mid q_{t-1})<br>$$</p>
+<h1 id="2-HMM"><a href="#2-HMM" class="headerlink" title="2. HMM"></a>2. HMM</h1><h2 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1 Introduction"></a>2.1 Introduction</h2><p><strong>Purpose:</strong> find the best tag sequence for an untagged sentence</p>
 <ul>
 <li>Markov: Markov independence assumption (each tag / state only depends on fixed number of previous tags / states)</li>
 <li>Hidden: at test time we only see the words / emissions, the tags / states are hidden variables</li>
@@ -242,15 +274,14 @@ P(O,Q) = \prod_{t=1}^n P(o_t \mid q_t) P(q_t \mid q_{t-1})</script><h1 id="2-HMM
 <li>state transition probabilities (e.g. $P(t_i \mid t_{i-1})$)</li>
 <li>symbol emission probabilities (e.g. $P(w_i \mid t_i)$)</li>
 </ul>
-<h2 id="2-2-Model"><a href="#2-2-Model" class="headerlink" title="2.2 Model"></a>2.2 Model</h2><script type="math/tex; mode=display">
-\underset{Q}{\operatorname{argmax}} P(Q \mid O) = \underset{Q}{\operatorname{argmax}} P(O \mid Q) P(Q)</script><ul>
+<h2 id="2-2-Model"><a href="#2-2-Model" class="headerlink" title="2.2 Model"></a>2.2 Model</h2><p>$$<br>\underset{Q}{\operatorname{argmax}} P(Q \mid O) = \underset{Q}{\operatorname{argmax}} P(O \mid Q) P(Q)<br>$$</p>
+<ul>
 <li>Using Bayes’ rule</li>
 <li>$P(Q) = \prod_t P(q_t \mid q_{t-1})$</li>
 <li>$P(O \mid Q) = \prod_t P(o_t \mid q_t)$ </li>
 </ul>
-<p><strong>Joint probability:</strong></p>
-<script type="math/tex; mode=display">
-P(O,Q\mid \lambda) = \prod_{t=1}^T P(o_t \mid q_t) P(q_{t-1}) = \prod_{t=1}^T b_{t}(o_t)a_{t-1,t}</script><ul>
+<p><strong>Joint probability:</strong><br>$$<br>P(O,Q\mid \lambda) = \prod_{t=1}^T P(o_t \mid q_t) P(q_{t-1}) = \prod_{t=1}^T b_{t}(o_t)a_{t-1,t}<br>$$</p>
+<ul>
 <li>$\lambda = (A,B)$ </li>
 </ul>
 <h2 id="2-3-Transition-and-Output-Probabilities-Matrix-A-B"><a href="#2-3-Transition-and-Output-Probabilities-Matrix-A-B" class="headerlink" title="2.3 Transition and Output Probabilities (Matrix $A,B$)"></a>2.3 Transition and Output Probabilities (Matrix $A,B$)</h2><ul>
@@ -259,13 +290,13 @@ P(O,Q\mid \lambda) = \prod_{t=1}^T P(o_t \mid q_t) P(q_{t-1}) = \prod_{t=1}^T b_
 </ul>
 <h2 id="2-4-Searching-Viterbi-algorithm"><a href="#2-4-Searching-Viterbi-algorithm" class="headerlink" title="2.4 Searching: Viterbi algorithm"></a>2.4 Searching: Viterbi algorithm</h2><p><strong>Decoding:</strong> finding the best tag sequence for a sentence is called decoding</p>
 <p><strong>Intuition:</strong> the best path of length $t$ ending in state $Q$ must include the best path of length $t-1$ to the previous state</p>
-<p><strong>Find $\underset{Q}{\operatorname{argmax}} P(Q \mid O) $:</strong></p>
-<script type="math/tex; mode=display">
-v(j,t) = \max_{i=1}^N v(i,t-1) \cdot a_{ij} \cdot b_j</script><ul>
+<p><strong>Find $\underset{Q}{\operatorname{argmax}} P(Q \mid O) $:</strong><br>$$<br>v(j,t) = \max_{i=1}^N v(i,t-1) \cdot a_{ij} \cdot b_j<br>$$</p>
+<ul>
 <li><strong>Can also use negative log probabilities and take minimum over sum of costs</strong> </li>
 </ul>
 <p><strong>Chart:</strong> $N \times T$ </p>
-<p><img src="https://waylonranee.com/img/mdimg/image-20200210220921409.png" srcset="/img/loading.gif" alt="image-20200210220921409" style="zoom:35%;" /></p>
+<img src="https://waylonranee.com/img/mdimg/image-20200210220921409.png" srcset="/img/loading.gif" alt="image-20200210220921409" style="zoom:35%;" />
+
 <h2 id="2-5-Training-Baum-Welch-Forward-Backward-algorithm"><a href="#2-5-Training-Baum-Welch-Forward-Backward-algorithm" class="headerlink" title="2.5 Training: Baum-Welch (Forward-Backward) algorithm"></a>2.5 Training: Baum-Welch (Forward-Backward) algorithm</h2><p><strong>Compute the best parameters from unannotated corpus</strong></p>
 <h3 id="2-5-1-Expectation-maximisation"><a href="#2-5-1-Expectation-maximisation" class="headerlink" title="2.5.1 Expectation-maximisation"></a>2.5.1 Expectation-maximisation</h3><ul>
 <li>Initialise parameters $\lambda^{(0)}$ </li>
@@ -280,11 +311,9 @@ v(j,t) = \max_{i=1}^N v(i,t-1) \cdot a_{ij} \cdot b_j</script><ul>
 <ul>
 <li>Can find a local maximum, not guarantee to find the global maximum</li>
 </ul>
-<h3 id="2-5-2-Baum-Welch"><a href="#2-5-2-Baum-Welch" class="headerlink" title="2.5.2 Baum-Welch"></a>2.5.2 Baum-Welch</h3><p><strong>Idea:</strong> computes expected counts using forward probabilities and backward probabilities</p>
-<script type="math/tex; mode=display">
-\beta(j,t) = P(q^t = j, o_{t+1}, o_{t+2}, \dots,o_T \mid \lambda)</script><p>PS: EM is much more general, can use for many latent variable models</p>
-<h2 id="2-6-Evaluation-Forward-algorithm-sum-instead-of-max-compute-the-likelihood"><a href="#2-6-Evaluation-Forward-algorithm-sum-instead-of-max-compute-the-likelihood" class="headerlink" title="2.6 Evaluation: Forward algorithm (sum instead of max): compute the likelihood"></a>2.6 Evaluation: Forward algorithm (sum instead of max): compute the likelihood</h2><script type="math/tex; mode=display">
-a(j,t) = \sum_{i=1}^N a(i,t-1)\cdot a_{ij}\cdot b_j(o_t)</script><ul>
+<h3 id="2-5-2-Baum-Welch"><a href="#2-5-2-Baum-Welch" class="headerlink" title="2.5.2 Baum-Welch"></a>2.5.2 Baum-Welch</h3><p><strong>Idea:</strong> computes expected counts using forward probabilities and backward probabilities<br>$$<br>\beta(j,t) = P(q^t = j, o_{t+1}, o_{t+2}, \dots,o_T \mid \lambda)<br>$$<br>PS: EM is much more general, can use for many latent variable models</p>
+<h2 id="2-6-Evaluation-Forward-algorithm-sum-instead-of-max-compute-the-likelihood"><a href="#2-6-Evaluation-Forward-algorithm-sum-instead-of-max-compute-the-likelihood" class="headerlink" title="2.6 Evaluation: Forward algorithm (sum instead of max): compute the likelihood"></a>2.6 Evaluation: Forward algorithm (sum instead of max): compute the likelihood</h2><p>$$<br>a(j,t) = \sum_{i=1}^N a(i,t-1)\cdot a_{ij}\cdot b_j(o_t)<br>$$</p>
+<ul>
 <li>Actually a language model, not just count for the one previous step, but also all the earlier steps</li>
 </ul>
 <h2 id="2-7-Three-main-problems"><a href="#2-7-Three-main-problems" class="headerlink" title="2.7 Three main problems"></a>2.7 Three main problems</h2><ol>
@@ -310,100 +339,88 @@ a(j,t) = \sum_{i=1}^N a(i,t-1)\cdot a_{ij}\cdot b_j(o_t)</script><ul>
 </li>
 </ol>
 
+            </article>
             <hr>
-          </div>
-          <br>
-          <div>
-            <p>
-            
-              <span>
-                <i class="iconfont icon-inbox"></i>
+            <div>
+              <div class="post-metas mb-3">
                 
-                  <a class="hover-with-bg" href="/categories/Natural-Language-Processing">Natural-Language-Processing</a>
-                  &nbsp;
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Natural-Language-Processing/">Natural-Language-Processing</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Natural-Language-Processing/Notes/">Notes</a>
+                    
+                  </div>
                 
-                  <a class="hover-with-bg" href="/categories/Notes">Notes</a>
-                  &nbsp;
                 
-              </span>&nbsp;&nbsp;
-            
-            
-              <span>
-                <i class="iconfont icon-tag"></i>
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/NLP/">NLP</a>
+                    
+                      <a class="hover-with-bg" href="/tags/POS-Tagging/">POS-Tagging</a>
+                    
+                      <a class="hover-with-bg" href="/tags/HMM/">HMM</a>
+                    
+                  </div>
                 
-                  <a class="hover-with-bg" href="/tags/NLP">NLP</a>
-                
-                  <a class="hover-with-bg" href="/tags/POS-Tagging">POS-Tagging</a>
-                
-                  <a class="hover-with-bg" href="/tags/HMM">HMM</a>
-                
-              </span>
-            
-            </p>
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/03/05/Real-Time-Speech-Recognition-Using-Python/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Real-Time Speech Recognition Using Python</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/02/05/Structural-Testing/">
+                        <span class="hidden-mobile">Structural Testing</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
             
           </div>
         </div>
       </div>
     </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
-    <div id="tocbot"></div>
-  </div>
-
-    </div>
-  </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
 </div>
 
-<!-- custom -->
-
-
-<!-- Comments -->
-<div class="col-lg-7 mx-auto nopadding-md">
-  <div class="container comments mx-auto" id="comments">
-    
-      <br><br>
-      
-      
-  <div id="vcomments" style="width: 90%; margin: 0 auto;"></div>
-  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
-  <script>
-    var notify = 'false' === true;
-    var verify = 'false' === true;
-    var oldLoad = window.onload;
-    window.onload = function () {
-      new Valine({
-        el: '#vcomments',
-	lang: 'en',
-        notify: notify,
-        verify: verify,
-        app_id: "7iGPIsAxoTYyjkXybT6IEgH7-MdYXbMMI",
-        app_key: "obmTFYbknTdYvr6gRyqlHKvq",
-        placeholder: "Say something...",
-        avatar: "retro",
-        meta: ['nick', 'mail', 'link'],
-        pageSize: "10",
-      });
-      oldLoad && oldLoad();
-    };
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
-
-
+      </div>
     
   </div>
 </div>
+
+<!-- Custom -->
+
 
     
   </main>
 
   
-    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
-      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
     </a>
   
 
@@ -431,95 +448,110 @@ a(j,t) = \sum_{i=1}^N a(i,t-1)\cdot a_{ij}\cdot b_j(o_t)</script><ul>
 </div>
   
 
+  
+
+  
+
   <footer class="mt-5">
   <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
     
-  
-    <!-- 不蒜子统计PV -->
+  <div class="statistics">
     
-    &nbsp;<span id="busuanzi_container_site_pv"></span>Total views: 
-          <span id="busuanzi_value_site_pv"></span>&nbsp;
-  
-  
-    <!-- 不蒜子统计UV -->
-    
-    &nbsp;<span id="busuanzi_container_site_uv"></span>Total visitors: 
-            <span id="busuanzi_value_site_uv"></span>&nbsp;
-  
-  <br>
-
-
-
     
 
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            Total views: 
+            <span id="busuanzi_value_site_pv"></span>
+            
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            Total visitors: 
+            <span id="busuanzi_value_site_uv"></span>
+            
+          </span>
+      
+    
+  </div>
 
-    <!-- cnzz Analytics icon -->
+
     
 
+    
   </div>
 </footer>
 
 <!-- SCRIPTS -->
-<script src="/lib/jquery/jquery.min.js" ></script>
-<script src="/lib/popper/popper.min.js" ></script>
-<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
-<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
-<script src="/js/main.js" ></script>
-
-
-  <script src="/js/lazyload.js" ></script>
-
-
-
-  
-    <script src="/lib/tocbot/tocbot.min.js" ></script>
-  
-  <script src="/js/post.js" ></script>
-
-
-
-  <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
-
-
-
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
 
 <!-- Plugins -->
 
 
   
-
-  
-
-  
-
-  
-
-  <!-- cnzz Analytics -->
+    <script  src="/js/lazyload.js" ></script>
   
 
 
 
-  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
   <script>
     $(document).ready(function () {
-      $('pre').addClass('prettyprint  ');
-      prettyPrint();
-    })
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
   </script>
 
 
 
 
 
-  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
   <script>
     anchors.options = {
-      placement: "left",
-      visible: "false",
-      
-      icon: "#"
+      placement: "right",
+      visible: "hover",
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -532,55 +564,31 @@ a(j,t) = \sum_{i=1}^N a(i,t-1)\cdot a_{ij}\cdot b_j(o_t)</script><ul>
 
 
 
-  <script src="/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
   <script>
     var path = "/local-search.xml";
     var inputArea = document.querySelector("#local-search-input");
     inputArea.onclick = function () {
-      getSearchFile(path);
+      searchFunc(path, 'local-search-input', 'local-search-result');
       this.onclick = null
     }
   </script>
 
 
 
-  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
   <script>
-    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
       function () {
-        var element = document.createElement("a");
-        $(element).attr("data-fancybox", "images");
-        $(element).attr("href", $(this).attr("src"));
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
         $(this).wrap(element);
       }
     );
-  </script>
-
-
-
-  
-
-  
-    <!-- MathJax -->
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-          tex2jax: {
-              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-              processEscapes: true,
-              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-          }
-      });
-
-      MathJax.Hub.Queue(function() {
-          var all = MathJax.Hub.getAllJax(), i;
-          for(i=0; i < all.length; i += 1) {
-              all[i].SourceElement().parentNode.className += ' has-jax';
-          }
-      });
-
-    </script>
-
-    <script src="https://cdn.staticfile.org/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" ></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -599,12 +607,33 @@ a(j,t) = \sum_{i=1}^N a(i,t-1)\cdot a_{ij}\cdot b_j(o_t)</script><ul>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 
+  
 
+  
 
+  
 
+  
 
+  
 
 
 
