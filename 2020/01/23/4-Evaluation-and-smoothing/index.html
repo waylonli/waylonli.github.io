@@ -38,12 +38,16 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1630899_o74xdg9pu6i.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
 
 <!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
 
 
   <script  src="/js/utils.js" ></script>
@@ -165,7 +169,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      671 words
+      673 words
     </span>
   
 
@@ -207,13 +211,14 @@
             
               <p class="note note-info">
                 
-                  Last update：6 minutes ago
+                  Last update：32 minutes ago
                 
               </p>
             
             <article class="markdown-body">
               <p>Introduction to smoothing word counts to get the probabilities</p>
 <a id="more"></a>
+
 <h1 id="1-Evaluation"><a href="#1-Evaluation" class="headerlink" title="1. Evaluation"></a>1. Evaluation</h1><ul>
 <li>Extrinstic: measure performance on a downstream application<ul>
 <li>plug different models into the system, test on the same dataset and compare the accuracy</li>
@@ -221,11 +226,8 @@
 </li>
 <li>Intrinstic: design a measure that is inherent to the current task</li>
 </ul>
-<p><strong>Entropy:</strong> human need $H(X)$ of Y/N questions to determine the next word</p>
-<script type="math/tex; mode=display">
-H(X)=\sum_x -P(x) \log_2P(x)</script><p><strong>Cross-entropy:</strong></p>
-<script type="math/tex; mode=display">
-H(P,\hat{P}) = \sum_x -P(x) \log_2 \hat{P}(x)</script><ul>
+<p><strong>Entropy:</strong> human need $H(X)$ of Y/N questions to determine the next word<br>$$<br>H(X)=\sum_x -P(x) \log_2P(x)<br>$$<br><strong>Cross-entropy:</strong><br>$$<br>H(P,\hat{P}) = \sum_x -P(x) \log_2 \hat{P}(x)<br>$$</p>
+<ul>
 <li>cross-entropy $\ge$ entropy</li>
 <li>lower cross-entropy: model is better at predicting next word</li>
 </ul>
@@ -240,15 +242,15 @@ H(P,\hat{P}) = \sum_x -P(x) \log_2 \hat{P}(x)</script><ul>
 </ul>
 <h1 id="2-Smoothing-1"><a href="#2-Smoothing-1" class="headerlink" title="2. Smoothing 1"></a>2. Smoothing 1</h1><p>Smoothing methods address the problem by stealing probability mass from seen events and reallocating it to unseen events.</p>
 <p>Otherwise, only using the N-gram model is useless since the assumption is too strict for natural language processing.</p>
-<h2 id="2-1-Add-One-Laplace-Smoothing"><a href="#2-1-Add-One-Laplace-Smoothing" class="headerlink" title="2.1 Add-One (Laplace) Smoothing"></a>2.1 Add-One (Laplace) Smoothing</h2><script type="math/tex; mode=display">
-P_{+1}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+1}{C(w_{i-2},w_{i-1})+v} \\ \ \\ \text{where }\sum_{w_i \in V} \frac{C(w_{i-2},w_{i-1},w_i)+1}{C(w_{i-2},w_{i-1})+v}=1</script><ul>
+<h2 id="2-1-Add-One-Laplace-Smoothing"><a href="#2-1-Add-One-Laplace-Smoothing" class="headerlink" title="2.1 Add-One (Laplace) Smoothing"></a>2.1 Add-One (Laplace) Smoothing</h2><p>$$<br>P_{+1}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+1}{C(w_{i-2},w_{i-1})+v} \\ \ \\ \text{where }\sum_{w_i \in V} \frac{C(w_{i-2},w_{i-1},w_i)+1}{C(w_{i-2},w_{i-1})+v}=1<br>$$</p>
+<ul>
 <li>$v = \text{vocabulary size}$</li>
 <li>Cons: changed the denominator, which can have big eﬀects even on frequent events</li>
 </ul>
-<h2 id="2-2-Add-alpha-Lidstone-Smoothing"><a href="#2-2-Add-alpha-Lidstone-Smoothing" class="headerlink" title="2.2 Add-$\alpha$ (Lidstone) Smoothing"></a>2.2 Add-$\alpha$ (Lidstone) Smoothing</h2><script type="math/tex; mode=display">
-P_{+\alpha}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+\alpha}{C(w_{i-2},w_{i-1})+\alpha v}</script><ul>
+<h2 id="2-2-Add-alpha-Lidstone-Smoothing"><a href="#2-2-Add-alpha-Lidstone-Smoothing" class="headerlink" title="2.2 Add-$\alpha$ (Lidstone) Smoothing"></a>2.2 Add-$\alpha$ (Lidstone) Smoothing</h2><p>$$<br>P_{+\alpha}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+\alpha}{C(w_{i-2},w_{i-1})+\alpha v}<br>$$</p>
+<ul>
 <li><p>Optimising $\alpha$ </p>
-<p><img src="https://waylonli.com/img/mdimg/image-20200124104610419.png" srcset="/img/loading.gif" alt="image-20200124104610419" style="zoom:46%;" /></p>
+<img src="https://waylonli.com/img/mdimg/image-20200124104610419.png" srcset="/img/loading.gif" alt="image-20200124104610419" style="zoom:46%;" />
 </li>
 <li><p>Cons: </p>
 <ul>
@@ -262,14 +264,14 @@ P_{+\alpha}(w_i \mid w_{i-2},w_{i-1}) =\frac{C(w_{i-2},w_{i-1},w_i)+\alpha}{C(w_
 <li>change the numerator</li>
 <li>use the frequency of singletons as a re-estimate of the frequency of zero-count bigrams</li>
 </ul>
-<p><strong>Adjusted counts:</strong> </p>
-<script type="math/tex; mode=display">
-c^* = (c+1)\frac{N_{c+1}}{N_c} \\ \ \\  P_{GT}=\frac{c^*}{n}</script><p><strong>Assumption:</strong></p>
+<p><strong>Adjusted counts:</strong><br>$$<br>c^* = (c+1)\frac{N_{c+1}}{N_c} \\ \ \\  P_{GT}=\frac{c^*}{n}<br>$$</p>
+<p><strong>Assumption:</strong></p>
 <ul>
 <li><p>tye distribution of each bigram is binomail</p>
 </li>
 <li><p>each count is reduced slightly (Zipf): discounting</p>
-<p><img src="https://waylonli.com/img/mdimg/image-20200126162032253.png" srcset="/img/loading.gif" alt="image-20200126162032253" style="zoom:40%;" /></p>
+<img src="https://waylonli.com/img/mdimg/image-20200126162032253.png" srcset="/img/loading.gif" alt="image-20200126162032253" style="zoom:40%;" />
+
 </li>
 </ul>
 <p><strong>Cons:</strong></p>
@@ -289,30 +291,28 @@ c^* = (c+1)\frac{N_{c+1}}{N_c} \\ \ \\  P_{GT}=\frac{c^*}{n}</script><p><strong>
 <li>high-order N-grams are sensitive to more context, but have sparse counts</li>
 <li>low-order N-grams have limited context, but robust counts</li>
 </ul>
-<p><strong>Model:</strong></p>
-<script type="math/tex; mode=display">
-P_{INT}(w_3 \mid w_1,w_2) = \lambda_1P_1(w_3) + \lambda_2P_2(w_3 \mid w_2)+\lambda_3P_3(w_3\mid w_1,w_2)</script><ul>
+<p><strong>Model:</strong><br>$$<br>P_{INT}(w_3 \mid w_1,w_2) = \lambda_1P_1(w_3) + \lambda_2P_2(w_3 \mid w_2)+\lambda_3P_3(w_3\mid w_1,w_2)<br>$$</p>
+<ul>
 <li><p>$P_N$: N-gram estimate</p>
 </li>
 <li><p>$\lambda_i$: interpolation parameters / mixture weights</p>
 <p>must sum to 1</p>
-<p><img src="https://waylonli.com/img/mdimg/image-20200127211855299.png" srcset="/img/loading.gif" alt="image-20200127211855299" style="zoom:38%;" /></p>
+<img src="https://waylonli.com/img/mdimg/image-20200127211855299.png" srcset="/img/loading.gif" alt="image-20200127211855299" style="zoom:38%;" />
+
 </li>
 </ul>
 <p><strong>Pick values of $\lambda_i$:</strong> machine learning method, optimise perplexity on a held-out data set</p>
 <h2 id="3-2-Katz-Back-off"><a href="#3-2-Katz-Back-off" class="headerlink" title="3.2 Katz Back-off"></a>3.2 Katz Back-off</h2><p><strong>Idea:</strong> discount the trigram-based probability estimates</p>
 <p><strong>Model:</strong></p>
-<script type="math/tex; mode=display">
-T(n) = \begin{equation} \left\{ \begin{array}{lr} P^*(w_i \mid w_{i-N+1},\dots,w_{i-1}) \qquad \qquad  \ \text{if}\ \ \text{count}(w_{i-N+1},\dots,w_i)>0,  \\ \alpha(w_{i-N+1},\dots,w_{i-1})P_{BO}(w_i \mid w_{i-N+2},\dots,w_{i-1}) \qquad \qquad  \text{else}.  \end{array} \right. \end{equation}</script><ul>
+<p>$$<br>T(n) = \begin{equation} \left\{ \begin{array}{lr} P^*(w_i \mid w_{i-N+1},\dots,w_{i-1}) \qquad \qquad  \ \text{if}\ \ \text{count}(w_{i-N+1},\dots,w_i)&gt;0,  \\ \alpha(w_{i-N+1},\dots,w_{i-1})P_{BO}(w_i \mid w_{i-N+2},\dots,w_{i-1}) \qquad \qquad  \text{else}.  \end{array} \right. \end{equation}<br>$$</p>
+<ul>
 <li>$ P^*(w_i \mid w_{i-N+1},\dots,w_{i-1})$: adjusted predictoin model (Good Turing)</li>
 <li>$\alpha(w_1,w_{N-1})$: backoff weights</li>
 <li>G-T if count is not 0, back off if count is 0</li>
 </ul>
 <h2 id="3-3-Kneser-Ney-smoothing"><a href="#3-3-Kneser-Ney-smoothing" class="headerlink" title="3.3 Kneser-Ney smoothing"></a>3.3 Kneser-Ney smoothing</h2><p><strong>Idea:</strong> takes diversity of histories into account</p>
-<p><strong>Model:</strong></p>
-<script type="math/tex; mode=display">
-N_{1+}(\bullet w_i)=\left| \{w_{i-1}:c(w_{i-1}, w_i)>0\} \right |</script><script type="math/tex; mode=display">
-P_{KN}(w_i)= \frac{N_{1+}(\bullet w_i)}{\sum_w N_{1+}(\bullet w)}</script><div class="table-container">
+<p><strong>Model:</strong><br>$$<br>N_{1+}(\bullet w_i)=\left| \{w_{i-1}:c(w_{i-1}, w_i)&gt;0\} \right |<br>$$</p>
+<p>$$<br>P_{KN}(w_i)= \frac{N_{1+}(\bullet w_i)}{\sum_w N_{1+}(\bullet w)}<br>$$</p>
 <table>
 <thead>
 <tr>
@@ -320,8 +320,7 @@ P_{KN}(w_i)= \frac{N_{1+}(\bullet w_i)}{\sum_w N_{1+}(\bullet w)}</script><div c
 <th>Methods</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Uniform probabilities</td>
 <td>add-$\alpha$, Good-Turing</td>
 </tr>
@@ -333,9 +332,7 @@ P_{KN}(w_i)= \frac{N_{1+}(\bullet w_i)}{\sum_w N_{1+}(\bullet w)}</script><div c
 <td>Probability of appering in new contexts</td>
 <td>Kneser-Ney</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 
             </article>
             <hr>
@@ -532,6 +529,10 @@ P_{KN}(w_i)= \frac{N_{1+}(\bullet w_i)}{\sum_w N_{1+}(\bullet w)}</script><div c
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+
+
+  
+<script src="/js/iconfont.js"></script>
 
 
 

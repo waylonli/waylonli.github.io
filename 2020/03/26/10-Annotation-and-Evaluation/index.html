@@ -38,12 +38,16 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1630899_o74xdg9pu6i.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
 
 <!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
 
 
   <script  src="/js/utils.js" ></script>
@@ -222,6 +226,7 @@
 <li>quality control procedures (multiple annotation, adjudication?)</li>
 </ul>
 <a id="more"></a>
+
 <h1 id="2-Evaluation"><a href="#2-Evaluation" class="headerlink" title="2. Evaluation"></a>2. Evaluation</h1><h2 id="2-1-Hypotheses"><a href="#2-1-Hypotheses" class="headerlink" title="2.1 Hypotheses"></a>2.1 Hypotheses</h2><p>About existing linguistic objects:</p>
 <ul>
 <li>Is this text by Shakespeare or Marlowe?</li>
@@ -252,10 +257,8 @@
 <h2 id="2-4-Cross-validation"><a href="#2-4-Cross-validation" class="headerlink" title="2.4 Cross-validation"></a>2.4 Cross-validation</h2><p>Use when the dataset is too small to have a nice train / test or train / dev / test split</p>
 <h3 id="k-fold-cross-validation"><a href="#k-fold-cross-validation" class="headerlink" title="$k$-fold cross-validation"></a>$k$-fold cross-validation</h3><p>Partition the data into $k$ pieces and treat them as mini held-out sets. Each fold is an experiment with a diﬀerent held-out set, using the rest of the data for training</p>
 <p>PS: If tuning the system via cross-validation, still important to have a separate blind test set.</p>
-<h2 id="2-5-Measurement"><a href="#2-5-Measurement" class="headerlink" title="2.5 Measurement"></a>2.5 Measurement</h2><script type="math/tex; mode=display">
-\text{precision} = \frac{TP}{TP+FP} \\ \ \\
-\text{recall (true positive rate)} = \frac{TP}{TP+FN}\\ \ \\
-F_1 = \  \frac{\text{precision} \cdot \text{recall}}{\text{precision}+\text{recall}}</script><p><strong>Upper bound:</strong> Turing test</p>
+<h2 id="2-5-Measurement"><a href="#2-5-Measurement" class="headerlink" title="2.5 Measurement"></a>2.5 Measurement</h2><p>$$<br>\text{precision} = \frac{TP}{TP+FP} \\ \ \\<br>\text{recall (true positive rate)} = \frac{TP}{TP+FN}\\ \ \\<br>F_1 = \  \frac{\text{precision} \cdot \text{recall}}{\text{precision}+\text{recall}}<br>$$</p>
+<p><strong>Upper bound:</strong> Turing test</p>
 <ul>
 <li>When using a human Gold Standard, check the agreement of humans against that standard.</li>
 </ul>
@@ -457,6 +460,10 @@ F_1 = \  \frac{\text{precision} \cdot \text{recall}}{\text{precision}+\text{reca
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+
+
+  
+<script src="/js/iconfont.js"></script>
 
 
 

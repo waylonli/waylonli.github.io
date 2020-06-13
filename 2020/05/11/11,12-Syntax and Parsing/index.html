@@ -38,12 +38,16 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1630899_o74xdg9pu6i.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
 
 <!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
 
 
   <script  src="/js/utils.js" ></script>
@@ -165,7 +169,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      691 words
+      692 words
     </span>
   
 
@@ -207,7 +211,7 @@
             
               <p class="note note-info">
                 
-                  Last update：5 minutes ago
+                  Last update：31 minutes ago
                 
               </p>
             
@@ -222,11 +226,10 @@
 <li>Terminals (t): words</li>
 <li>Non-terminals (NT): phrasal categories (e.g. S, NP, VP, PP) with S being the start symbol</li>
 </ul>
-<p><strong>Chomsky Normal Form:</strong> only has rules of the form</p>
-<script type="math/tex; mode=display">
-NT \rightarrow NT \ \  NT \\ \ \\ 
-NT\rightarrow t</script><h1 id="2-Syntactic-analysis"><a href="#2-Syntactic-analysis" class="headerlink" title="2. Syntactic analysis"></a>2. Syntactic analysis</h1><h2 id="2-1-Global-Ambibuity"><a href="#2-1-Global-Ambibuity" class="headerlink" title="2.1 Global Ambibuity"></a>2.1 Global Ambibuity</h2><h3 id="Structural-ambiguity"><a href="#Structural-ambiguity" class="headerlink" title="Structural ambiguity"></a>Structural ambiguity</h3><p><strong>POS ambiguity:</strong></p>
-<p><img src="https://waylonli.com/img/mdimg/image-20200225102130958.png" srcset="/img/loading.gif" alt="image-20200225102130958" style="zoom:50%;" /></p>
+<p><strong>Chomsky Normal Form:</strong> only has rules of the form<br>$$<br>NT \rightarrow NT \ \  NT \\ \ \\<br>NT\rightarrow t<br>$$</p>
+<h1 id="2-Syntactic-analysis"><a href="#2-Syntactic-analysis" class="headerlink" title="2. Syntactic analysis"></a>2. Syntactic analysis</h1><h2 id="2-1-Global-Ambibuity"><a href="#2-1-Global-Ambibuity" class="headerlink" title="2.1 Global Ambibuity"></a>2.1 Global Ambibuity</h2><h3 id="Structural-ambiguity"><a href="#Structural-ambiguity" class="headerlink" title="Structural ambiguity"></a>Structural ambiguity</h3><p><strong>POS ambiguity:</strong></p>
+<img src="https://waylonli.com/img/mdimg/image-20200225102130958.png" srcset="/img/loading.gif" alt="image-20200225102130958" style="zoom:50%;" />
+
 <p><strong>Attachment ambiguity:</strong> Some sentences have structural ambiguity even without part-of-speech ambiguity</p>
 <ul>
 <li><p>Depends on where different phrases attach in the tree</p>
@@ -237,8 +240,10 @@ NT\rightarrow t</script><h1 id="2-Syntactic-analysis"><a href="#2-Syntactic-anal
 <p>Good boys and girls get presents from Santa</p>
 </li>
 </ul>
-<p><img src="https://waylonli.com/img/mdimg/image-20200225102443837.png" srcset="/img/loading.gif" alt="image-20200225102443837" style="zoom:45%;" /></p>
-<p><img src="https://waylonli.com/img/mdimg/image-20200225102610299.png" srcset="/img/loading.gif" alt="image-20200225102610299" style="zoom:45%;" /></p>
+<img src="https://waylonli.com/img/mdimg/image-20200225102443837.png" srcset="/img/loading.gif" alt="image-20200225102443837" style="zoom:45%;" />
+
+<img src="https://waylonli.com/img/mdimg/image-20200225102610299.png" srcset="/img/loading.gif" alt="image-20200225102610299" style="zoom:45%;" />
+
 <p><strong>Why we want parse trees:</strong></p>
 <ul>
 <li>compositional semantics: the meaning of a constituent is a function of the meaning of its children</li>
@@ -277,9 +282,11 @@ NT\rightarrow t</script><h1 id="2-Syntactic-analysis"><a href="#2-Syntactic-anal
       # process binary rules
       for each (A-&gt;B C) where c[i,k] has B and c[k,j] has C:
         add A to c[i,j] with pointers to B and C</code></pre>
+
 <p><strong>Time complexity:</strong> $O(Gn^3)$ </p>
 <p>e.g. Slide 11 pp.5-11</p>
-<p><img src="https://waylonli.com/img/mdimg/image-20200228193756640.png" srcset="/img/loading.gif" alt="image-20200228193756640" style="zoom:50%;" /></p>
+<img src="https://waylonli.com/img/mdimg/image-20200228193756640.png" srcset="/img/loading.gif" alt="image-20200228193756640" style="zoom:50%;" />
+
 <p><strong>Problem:</strong></p>
 <ul>
 <li>Ambiguity is only clear if we go on to reconstruct the parses using our backpointers</li>
@@ -297,17 +304,17 @@ NT\rightarrow t</script><h1 id="2-Syntactic-analysis"><a href="#2-Syntactic-anal
 <p><strong>Can be implemented to probabilistic CKY</strong></p>
 <h3 id="3-1-4-Choose-parsing-algorithm"><a href="#3-1-4-Choose-parsing-algorithm" class="headerlink" title="3.1.4 Choose parsing algorithm"></a>3.1.4 Choose parsing algorithm</h3><p>==Probabilities ???==</p>
 <h2 id="3-2-Statistical-Parsing"><a href="#3-2-Statistical-Parsing" class="headerlink" title="3.2 Statistical Parsing"></a>3.2 Statistical Parsing</h2><h3 id="3-2-1-Treebank-grammars"><a href="#3-2-1-Treebank-grammars" class="headerlink" title="3.2.1 Treebank grammars"></a>3.2.1 Treebank grammars</h3><p><strong>Idea:</strong> annotate real sentences with parse trees</p>
-<h4 id="3-2-1-1-The-Penn-Treebank-Treebank-PCFG"><a href="#3-2-1-1-The-Penn-Treebank-Treebank-PCFG" class="headerlink" title="3.2.1.1 The Penn Treebank (Treebank PCFG)"></a>3.2.1.1 The Penn Treebank (Treebank PCFG)</h4><p><strong>PCFG (probabilistic context-free grammar)</strong> </p>
-<script type="math/tex; mode=display">
-NT \rightarrow \beta \  \text{ with probability } P(\beta \mid NT)</script><h4 id="3-2-1-2-Create-PCFG"><a href="#3-2-1-2-Create-PCFG" class="headerlink" title="3.2.1.2 Create PCFG"></a>3.2.1.2 Create PCFG</h4><p><strong>Easiest way: MLE</strong></p>
+<h4 id="3-2-1-1-The-Penn-Treebank-Treebank-PCFG"><a href="#3-2-1-1-The-Penn-Treebank-Treebank-PCFG" class="headerlink" title="3.2.1.1 The Penn Treebank (Treebank PCFG)"></a>3.2.1.1 The Penn Treebank (Treebank PCFG)</h4><p><strong>PCFG (probabilistic context-free grammar)</strong><br>$$<br>NT \rightarrow \beta \  \text{ with probability } P(\beta \mid NT)<br>$$</p>
+<h4 id="3-2-1-2-Create-PCFG"><a href="#3-2-1-2-Create-PCFG" class="headerlink" title="3.2.1.2 Create PCFG"></a>3.2.1.2 Create PCFG</h4><p><strong>Easiest way: MLE</strong></p>
 <ul>
 <li>Count all occurrences of $NT \rightarrow \beta$ in treebank</li>
 <li>Divide by the count of all rules whose left-hand-side is $NT$ to get $P(\beta \mid NT)$</li>
 </ul>
-<script type="math/tex; mode=display">
-P(NT \rightarrow C_1, C_2 \dots C_n \mid NT) = \frac{count(NT \rightarrow C_1,C_2 \dots C_n)}{count(NT)}</script><p>e.g. Slide 12 pp. 21-24</p>
-<h3 id="3-2-2-Probability-of-a-parse"><a href="#3-2-2-Probability-of-a-parse" class="headerlink" title="3.2.2 Probability of a parse"></a>3.2.2 Probability of a parse</h3><script type="math/tex; mode=display">
-P(t) = \prod_{NT \rightarrow \beta \in t} NT \rightarrow \beta</script><p><img src="https://waylonli.com/img/mdimg/image-20200504145544413.png" srcset="/img/loading.gif" alt="image-20200504145544413" style="zoom:40%;" /></p>
+<p>$$<br>P(NT \rightarrow C_1, C_2 \dots C_n \mid NT) = \frac{count(NT \rightarrow C_1,C_2 \dots C_n)}{count(NT)}<br>$$</p>
+<p>e.g. Slide 12 pp. 21-24</p>
+<h3 id="3-2-2-Probability-of-a-parse"><a href="#3-2-2-Probability-of-a-parse" class="headerlink" title="3.2.2 Probability of a parse"></a>3.2.2 Probability of a parse</h3><p>$$<br>P(t) = \prod_{NT \rightarrow \beta \in t} NT \rightarrow \beta<br>$$</p>
+<img src="https://waylonli.com/img/mdimg/image-20200504145544413.png" srcset="/img/loading.gif" alt="image-20200504145544413" style="zoom:40%;" />
+
 <h3 id="3-2-3-Probabilistic-CKY"><a href="#3-2-3-Probabilistic-CKY" class="headerlink" title="3.2.3 Probabilistic CKY"></a>3.2.3 Probabilistic CKY</h3><ul>
 <li>When we find an $NT$ spanning $(i,j)$, store its probability along with its label in cell $(i,j)$ </li>
 <li>If we later find an $NT$ with the same span but higher probability, replace the probability and the backpointers for $NT$ in cell $(i,j)$ </li>
@@ -317,7 +324,8 @@ P(t) = \prod_{NT \rightarrow \beta \in t} NT \rightarrow \beta</script><p><img s
 <li>Inside-outside algorithm</li>
 </ul>
 <h3 id="3-2-5-Best-first-probabilistic-parsing"><a href="#3-2-5-Best-first-probabilistic-parsing" class="headerlink" title="3.2.5 Best-first probabilistic parsing"></a>3.2.5 Best-first probabilistic parsing</h3><p>Basic idea: use probabilities of subtrees to decide which ones to build up further</p>
-<p><img src="https://waylonli.com/img/mdimg/image-20200504164535795.png" srcset="/img/loading.gif" alt="image-20200504164535795" style="zoom:50%;" /></p>
+<img src="https://waylonli.com/img/mdimg/image-20200504164535795.png" srcset="/img/loading.gif" alt="image-20200504164535795" style="zoom:50%;" />
+
 <p><strong>How to score constituents:</strong></p>
 <ul>
 <li><p>Why not probability: smaller constituents will almost always have higher scores</p>
@@ -519,6 +527,10 @@ P(t) = \prod_{NT \rightarrow \beta \in t} NT \rightarrow \beta</script><p><img s
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+
+
+  
+<script src="/js/iconfont.js"></script>
 
 
 
