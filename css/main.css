@@ -12,7 +12,7 @@ header,
 }
 body {
   background-color: #eee;
-  color: #3c4858;
+  color: #000000;
 }
 body a {
   color: #3c4858;
@@ -598,7 +598,7 @@ sup > a::before,
   color: #1abc9c;
 }
 .navbar .dropdown-collapse {
-  background-color: #2f4154;
+  background-color: #1e2022;
 }
 .navbar-custom {
   color: white;
@@ -607,10 +607,10 @@ sup > a::before,
   color: white;
 }
 .top-nav-collapse {
-  background-color: #2f4154;
+  background-color: #1e2022;
 }
 .navbar-col-show {
-  background-color: #2f4154;
+  background-color: #1e2022;
 }
 @media (max-width: 767px) {
   .navbar {
@@ -1073,7 +1073,7 @@ h6::before {
   font-size: 0.95rem;
 }
 .tocbot-link {
-  color: #3c4858;
+  color: #000000;
 }
 .tocbot-active-link {
   font-weight: bold;
