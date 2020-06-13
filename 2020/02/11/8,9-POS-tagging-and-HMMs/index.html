@@ -211,14 +211,13 @@
             
               <p class="note note-info">
                 
-                  Last update：33 minutes ago
+                  Last update：3 hours ago
                 
               </p>
             
             <article class="markdown-body">
               <p>Use Hidden Markov Models to do POS tagging</p>
 <a id="more"></a>
-
 <p><strong>Notation:</strong></p>
 <ul>
 <li><p>Sequence of observation overtime (sentence): $ O=o_1\dots o_T $ </p>
@@ -253,8 +252,7 @@
 <li>The labels of surrounding words</li>
 </ul>
 <p><strong>Tags:</strong> Penn Treebank POS tags</p>
-<img src="https://waylonli.com/img/mdimg/image-20200205210126948.png" srcset="/img/loading.gif" alt="image-20200205210126948" style="zoom:43%;" />
-
+<p><img src="https://waylonli.com/img/mdimg/image-20200205210126948.png" srcset="/img/loading.gif" alt="image-20200205210126948" style="zoom:43%;" /></p>
 <p><strong>Difficulties:</strong></p>
 <ul>
 <li>Ambiguity</li>
@@ -270,8 +268,8 @@
 <ul>
 <li>The transition and output proabilities</li>
 </ul>
-<p>$$<br>P(O,Q) = \prod_{t=1}^n P(o_t \mid q_t) P(q_t \mid q_{t-1})<br>$$</p>
-<h1 id="2-HMM"><a href="#2-HMM" class="headerlink" title="2. HMM"></a>2. HMM</h1><h2 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1 Introduction"></a>2.1 Introduction</h2><p><strong>Purpose:</strong> find the best tag sequence for an untagged sentence</p>
+<script type="math/tex; mode=display">
+P(O,Q) = \prod_{t=1}^n P(o_t \mid q_t) P(q_t \mid q_{t-1})</script><h1 id="2-HMM"><a href="#2-HMM" class="headerlink" title="2. HMM"></a>2. HMM</h1><h2 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1 Introduction"></a>2.1 Introduction</h2><p><strong>Purpose:</strong> find the best tag sequence for an untagged sentence</p>
 <ul>
 <li>Markov: Markov independence assumption (each tag / state only depends on fixed number of previous tags / states)</li>
 <li>Hidden: at test time we only see the words / emissions, the tags / states are hidden variables</li>
@@ -284,14 +282,15 @@
 <li>state transition probabilities (e.g. $P(t_i \mid t_{i-1})$)</li>
 <li>symbol emission probabilities (e.g. $P(w_i \mid t_i)$)</li>
 </ul>
-<h2 id="2-2-Model"><a href="#2-2-Model" class="headerlink" title="2.2 Model"></a>2.2 Model</h2><p>$$<br>\underset{Q}{\operatorname{argmax}} P(Q \mid O) = \underset{Q}{\operatorname{argmax}} P(O \mid Q) P(Q)<br>$$</p>
-<ul>
+<h2 id="2-2-Model"><a href="#2-2-Model" class="headerlink" title="2.2 Model"></a>2.2 Model</h2><script type="math/tex; mode=display">
+\underset{Q}{\operatorname{argmax}} P(Q \mid O) = \underset{Q}{\operatorname{argmax}} P(O \mid Q) P(Q)</script><ul>
 <li>Using Bayes’ rule</li>
 <li>$P(Q) = \prod_t P(q_t \mid q_{t-1})$</li>
 <li>$P(O \mid Q) = \prod_t P(o_t \mid q_t)$ </li>
 </ul>
-<p><strong>Joint probability:</strong><br>$$<br>P(O,Q\mid \lambda) = \prod_{t=1}^T P(o_t \mid q_t) P(q_{t-1}) = \prod_{t=1}^T b_{t}(o_t)a_{t-1,t}<br>$$</p>
-<ul>
+<p><strong>Joint probability:</strong></p>
+<script type="math/tex; mode=display">
+P(O,Q\mid \lambda) = \prod_{t=1}^T P(o_t \mid q_t) P(q_{t-1}) = \prod_{t=1}^T b_{t}(o_t)a_{t-1,t}</script><ul>
 <li>$\lambda = (A,B)$ </li>
 </ul>
 <h2 id="2-3-Transition-and-Output-Probabilities-Matrix-A-B"><a href="#2-3-Transition-and-Output-Probabilities-Matrix-A-B" class="headerlink" title="2.3 Transition and Output Probabilities (Matrix $A,B$)"></a>2.3 Transition and Output Probabilities (Matrix $A,B$)</h2><ul>
@@ -300,13 +299,13 @@
 </ul>
 <h2 id="2-4-Searching-Viterbi-algorithm"><a href="#2-4-Searching-Viterbi-algorithm" class="headerlink" title="2.4 Searching: Viterbi algorithm"></a>2.4 Searching: Viterbi algorithm</h2><p><strong>Decoding:</strong> finding the best tag sequence for a sentence is called decoding</p>
 <p><strong>Intuition:</strong> the best path of length $t$ ending in state $Q$ must include the best path of length $t-1$ to the previous state</p>
-<p><strong>Find $\underset{Q}{\operatorname{argmax}} P(Q \mid O) $:</strong><br>$$<br>v(j,t) = \max_{i=1}^N v(i,t-1) \cdot a_{ij} \cdot b_j<br>$$</p>
-<ul>
+<p><strong>Find $\underset{Q}{\operatorname{argmax}} P(Q \mid O) $:</strong></p>
+<script type="math/tex; mode=display">
+v(j,t) = \max_{i=1}^N v(i,t-1) \cdot a_{ij} \cdot b_j</script><ul>
 <li><strong>Can also use negative log probabilities and take minimum over sum of costs</strong> </li>
 </ul>
 <p><strong>Chart:</strong> $N \times T$ </p>
-<img src="https://waylonli.com/img/mdimg/image-20200210220921409.png" srcset="/img/loading.gif" alt="image-20200210220921409" style="zoom:35%;" />
-
+<p><img src="https://waylonli.com/img/mdimg/image-20200210220921409.png" srcset="/img/loading.gif" alt="image-20200210220921409" style="zoom:35%;" /></p>
 <h2 id="2-5-Training-Baum-Welch-Forward-Backward-algorithm"><a href="#2-5-Training-Baum-Welch-Forward-Backward-algorithm" class="headerlink" title="2.5 Training: Baum-Welch (Forward-Backward) algorithm"></a>2.5 Training: Baum-Welch (Forward-Backward) algorithm</h2><p><strong>Compute the best parameters from unannotated corpus</strong></p>
 <h3 id="2-5-1-Expectation-maximisation"><a href="#2-5-1-Expectation-maximisation" class="headerlink" title="2.5.1 Expectation-maximisation"></a>2.5.1 Expectation-maximisation</h3><ul>
 <li>Initialise parameters $\lambda^{(0)}$ </li>
@@ -321,9 +320,11 @@
 <ul>
 <li>Can find a local maximum, not guarantee to find the global maximum</li>
 </ul>
-<h3 id="2-5-2-Baum-Welch"><a href="#2-5-2-Baum-Welch" class="headerlink" title="2.5.2 Baum-Welch"></a>2.5.2 Baum-Welch</h3><p><strong>Idea:</strong> computes expected counts using forward probabilities and backward probabilities<br>$$<br>\beta(j,t) = P(q^t = j, o_{t+1}, o_{t+2}, \dots,o_T \mid \lambda)<br>$$<br>PS: EM is much more general, can use for many latent variable models</p>
-<h2 id="2-6-Evaluation-Forward-algorithm-sum-instead-of-max-compute-the-likelihood"><a href="#2-6-Evaluation-Forward-algorithm-sum-instead-of-max-compute-the-likelihood" class="headerlink" title="2.6 Evaluation: Forward algorithm (sum instead of max): compute the likelihood"></a>2.6 Evaluation: Forward algorithm (sum instead of max): compute the likelihood</h2><p>$$<br>a(j,t) = \sum_{i=1}^N a(i,t-1)\cdot a_{ij}\cdot b_j(o_t)<br>$$</p>
-<ul>
+<h3 id="2-5-2-Baum-Welch"><a href="#2-5-2-Baum-Welch" class="headerlink" title="2.5.2 Baum-Welch"></a>2.5.2 Baum-Welch</h3><p><strong>Idea:</strong> computes expected counts using forward probabilities and backward probabilities</p>
+<script type="math/tex; mode=display">
+\beta(j,t) = P(q^t = j, o_{t+1}, o_{t+2}, \dots,o_T \mid \lambda)</script><p>PS: EM is much more general, can use for many latent variable models</p>
+<h2 id="2-6-Evaluation-Forward-algorithm-sum-instead-of-max-compute-the-likelihood"><a href="#2-6-Evaluation-Forward-algorithm-sum-instead-of-max-compute-the-likelihood" class="headerlink" title="2.6 Evaluation: Forward algorithm (sum instead of max): compute the likelihood"></a>2.6 Evaluation: Forward algorithm (sum instead of max): compute the likelihood</h2><script type="math/tex; mode=display">
+a(j,t) = \sum_{i=1}^N a(i,t-1)\cdot a_{ij}\cdot b_j(o_t)</script><ul>
 <li>Actually a language model, not just count for the one previous step, but also all the earlier steps</li>
 </ul>
 <h2 id="2-7-Three-main-problems"><a href="#2-7-Three-main-problems" class="headerlink" title="2.7 Three main problems"></a>2.7 Three main problems</h2><ol>
@@ -408,29 +409,6 @@
               <div class="comments" id="comments">
                 
                 
-  <div class="disqus" style="width:100%">
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      function loadDisqus() {
-        var disqus_config = function () {
-          this.page.url = 'http://waylonli.github.io/2020/02/11/8,9-POS-tagging-and-HMMs/';
-          this.page.identifier = '/2020/02/11/8,9-POS-tagging-and-HMMs/';
-        };
-        (function () {
-          var d = document,
-            s = d.createElement('script');
-          s.src = '//' + '' + '.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', new Date());
-          (d.head || d.body).appendChild(s);
-        })();
-      }
-      createObserver(loadDisqus, 'disqus_thread');
-    </script>
-    <noscript>Please enable JavaScript to view the
-      <a href="https://disqus.com/?ref_noscript" target="_blank" rel="nofollow noopener noopener">comments powered by Disqus.</a>
-    </noscript>
-  </div>
-
 
               </div>
             
