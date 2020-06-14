@@ -13,6 +13,8 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#1e2022">
   <meta name="description" content="">
   <meta name="author" content="Waylon Li">
@@ -224,7 +226,7 @@
             
               <p class="note note-info">
                 
-                  Last update：18 hours ago
+                  Last update：19 hours ago
                 
               </p>
             
@@ -249,12 +251,12 @@
 <h1 id="3-N-gram-language-model-N-gram-LM"><a href="#3-N-gram-language-model-N-gram-LM" class="headerlink" title="3 N-gram language model (N-gram LM)"></a>3 N-gram language model (N-gram LM)</h1><h2 id="3-1-Markov-assumption-independence-assumption"><a href="#3-1-Markov-assumption-independence-assumption" class="headerlink" title="3.1 Markov assumption (independence assumption)"></a>3.1 Markov assumption (independence assumption)</h2><p>The probability of a word only depends on a ﬁxed number of previous words (history)</p>
 <ul>
 <li><p>not always a good assumption</p>
-<img src="https://waylonli.com/img/mdimg/image-20200121104301500.png" srcset="/img/loading.gif" alt="image-20200121104301500" style="zoom:42%;" />
+<img src="https://waylonli.com/img/mdimg/image-20200121104301500.png" alt="image-20200121104301500" style="zoom:42%;" />
 
 </li>
 </ul>
 <h2 id="3-2-Probaility-calculation"><a href="#3-2-Probaility-calculation" class="headerlink" title="3.2 Probaility calculation"></a>3.2 Probaility calculation</h2><p>To estimate $ P(\vec{w}) $, use chain rule:<br>$$<br>P(w_1,\dots,w_n) = \prod_{i=1}^nP(w_i \mid w_1,w_2,\dots,w_{i-1}) \\ \approx P(w_1)P(w_2\mid w_1)\prod_{i=3}^n P(w_i \mid w_{i-2}, w_{i-1})<br>$$<br>Problem: sentence boundaryet</p>
-<h2 id="3-3-Beginning-end-of-sequence"><a href="#3-3-Beginning-end-of-sequence" class="headerlink" title="3.3 Beginning / end of sequence"></a>3.3 Beginning / end of sequence</h2><img src="https://waylonli.com/img/mdimg/image-20200121105220976.png" srcset="/img/loading.gif" alt="image-20200121105220976" style="zoom:50%;" />
+<h2 id="3-3-Beginning-end-of-sequence"><a href="#3-3-Beginning-end-of-sequence" class="headerlink" title="3.3 Beginning / end of sequence"></a>3.3 Beginning / end of sequence</h2><img src="https://waylonli.com/img/mdimg/image-20200121105220976.png" alt="image-20200121105220976" style="zoom:50%;" />
             </article>
             <hr>
             <div>
@@ -438,10 +440,6 @@
 
 <!-- Plugins -->
 
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
 
 
 
