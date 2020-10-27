@@ -173,8 +173,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-10-27 23:39">
-      October 27, 2020 pm
+    <time datetime="2020-10-27 00:00">
+      October 27, 2020 am
     </time>
   </div>
 
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      431 words
+      439 words
     </span>
   
 
@@ -231,9 +231,10 @@
               </p>
             
             <article class="markdown-body">
-              <h1 id="1-What-is-SVD-Singular-Value-Decomposition"><a href="#1-What-is-SVD-Singular-Value-Decomposition" class="headerlink" title="1. What is SVD (Singular Value Decomposition)?"></a>1. What is SVD (Singular Value Decomposition)?</h1><h2 id="1-1-Definition"><a href="#1-1-Definition" class="headerlink" title="1.1 Definition"></a>1.1 Definition</h2><p>Define $ \boldsymbol{ X } = (\vec{x_1}) $  as a $n\times m$ matrix ($n \ge m$). A fraction of $\boldsymbol{X}$ is:</p>
-<script type="math/tex; mode=display">
-\boldsymbol{X} = \boldsymbol{ U }\boldsymbol{ \Sigma } \boldsymbol{ V }^\top</script><p>where:</p>
+              <p>Brief introduction to Singular Value Decomposition (SVD)</p>
+<a id="more"></a>
+
+<h1 id="1-What-is-SVD-Singular-Value-Decomposition"><a href="#1-What-is-SVD-Singular-Value-Decomposition" class="headerlink" title="1. What is SVD (Singular Value Decomposition)?"></a>1. What is SVD (Singular Value Decomposition)?</h1><h2 id="1-1-Definition"><a href="#1-1-Definition" class="headerlink" title="1.1 Definition"></a>1.1 Definition</h2><p>Define $ \boldsymbol{ X } = (\vec{x_1}) $  as a $n\times m$ matrix ($n \ge m$). A fraction of $\boldsymbol{X}$ is:<br>$$<br>\boldsymbol{X} = \boldsymbol{ U }\boldsymbol{ \Sigma } \boldsymbol{ V }^\top<br>$$<br>where:</p>
 <ul>
 <li><p>$ \boldsymbol{U} $: $n \times n$ unitary matrix ($\boldsymbol{U}^* = \boldsymbol{U}^{-1}$)</p>
 </li>
@@ -250,26 +251,25 @@
 <li>Left singular vector: $ \boldsymbol{U} = (\vec{u_1}, \vec{u_2}, \dots , \vec{u_n}) $  are the left singular vectors of matrix $\boldsymbol{M}$ </li>
 <li>Right singular vector: $ \boldsymbol{V} = (\vec{v_1}, \vec{v_2}, \dots , \vec{v_m}) $ are the right singular vectors of matrix $\boldsymbol{M}$ </li>
 </ul>
-<h1 id="2-Matrix-Approximation"><a href="#2-Matrix-Approximation" class="headerlink" title="2. Matrix Approximation"></a>2. Matrix Approximation</h1><p>Notice that  there are only $m$ singular values, we have the Eckand-Young theorem (1936):</p>
-<script type="math/tex; mode=display">
-\boldsymbol{X} = \sigma_1 u_1 v_1^\top + \sigma_2 u_2 v_2^\top + \dots + \sigma_m u_m v_m^\top + \boldsymbol{0} \approx \boldsymbol{\tilde{U}}\bold{\tilde{\Sigma}}\boldsymbol{\tilde{V}}^\top</script><h1 id="3-Dominant-Correlations"><a href="#3-Dominant-Correlations" class="headerlink" title="3. Dominant Correlations"></a>3. Dominant Correlations</h1><p><img src="https://waylonli.com/img/mdimg/image-20201027133303454.png" alt="image-20201027133303454" style="zoom:50%;" /></p>
-<h1 id="4-SVD-and-Truncation"><a href="#4-SVD-and-Truncation" class="headerlink" title="4. SVD and Truncation"></a>4. SVD and Truncation</h1><p>In $\boldsymbol{X} = \boldsymbol{U}\boldsymbol{\Sigma}\boldsymbol{V}^\top$, we can choose $r$ columns of $\boldsymbol{U}$ and $\boldsymbol{V}$. “How to choose $r$” is a fundamental problem in SVD.</p>
-<script type="math/tex; mode=display">
-\boldsymbol{X} = \boldsymbol{\tilde{U}}_r\boldsymbol{\tilde{\Sigma}}_r\boldsymbol{\tilde{V}}_r^\top</script><p>Generally we need to set a threshold for $\log \sigma$ and choose those $\sigma$s beyond the threshold on the diagonal of $\boldsymbol{\Sigma}$.</p>
+<h1 id="2-Matrix-Approximation"><a href="#2-Matrix-Approximation" class="headerlink" title="2. Matrix Approximation"></a>2. Matrix Approximation</h1><p>Notice that  there are only $m$ singular values, we have the Eckand-Young theorem (1936):<br>$$<br>\boldsymbol{X} = \sigma_1 u_1 v_1^\top + \sigma_2 u_2 v_2^\top + \dots + \sigma_m u_m v_m^\top + \boldsymbol{0} \approx \boldsymbol{\tilde{U}}\boldsymbol{\tilde{\Sigma}}\boldsymbol{\tilde{V}}^\top<br>$$</p>
+<h1 id="3-Dominant-Correlations"><a href="#3-Dominant-Correlations" class="headerlink" title="3. Dominant Correlations"></a>3. Dominant Correlations</h1><img src="https://waylonli.com/img/mdimg/image-20201027133303454.png" alt="image-20201027133303454" style="zoom:50%;" />
+
+<h1 id="4-SVD-and-Truncation"><a href="#4-SVD-and-Truncation" class="headerlink" title="4. SVD and Truncation"></a>4. SVD and Truncation</h1><p>In $\boldsymbol{X} = \boldsymbol{U}\boldsymbol{\Sigma}\boldsymbol{V}^\top$, we can choose $r$ columns of $\boldsymbol{U}$ and $\boldsymbol{V}$. “How to choose $r$” is a fundamental problem in SVD.<br>$$<br>\boldsymbol{X} = \boldsymbol{\tilde{U}}_r\boldsymbol{\tilde{\Sigma}}_r\boldsymbol{\tilde{V}}_r^\top<br>$$<br>Generally we need to set a threshold for $\log \sigma$ and choose those $\sigma$s beyond the threshold on the diagonal of $\boldsymbol{\Sigma}$.</p>
 <p><strong>Recommending extra reading:</strong> <a href="https://arxiv.org/pdf/1305.5870.pdf" target="_blank" rel="noopener">Gavish-Donoho (2014)</a></p>
-<p>Applying a Gaussian noise to $\boldsymbol{X}$:</p>
-<script type="math/tex; mode=display">
-\boldsymbol{X} = \boldsymbol{X}_{\text{true}} + \delta \boldsymbol{X}_{\text{noise}}</script><p>PS: I did not mange to fully understand the idea here, more details about the truncation can be found in the video and the paper using the URL in this section</p>
+<p>Applying a Gaussian noise to $\boldsymbol{X}$:<br>$$<br>\boldsymbol{X} = \boldsymbol{X}<em>{\text{true}} + \delta \boldsymbol{X}</em>{\text{noise}}<br>$$<br>PS: I did not mange to fully understand the idea here, more details about the truncation can be found in the video and the paper using the URL in this section</p>
 <h1 id="5-Example-Image-Compression"><a href="#5-Example-Image-Compression" class="headerlink" title="5. Example: Image Compression"></a>5. Example: Image Compression</h1><p>To better understand what SVD does in a practical task, we consider a image processing task. It is easy to represent an image using a matrix. After calculate the SVD of this matrix, by choosing different $r$, we can keep different features of the image. When we choose to keep all the singular values, we can get the original image.</p>
-<p><img src="https://waylonli.com/img/mdimg/image-20201026234621629.png" alt="image-20201026234621629" style="zoom:100%;" /></p>
+<img src="https://waylonli.com/img/mdimg/image-20201026234621629.png" alt="image-20201026234621629" style="zoom:100%;" />
+
+
+
 <p><strong>Videos</strong>:</p>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=gXbThCXjZFM" target="_blank" rel="noopener">Overview</a></li>
 <li><a href="https://www.youtube.com/watch?v=nbBvuuNVfco" target="_blank" rel="noopener">Mathematical Overview</a></li>
 <li><a href="https://www.youtube.com/watch?v=xy3QyyhiuY4" target="_blank" rel="noopener">Matrix Approximation</a></li>
 <li><a href="https://www.youtube.com/watch?v=WmDnaoY2Ivs" target="_blank" rel="noopener">Dominant Correlations</a></li>
-<li><a href="https://www.youtube.com/watch?v=QQ8vxj-9OfQ&amp;list=PLMrJAkhIeNNSVjnsviglFoY2nXildDCcv&amp;index=5" target="_blank" rel="noopener">Image Compression</a></li>
-<li><a href="https://www.youtube.com/watch?v=9vJDjkx825k&amp;list=PLMrJAkhIeNNSVjnsviglFoY2nXildDCcv&amp;index=34" target="_blank" rel="noopener">Optimal Truncation</a></li>
+<li><a href="https://www.youtube.com/watch?v=QQ8vxj-9OfQ&list=PLMrJAkhIeNNSVjnsviglFoY2nXildDCcv&index=5" target="_blank" rel="noopener">Image Compression</a></li>
+<li><a href="https://www.youtube.com/watch?v=9vJDjkx825k&list=PLMrJAkhIeNNSVjnsviglFoY2nXildDCcv&index=34" target="_blank" rel="noopener">Optimal Truncation</a></li>
 </ul>
 
             </article>
