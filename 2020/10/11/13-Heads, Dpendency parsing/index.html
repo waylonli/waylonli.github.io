@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="Waylon Li">
   <meta name="keywords" content="">
-  <title>11,12-Syntax and Parsing | Waylon&#39;s blog</title>
+  <title>13-Heads, Dependency parsing | Waylon&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -158,14 +158,14 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/postcover/parsing.png') no-repeat center center;
+         style="background: url('/img/postcover/Dependency_Parsing.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                11,12-Syntax and Parsing
+                13-Heads, Dependency parsing
               
             </span>
 
@@ -173,8 +173,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-05-11 23:48">
-      May 11, 2020 pm
+    <time datetime="2020-10-11 22:39">
+      October 11, 2020 pm
     </time>
   </div>
 
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      692 words
+      446 words
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      13
+      8
        mins
     </span>
   
@@ -226,131 +226,96 @@
             
               <p class="note note-info">
                 
-                  Last update：4 months ago
+                  Last update：5 minutes ago
                 
               </p>
             
             <article class="markdown-body">
-              <p>Two theories of syntax:</p>
+              <h1 id="1-Parser-evaluation"><a href="#1-Parser-evaluation" class="headerlink" title="1. Parser evaluation"></a>1. Parser evaluation</h1><p><strong>Correct:</strong> if there is a gold constituent that spans the same sentence positions</p>
+<p><strong>Hasher measure:</strong> also require the constituent labels to match</p>
 <ul>
-<li>Context-free grammar</li>
-<li>Dependency grammar</li>
-</ul>
-<h1 id="1-Context-free-grammer"><a href="#1-Context-free-grammer" class="headerlink" title="1. Context-free grammer"></a>1. Context-free grammer</h1><p><strong>Symbols:</strong></p>
-<ul>
-<li>Terminals (t): words</li>
-<li>Non-terminals (NT): phrasal categories (e.g. S, NP, VP, PP) with S being the start symbol</li>
-</ul>
-<p><strong>Chomsky Normal Form:</strong> only has rules of the form<br>$$<br>NT \rightarrow NT \ \  NT \\ \ \\<br>NT\rightarrow t<br>$$</p>
-<h1 id="2-Syntactic-analysis"><a href="#2-Syntactic-analysis" class="headerlink" title="2. Syntactic analysis"></a>2. Syntactic analysis</h1><h2 id="2-1-Global-Ambibuity"><a href="#2-1-Global-Ambibuity" class="headerlink" title="2.1 Global Ambibuity"></a>2.1 Global Ambibuity</h2><h3 id="Structural-ambiguity"><a href="#Structural-ambiguity" class="headerlink" title="Structural ambiguity"></a>Structural ambiguity</h3><p><strong>POS ambiguity:</strong></p>
-<img src="https://waylonli.com/img/mdimg/image-20200225102130958.png" alt="image-20200225102130958" style="zoom:50%;" />
-
-<p><strong>Attachment ambiguity:</strong> Some sentences have structural ambiguity even without part-of-speech ambiguity</p>
-<ul>
-<li><p>Depends on where different phrases attach in the tree</p>
+<li><p>precision</p>
 </li>
-<li><p>Different attachments have different meanings</p>
-<p>I saw the man with the telescope</p>
-<p>She ate the pizza on the floor</p>
-<p>Good boys and girls get presents from Santa</p>
+<li><p>recall</p>
+</li>
+<li><p><strong>F-score (balances precision and recall):</strong><br>$$<br>\frac{2pr}{p+r}<br>$$</p>
 </li>
 </ul>
-<img src="https://waylonli.com/img/mdimg/image-20200225102443837.png" alt="image-20200225102443837" style="zoom:45%;" />
-
-<img src="https://waylonli.com/img/mdimg/image-20200225102610299.png" alt="image-20200225102610299" style="zoom:45%;" />
-
-<p><strong>Why we want parse trees:</strong></p>
+<h1 id="2-Lexicalisation"><a href="#2-Lexicalisation" class="headerlink" title="2. Lexicalisation"></a>2. Lexicalisation</h1><h2 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1 Introduction"></a>2.1 Introduction</h2><p><strong>Problem:</strong> replacing one word with another with the same POS will never result in a different parsing decision, even though it should</p>
+<p><strong>Solution:</strong> adding the lexical head of the phrase</p>
+<h2 id="2-2-Pros-amp-Cons"><a href="#2-2-Pros-amp-Cons" class="headerlink" title="2.2 Pros &amp; Cons"></a>2.2 Pros &amp; Cons</h2><p><strong>Pros:</strong></p>
 <ul>
-<li>compositional semantics: the meaning of a constituent is a function of the meaning of its children</li>
-<li>rule-to-rule semantics: that function is determined by the rule which licenses the constituent</li>
+<li>makes the grammar more specific</li>
 </ul>
-<p><strong>Huge problem:</strong></p>
+<p><strong>Cons:</strong></p>
 <ul>
-<li>correctness problem: need to ﬁnd the right structure to get the right meaning</li>
-<li>efficiency problem: searching all possible structures can be very slow; want to use parsing for large-scale language tasks (for example, as used to create Google’s “infoboxes”)</li>
+<li>leads to huge grammar blowup and very sparse data</li>
 </ul>
-<h2 id="2-2-Local-ambiguity"><a href="#2-2-Local-ambiguity" class="headerlink" title="2.2 Local ambiguity"></a>2.2 Local ambiguity</h2><p><strong>Local ambiguity is also a big problem: multiple analyses for parts of sentence.</strong> </p>
+<h2 id="2-3-Improvement"><a href="#2-3-Improvement" class="headerlink" title="2.3 Improvement"></a>2.3 Improvement</h2><ul>
+<li>complex smoothing schemes (similar to N-gram interpolation / backoff)</li>
+<li>increasing emphasis on automatically learned subcategories</li>
+</ul>
+<h2 id="2-4-Lexicalised-constituency-parse"><a href="#2-4-Lexicalised-constituency-parse" class="headerlink" title="2.4 Lexicalised constituency parse"></a>2.4 Lexicalised constituency parse</h2><p><strong>Direct dependency parsing:</strong></p>
 <ul>
-<li>“The dog bit the child”: first three words could be NP (but aren’t)</li>
-<li>Building useless partial structures wastes time</li>
-<li>Avoiding useless computation is a major issue in parsing</li>
-</ul>
-<h1 id="3-Parsing"><a href="#3-Parsing" class="headerlink" title="3. Parsing"></a>3. Parsing</h1><h2 id="3-1-Normal-Parsing"><a href="#3-1-Normal-Parsing" class="headerlink" title="3.1 Normal Parsing"></a>3.1 Normal Parsing</h2><ul>
-<li>Top-down: depth-first, breadth-firsts, best-first</li>
-<li>Bottom-up</li>
-<li>Mixed strategy (e.g. Earley algorithm)</li>
-</ul>
-<h3 id="3-1-1-Recursive-Descent-Parsing"><a href="#3-1-1-Recursive-Descent-Parsing" class="headerlink" title="3.1.1 Recursive Descent Parsing"></a>3.1.1 Recursive Descent Parsing</h3><p><strong>Idea:</strong> top-down, depth-first parsing</p>
-<p>e.g. Slide 11 pp. 23-24</p>
-<h3 id="3-1-2-Shift-reduce-Parsing"><a href="#3-1-2-Shift-reduce-Parsing" class="headerlink" title="3.1.2 Shift-reduce Parsing"></a>3.1.2 Shift-reduce Parsing</h3><p><strong>Idea:</strong> bottom-up, depth-first parsing</p>
-<p>e.g. Slide 11 pp. 27</p>
-<h3 id="3-1-3-CKY-algorithm-Cocke-Kasami-Younger"><a href="#3-1-3-CKY-algorithm-Cocke-Kasami-Younger" class="headerlink" title="3.1.3 CKY algorithm (Cocke, Kasami, Younger)"></a>3.1.3 CKY algorithm (Cocke, Kasami, Younger)</h3><p><strong>Idea:</strong> bottom-up, breadth-first parsing</p>
-<p><strong>Assumption:</strong> grammar in Chomsky Normal Form</p>
-<p><strong>Pseudocode:</strong></p>
-<pre><code class="hljs python">for len = 1 to n:						# number of words in constituent
-	for i = 0 to (n-len):			# start position
-    j = i + len							# end position
-    for each A-&gt;B where c[i,j] has B:
-      # process unary rules
-      add A to c[i,j] with a pointer to B
-    for k = (i+1) to (j-1):
-      # process binary rules
-      for each (A-&gt;B C) where c[i,k] has B and c[k,j] has C:
-        add A to c[i,j] with pointers to B and C</code></pre>
-
-<p><strong>Time complexity:</strong> $O(Gn^3)$ </p>
-<p>e.g. Slide 11 pp.5-11</p>
-<img src="https://waylonli.com/img/mdimg/image-20200228193756640.png" alt="image-20200228193756640" style="zoom:50%;" />
-
-<p><strong>Problem:</strong></p>
-<ul>
-<li>Ambiguity is only clear if we go on to reconstruct the parses using our backpointers</li>
-</ul>
-<p><strong>Pros &amp; Cons:</strong></p>
-<p>Pros:</p>
-<ul>
-<li>much more efficient than depth-first</li>
-</ul>
-<p>Cons:</p>
-<ul>
-<li>still may compute a lot of unnecessary partial parses</li>
-<li>requires converting the grammar to CNF</li>
-</ul>
-<p><strong>Can be implemented to probabilistic CKY</strong></p>
-<h3 id="3-1-4-Choose-parsing-algorithm"><a href="#3-1-4-Choose-parsing-algorithm" class="headerlink" title="3.1.4 Choose parsing algorithm"></a>3.1.4 Choose parsing algorithm</h3><p>==Probabilities ???==</p>
-<h2 id="3-2-Statistical-Parsing"><a href="#3-2-Statistical-Parsing" class="headerlink" title="3.2 Statistical Parsing"></a>3.2 Statistical Parsing</h2><h3 id="3-2-1-Treebank-grammars"><a href="#3-2-1-Treebank-grammars" class="headerlink" title="3.2.1 Treebank grammars"></a>3.2.1 Treebank grammars</h3><p><strong>Idea:</strong> annotate real sentences with parse trees</p>
-<h4 id="3-2-1-1-The-Penn-Treebank-Treebank-PCFG"><a href="#3-2-1-1-The-Penn-Treebank-Treebank-PCFG" class="headerlink" title="3.2.1.1 The Penn Treebank (Treebank PCFG)"></a>3.2.1.1 The Penn Treebank (Treebank PCFG)</h4><p><strong>PCFG (probabilistic context-free grammar)</strong><br>$$<br>NT \rightarrow \beta \  \text{ with probability } P(\beta \mid NT)<br>$$</p>
-<h4 id="3-2-1-2-Create-PCFG"><a href="#3-2-1-2-Create-PCFG" class="headerlink" title="3.2.1.2 Create PCFG"></a>3.2.1.2 Create PCFG</h4><p><strong>Easiest way: MLE</strong></p>
-<ul>
-<li>Count all occurrences of $NT \rightarrow \beta$ in treebank</li>
-<li>Divide by the count of all rules whose left-hand-side is $NT$ to get $P(\beta \mid NT)$</li>
-</ul>
-<p>$$<br>P(NT \rightarrow C_1, C_2 \dots C_n \mid NT) = \frac{count(NT \rightarrow C_1,C_2 \dots C_n)}{count(NT)}<br>$$</p>
-<p>e.g. Slide 12 pp. 21-24</p>
-<h3 id="3-2-2-Probability-of-a-parse"><a href="#3-2-2-Probability-of-a-parse" class="headerlink" title="3.2.2 Probability of a parse"></a>3.2.2 Probability of a parse</h3><p>$$<br>P(t) = \prod_{NT \rightarrow \beta \in t} NT \rightarrow \beta<br>$$</p>
-<img src="https://waylonli.com/img/mdimg/image-20200504145544413.png" alt="image-20200504145544413" style="zoom:40%;" />
-
-<h3 id="3-2-3-Probabilistic-CKY"><a href="#3-2-3-Probabilistic-CKY" class="headerlink" title="3.2.3 Probabilistic CKY"></a>3.2.3 Probabilistic CKY</h3><ul>
-<li>When we find an $NT$ spanning $(i,j)$, store its probability along with its label in cell $(i,j)$ </li>
-<li>If we later find an $NT$ with the same span but higher probability, replace the probability and the backpointers for $NT$ in cell $(i,j)$ </li>
-</ul>
-<h3 id="3-2-4-Other-algorithms"><a href="#3-2-4-Other-algorithms" class="headerlink" title="3.2.4 Other algorithms"></a>3.2.4 Other algorithms</h3><ul>
-<li>Inside algorithm</li>
-<li>Inside-outside algorithm</li>
-</ul>
-<h3 id="3-2-5-Best-first-probabilistic-parsing"><a href="#3-2-5-Best-first-probabilistic-parsing" class="headerlink" title="3.2.5 Best-first probabilistic parsing"></a>3.2.5 Best-first probabilistic parsing</h3><p>Basic idea: use probabilities of subtrees to decide which ones to build up further</p>
-<img src="https://waylonli.com/img/mdimg/image-20200504164535795.png" alt="image-20200504164535795" style="zoom:50%;" />
-
-<p><strong>How to score constituents:</strong></p>
-<ul>
-<li><p>Why not probability: smaller constituents will almost always have higher scores</p>
+<li><p><strong>Transition-based (shift-reduce)</strong></p>
+<p>Train a classiﬁer as the oracle to predict next action (Shift, LeftArc, or RightArc), and proceed left-to-right through the sentence</p>
+<p>$O(n)$ time</p>
 </li>
-<li><p>Possible solution:</p>
-<ul>
-<li>divide by the number of words (but not guaranteed to find the best parse first)</li>
-<li>A*</li>
-</ul>
+<li><p><strong>Graph-based</strong></p>
+<p>From the fully connected directed graph of all possible edges, choose the best ones that form a tree</p>
+<p>Edge-factored models: classiﬁer assigns a nonne g ative score to each possible edge ; maximum spanning tree algorithm ﬁnds the spanning tree with highest total score</p>
+<p>$O(n^2)$ time</p>
 </li>
+</ul>
+<h3 id="Head-Rules"><a href="#Head-Rules" class="headerlink" title="Head Rules"></a>Head Rules</h3><img src="https://waylonli.com/img/mdimg/image-20200303103851003.png" alt="image-20200303103851003" style="zoom:40%;" />
+
+<h1 id="3-Phrase-Structure-amp-Dependencies"><a href="#3-Phrase-Structure-amp-Dependencies" class="headerlink" title="3. Phrase Structure &amp; Dependencies"></a>3. Phrase Structure &amp; Dependencies</h1><p>In language with free word order, phrase structure grammars don’t make as much sense</p>
+<img src="https://waylonli.com/img/mdimg/image-20200509163948725.png" alt="image-20200509163948725" style="zoom:40%;" />
+
+<h2 id="3-1-Pros-and-Cons"><a href="#3-1-Pros-and-Cons" class="headerlink" title="3.1 Pros and Cons"></a>3.1 Pros and Cons</h2><p><strong>Pros:</strong></p>
+<ul>
+<li>Sensible framework for free word order languages</li>
+<li>Identifies syntactic relations directly</li>
+<li>Dependency pairs / chains can make good features in classifiers, for information extraction</li>
+<li>Parsers can be very fast</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>The assumption of asymmetric binary relations is not always right (e.g. parse dogs and cats)</li>
+</ul>
+<h2 id="3-2-Edge-labels"><a href="#3-2-Edge-labels" class="headerlink" title="3.2 Edge labels"></a>3.2 Edge labels</h2><p><strong>Labels:</strong> subject, direct object, determiner, adjective modifier, adverbial modifier</p>
+<img src="https://waylonli.com/img/mdimg/image-20200509164310427.png" alt="image-20200509164310427" style="zoom:40%;" />
+
+<h2 id="3-3-Dependency-Paths"><a href="#3-3-Dependency-Paths" class="headerlink" title="3.3 Dependency Paths"></a>3.3 Dependency Paths</h2><p>For information extraction tasks involving real-world relationships between entities, chains of dependencies can provide good features</p>
+<img src="https://waylonli.com/img/mdimg/image-20200509164410511.png" alt="image-20200509164410511" style="zoom:46%;" />
+
+<p><strong>Projectivity:</strong></p>
+<p>A sentence’s dependency parse is <strong>projective</strong> if every subtree occupies a contiguous span of the sentence</p>
+<ul>
+<li>= The dependency parse can be drawn on top of the sentence without any crossing edges</li>
+</ul>
+<p><strong>Nonprojectivity:</strong></p>
+<ul>
+<li>Nonprojectivity is rare in English, but quite common in many langauges</li>
+</ul>
+<img src="https://waylonli.com/img/mdimg/image-20200509164643457.png" alt="image-20200509164643457" style="zoom:40%;" />
+
+<h1 id="4-Dependency-Parsing"><a href="#4-Dependency-Parsing" class="headerlink" title="4. Dependency Parsing"></a>4. Dependency Parsing</h1><h2 id="4-1-CKY"><a href="#4-1-CKY" class="headerlink" title="4.1 CKY"></a>4.1 CKY</h2><p>CKY can be adapated, but efficiency is not good: obvious approach is $O(Gn^5)$; Eisner algorithm can bring it down to $O(Gn^3)$ </p>
+<h2 id="4-2-Transition-based-Shift-reduce"><a href="#4-2-Transition-based-Shift-reduce" class="headerlink" title="4.2 Transition-based: Shift reduce"></a>4.2 Transition-based: Shift reduce</h2><p><strong>3 possible actions:</strong></p>
+<ul>
+<li><strong>LeftArc:</strong> assign head-dependent relation between $s_1$ and $s_2$; pop $s_2$</li>
+<li><strong>RightArc:</strong> assign head-dependent relation between $s_2$ and $s_1$; pop $s_1$</li>
+<li><strong>Shift:</strong> put $w_1$ on top of the stack</li>
+</ul>
+<h2 id="4-3-Graph-based"><a href="#4-3-Graph-based" class="headerlink" title="4.3 Graph-based"></a>4.3 Graph-based</h2><img src="https://waylonli.com/img/mdimg/image-20200509165131026.png" alt="image-20200509165131026" style="zoom:50%;" />
+
+<h2 id="4-4-Comparison"><a href="#4-4-Comparison" class="headerlink" title="4.4 Comparison"></a>4.4 Comparison</h2><img src="https://waylonli.com/img/mdimg/image-20200304233448525.png" alt="image-20200304233448525" style="zoom:46%;" />
+
+<h1 id="5-Choosing-a-Parser"><a href="#5-Choosing-a-Parser" class="headerlink" title="5. Choosing a Parser"></a>5. Choosing a Parser</h1><ul>
+<li>Target representation: constituency or dependency?</li>
+<li>Efficiency</li>
+<li>Incrementality: parse the whole sentence at once, or obtain partial left-to-right analyses / expectations</li>
+<li>Retrainable system or not</li>
 </ul>
 
             </article>
@@ -384,7 +349,7 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/11/13-Heads,%20Dpendency%20parsing/">
+                      <a href="/2020/10/12/14-Lexical%20Semantics/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">13-Heads, Dependency parsing</span>
                         <span class="visible-mobile">Previous</span>
@@ -394,8 +359,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/03/26/10-Annotation-and-Evaluation/">
-                        <span class="hidden-mobile">10-Annotation & Evaluation</span>
+                      <a href="/2020/05/11/11,12-Syntax%20and%20Parsing/">
+                        <span class="hidden-mobile">11,12-Syntax and Parsing</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

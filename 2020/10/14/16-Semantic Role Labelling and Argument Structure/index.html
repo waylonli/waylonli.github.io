@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="Waylon Li">
   <meta name="keywords" content="">
-  <title>11,12-Syntax and Parsing | Waylon&#39;s blog</title>
+  <title>13-Heads, Dependency parsing | Waylon&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -158,14 +158,14 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/postcover/parsing.png') no-repeat center center;
+         style="background: url('/img/postcover/semantics-label.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                11,12-Syntax and Parsing
+                13-Heads, Dependency parsing
               
             </span>
 
@@ -173,8 +173,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-05-11 23:48">
-      May 11, 2020 pm
+    <time datetime="2020-10-14 22:39">
+      October 14, 2020 pm
     </time>
   </div>
 
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      692 words
+      122 words
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      13
+      2
        mins
     </span>
   
@@ -226,131 +226,41 @@
             
               <p class="note note-info">
                 
-                  Last update：4 months ago
+                  Last update：a few seconds ago
                 
               </p>
             
             <article class="markdown-body">
-              <p>Two theories of syntax:</p>
-<ul>
-<li>Context-free grammar</li>
-<li>Dependency grammar</li>
-</ul>
-<h1 id="1-Context-free-grammer"><a href="#1-Context-free-grammer" class="headerlink" title="1. Context-free grammer"></a>1. Context-free grammer</h1><p><strong>Symbols:</strong></p>
-<ul>
-<li>Terminals (t): words</li>
-<li>Non-terminals (NT): phrasal categories (e.g. S, NP, VP, PP) with S being the start symbol</li>
-</ul>
-<p><strong>Chomsky Normal Form:</strong> only has rules of the form<br>$$<br>NT \rightarrow NT \ \  NT \\ \ \\<br>NT\rightarrow t<br>$$</p>
-<h1 id="2-Syntactic-analysis"><a href="#2-Syntactic-analysis" class="headerlink" title="2. Syntactic analysis"></a>2. Syntactic analysis</h1><h2 id="2-1-Global-Ambibuity"><a href="#2-1-Global-Ambibuity" class="headerlink" title="2.1 Global Ambibuity"></a>2.1 Global Ambibuity</h2><h3 id="Structural-ambiguity"><a href="#Structural-ambiguity" class="headerlink" title="Structural ambiguity"></a>Structural ambiguity</h3><p><strong>POS ambiguity:</strong></p>
-<img src="https://waylonli.com/img/mdimg/image-20200225102130958.png" alt="image-20200225102130958" style="zoom:50%;" />
+              <h1 id="1-Semantic-Roles"><a href="#1-Semantic-Roles" class="headerlink" title="1. Semantic Roles"></a>1. Semantic Roles</h1><h2 id="1-1-Commonly-used-thematic-roles"><a href="#1-1-Commonly-used-thematic-roles" class="headerlink" title="1.1 Commonly used thematic roles"></a>1.1 Commonly used thematic roles</h2><img src="https://waylonli.com/img/mdimg/image-20200318211033606.png" alt="image-20200318211033606" style="zoom:50%;" />
 
-<p><strong>Attachment ambiguity:</strong> Some sentences have structural ambiguity even without part-of-speech ambiguity</p>
+<h2 id="1-2-Issues-with-thematic-roles"><a href="#1-2-Issues-with-thematic-roles" class="headerlink" title="1.2 Issues with thematic roles"></a>1.2 Issues with thematic roles</h2><ul>
+<li>No universally agreed-upon set of roles</li>
+<li>Items with the same role may not behave quite the same</li>
+</ul>
+<p>Problem avoid:</p>
 <ul>
-<li><p>Depends on where different phrases attach in the tree</p>
-</li>
-<li><p>Different attachments have different meanings</p>
-<p>I saw the man with the telescope</p>
-<p>She ate the pizza on the floor</p>
-<p>Good boys and girls get presents from Santa</p>
-</li>
+<li>Specific to individual verbs only (PropBank)</li>
+<li>Specific to small groups of verbs (FrameNet)</li>
 </ul>
-<img src="https://waylonli.com/img/mdimg/image-20200225102443837.png" alt="image-20200225102443837" style="zoom:45%;" />
-
-<img src="https://waylonli.com/img/mdimg/image-20200225102610299.png" alt="image-20200225102610299" style="zoom:45%;" />
-
-<p><strong>Why we want parse trees:</strong></p>
+<p>#2. Labelling</p>
+<h2 id="2-1-PropBank"><a href="#2-1-PropBank" class="headerlink" title="2.1 PropBank"></a>2.1 PropBank</h2><p><strong>Frame Roles:</strong></p>
 <ul>
-<li>compositional semantics: the meaning of a constituent is a function of the meaning of its children</li>
-<li>rule-to-rule semantics: that function is determined by the rule which licenses the constituent</li>
+<li>Arg0-PAG: loader</li>
+<li>Arg1-GOL: beast of burden</li>
+<li>Arg2-PPT: cargo</li>
+<li>Arg3-MNR: instrument</li>
 </ul>
-<p><strong>Huge problem:</strong></p>
+<h2 id="2-2-FrameNet"><a href="#2-2-FrameNet" class="headerlink" title="2.2 FrameNet"></a>2.2 FrameNet</h2><p>==Meanings are reletavised to scenes!==</p>
 <ul>
-<li>correctness problem: need to ﬁnd the right structure to get the right meaning</li>
-<li>efficiency problem: searching all possible structures can be very slow; want to use parsing for large-scale language tasks (for example, as used to create Google’s “infoboxes”)</li>
+<li>Tries to capture relationships among word and phrase meanings by assigning them the same frame</li>
+<li>$\approx 1000$ frames represent scenarios</li>
+<li>Frames are explained with textual descriptions and linguistic examples</li>
 </ul>
-<h2 id="2-2-Local-ambiguity"><a href="#2-2-Local-ambiguity" class="headerlink" title="2.2 Local ambiguity"></a>2.2 Local ambiguity</h2><p><strong>Local ambiguity is also a big problem: multiple analyses for parts of sentence.</strong> </p>
+<p><strong>Resources:</strong></p>
 <ul>
-<li>“The dog bit the child”: first three words could be NP (but aren’t)</li>
-<li>Building useless partial structures wastes time</li>
-<li>Avoiding useless computation is a major issue in parsing</li>
-</ul>
-<h1 id="3-Parsing"><a href="#3-Parsing" class="headerlink" title="3. Parsing"></a>3. Parsing</h1><h2 id="3-1-Normal-Parsing"><a href="#3-1-Normal-Parsing" class="headerlink" title="3.1 Normal Parsing"></a>3.1 Normal Parsing</h2><ul>
-<li>Top-down: depth-first, breadth-firsts, best-first</li>
-<li>Bottom-up</li>
-<li>Mixed strategy (e.g. Earley algorithm)</li>
-</ul>
-<h3 id="3-1-1-Recursive-Descent-Parsing"><a href="#3-1-1-Recursive-Descent-Parsing" class="headerlink" title="3.1.1 Recursive Descent Parsing"></a>3.1.1 Recursive Descent Parsing</h3><p><strong>Idea:</strong> top-down, depth-first parsing</p>
-<p>e.g. Slide 11 pp. 23-24</p>
-<h3 id="3-1-2-Shift-reduce-Parsing"><a href="#3-1-2-Shift-reduce-Parsing" class="headerlink" title="3.1.2 Shift-reduce Parsing"></a>3.1.2 Shift-reduce Parsing</h3><p><strong>Idea:</strong> bottom-up, depth-first parsing</p>
-<p>e.g. Slide 11 pp. 27</p>
-<h3 id="3-1-3-CKY-algorithm-Cocke-Kasami-Younger"><a href="#3-1-3-CKY-algorithm-Cocke-Kasami-Younger" class="headerlink" title="3.1.3 CKY algorithm (Cocke, Kasami, Younger)"></a>3.1.3 CKY algorithm (Cocke, Kasami, Younger)</h3><p><strong>Idea:</strong> bottom-up, breadth-first parsing</p>
-<p><strong>Assumption:</strong> grammar in Chomsky Normal Form</p>
-<p><strong>Pseudocode:</strong></p>
-<pre><code class="hljs python">for len = 1 to n:						# number of words in constituent
-	for i = 0 to (n-len):			# start position
-    j = i + len							# end position
-    for each A-&gt;B where c[i,j] has B:
-      # process unary rules
-      add A to c[i,j] with a pointer to B
-    for k = (i+1) to (j-1):
-      # process binary rules
-      for each (A-&gt;B C) where c[i,k] has B and c[k,j] has C:
-        add A to c[i,j] with pointers to B and C</code></pre>
-
-<p><strong>Time complexity:</strong> $O(Gn^3)$ </p>
-<p>e.g. Slide 11 pp.5-11</p>
-<img src="https://waylonli.com/img/mdimg/image-20200228193756640.png" alt="image-20200228193756640" style="zoom:50%;" />
-
-<p><strong>Problem:</strong></p>
-<ul>
-<li>Ambiguity is only clear if we go on to reconstruct the parses using our backpointers</li>
-</ul>
-<p><strong>Pros &amp; Cons:</strong></p>
-<p>Pros:</p>
-<ul>
-<li>much more efficient than depth-first</li>
-</ul>
-<p>Cons:</p>
-<ul>
-<li>still may compute a lot of unnecessary partial parses</li>
-<li>requires converting the grammar to CNF</li>
-</ul>
-<p><strong>Can be implemented to probabilistic CKY</strong></p>
-<h3 id="3-1-4-Choose-parsing-algorithm"><a href="#3-1-4-Choose-parsing-algorithm" class="headerlink" title="3.1.4 Choose parsing algorithm"></a>3.1.4 Choose parsing algorithm</h3><p>==Probabilities ???==</p>
-<h2 id="3-2-Statistical-Parsing"><a href="#3-2-Statistical-Parsing" class="headerlink" title="3.2 Statistical Parsing"></a>3.2 Statistical Parsing</h2><h3 id="3-2-1-Treebank-grammars"><a href="#3-2-1-Treebank-grammars" class="headerlink" title="3.2.1 Treebank grammars"></a>3.2.1 Treebank grammars</h3><p><strong>Idea:</strong> annotate real sentences with parse trees</p>
-<h4 id="3-2-1-1-The-Penn-Treebank-Treebank-PCFG"><a href="#3-2-1-1-The-Penn-Treebank-Treebank-PCFG" class="headerlink" title="3.2.1.1 The Penn Treebank (Treebank PCFG)"></a>3.2.1.1 The Penn Treebank (Treebank PCFG)</h4><p><strong>PCFG (probabilistic context-free grammar)</strong><br>$$<br>NT \rightarrow \beta \  \text{ with probability } P(\beta \mid NT)<br>$$</p>
-<h4 id="3-2-1-2-Create-PCFG"><a href="#3-2-1-2-Create-PCFG" class="headerlink" title="3.2.1.2 Create PCFG"></a>3.2.1.2 Create PCFG</h4><p><strong>Easiest way: MLE</strong></p>
-<ul>
-<li>Count all occurrences of $NT \rightarrow \beta$ in treebank</li>
-<li>Divide by the count of all rules whose left-hand-side is $NT$ to get $P(\beta \mid NT)$</li>
-</ul>
-<p>$$<br>P(NT \rightarrow C_1, C_2 \dots C_n \mid NT) = \frac{count(NT \rightarrow C_1,C_2 \dots C_n)}{count(NT)}<br>$$</p>
-<p>e.g. Slide 12 pp. 21-24</p>
-<h3 id="3-2-2-Probability-of-a-parse"><a href="#3-2-2-Probability-of-a-parse" class="headerlink" title="3.2.2 Probability of a parse"></a>3.2.2 Probability of a parse</h3><p>$$<br>P(t) = \prod_{NT \rightarrow \beta \in t} NT \rightarrow \beta<br>$$</p>
-<img src="https://waylonli.com/img/mdimg/image-20200504145544413.png" alt="image-20200504145544413" style="zoom:40%;" />
-
-<h3 id="3-2-3-Probabilistic-CKY"><a href="#3-2-3-Probabilistic-CKY" class="headerlink" title="3.2.3 Probabilistic CKY"></a>3.2.3 Probabilistic CKY</h3><ul>
-<li>When we find an $NT$ spanning $(i,j)$, store its probability along with its label in cell $(i,j)$ </li>
-<li>If we later find an $NT$ with the same span but higher probability, replace the probability and the backpointers for $NT$ in cell $(i,j)$ </li>
-</ul>
-<h3 id="3-2-4-Other-algorithms"><a href="#3-2-4-Other-algorithms" class="headerlink" title="3.2.4 Other algorithms"></a>3.2.4 Other algorithms</h3><ul>
-<li>Inside algorithm</li>
-<li>Inside-outside algorithm</li>
-</ul>
-<h3 id="3-2-5-Best-first-probabilistic-parsing"><a href="#3-2-5-Best-first-probabilistic-parsing" class="headerlink" title="3.2.5 Best-first probabilistic parsing"></a>3.2.5 Best-first probabilistic parsing</h3><p>Basic idea: use probabilities of subtrees to decide which ones to build up further</p>
-<img src="https://waylonli.com/img/mdimg/image-20200504164535795.png" alt="image-20200504164535795" style="zoom:50%;" />
-
-<p><strong>How to score constituents:</strong></p>
-<ul>
-<li><p>Why not probability: smaller constituents will almost always have higher scores</p>
-</li>
-<li><p>Possible solution:</p>
-<ul>
-<li>divide by the number of words (but not guaranteed to find the best parse first)</li>
-<li>A*</li>
-</ul>
-</li>
+<li>FrameNets for several languages</li>
+<li>Some data annotated with Frame elements from FrameNet</li>
+<li>SEMAFOR: a frame-semantic parser</li>
 </ul>
 
             </article>
@@ -373,7 +283,7 @@
                     
                       <a class="hover-with-bg" href="/tags/NLP/">NLP</a>
                     
-                      <a class="hover-with-bg" href="/tags/Parsing/">Parsing</a>
+                      <a class="hover-with-bg" href="/tags/Semantics/">Semantics</a>
                     
                   </div>
                 
@@ -384,9 +294,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/11/13-Heads,%20Dpendency%20parsing/">
+                      <a href="/2020/10/27/SVD/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">13-Heads, Dependency parsing</span>
+                        <span class="hidden-mobile">Singular Value Decomposition</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -394,8 +304,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/03/26/10-Annotation-and-Evaluation/">
-                        <span class="hidden-mobile">10-Annotation & Evaluation</span>
+                      <a href="/2020/10/13/15-Distributional%20Semantics/">
+                        <span class="hidden-mobile">13-Heads, Dependency parsing</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

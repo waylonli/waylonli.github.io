@@ -33,6 +33,122 @@
   
   
   <entry>
+    <title>13-Heads, Dependency parsing</title>
+    <link href="/2020/10/14/16-Semantic%20Role%20Labelling%20and%20Argument%20Structure/"/>
+    <url>/2020/10/14/16-Semantic%20Role%20Labelling%20and%20Argument%20Structure/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-Semantic-Roles"><a href="#1-Semantic-Roles" class="headerlink" title="1. Semantic Roles"></a>1. Semantic Roles</h1><h2 id="1-1-Commonly-used-thematic-roles"><a href="#1-1-Commonly-used-thematic-roles" class="headerlink" title="1.1 Commonly used thematic roles"></a>1.1 Commonly used thematic roles</h2><img src="https://waylonli.com/img/mdimg/image-20200318211033606.png" alt="image-20200318211033606" style="zoom:50%;" /><h2 id="1-2-Issues-with-thematic-roles"><a href="#1-2-Issues-with-thematic-roles" class="headerlink" title="1.2 Issues with thematic roles"></a>1.2 Issues with thematic roles</h2><ul><li>No universally agreed-upon set of roles</li><li>Items with the same role may not behave quite the same</li></ul><p>Problem avoid:</p><ul><li>Specific to individual verbs only (PropBank)</li><li>Specific to small groups of verbs (FrameNet)</li></ul><p>#2. Labelling</p><h2 id="2-1-PropBank"><a href="#2-1-PropBank" class="headerlink" title="2.1 PropBank"></a>2.1 PropBank</h2><p><strong>Frame Roles:</strong></p><ul><li>Arg0-PAG: loader</li><li>Arg1-GOL: beast of burden</li><li>Arg2-PPT: cargo</li><li>Arg3-MNR: instrument</li></ul><h2 id="2-2-FrameNet"><a href="#2-2-FrameNet" class="headerlink" title="2.2 FrameNet"></a>2.2 FrameNet</h2><p>==Meanings are reletavised to scenes!==</p><ul><li>Tries to capture relationships among word and phrase meanings by assigning them the same frame</li><li>$\approx 1000$ frames represent scenarios</li><li>Frames are explained with textual descriptions and linguistic examples</li></ul><p><strong>Resources:</strong></p><ul><li>FrameNets for several languages</li><li>Some data annotated with Frame elements from FrameNet</li><li>SEMAFOR: a frame-semantic parser</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Natural-Language-Processing</category>
+      
+      <category>Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>NLP</tag>
+      
+      <tag>Semantics</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>13-Heads, Dependency parsing</title>
+    <link href="/2020/10/13/15-Distributional%20Semantics/"/>
+    <url>/2020/10/13/15-Distributional%20Semantics/</url>
+    
+    <content type="html"><![CDATA[<p><strong>Distributional hypothesis:</strong></p><ul><li>Can infer meaning just by looking at the contexts a word occurs in</li><li>Meaning IS the contexts a word occurs in</li><li>either way , similar contexts imply similar meanings</li></ul><h1 id="1-Distributional-semantics"><a href="#1-Distributional-semantics" class="headerlink" title="1. Distributional semantics"></a>1. Distributional semantics</h1><h2 id="1-1-Basic-idea"><a href="#1-1-Basic-idea" class="headerlink" title="1.1 Basic idea"></a>1.1 Basic idea</h2><p>Represent each word $w_i$ as a vector of its contexts</p><p>Distributional semantic models also called vector-space models</p><h2 id="1-2-Context"><a href="#1-2-Context" class="headerlink" title="1.2 Context"></a>1.2 Context</h2><h3 id="1-2-1-Defining-the-context"><a href="#1-2-1-Defining-the-context" class="headerlink" title="1.2.1 Defining the context"></a>1.2.1 Defining the context</h3><ul><li>usually ignore stopwords</li><li>usually use a large window around the target word</li></ul><h3 id="1-2-2-Weights"><a href="#1-2-2-Weights" class="headerlink" title="1.2.2 Weights"></a>1.2.2 Weights</h3><p><strong>Mutual information:</strong><br>$$<br>\text{PMI}(x,y) = \log_2 \frac{P(x,y)}{P(x)P(y)}<br>$$</p><ul><li>PMI tells us how much more / less likely the cooccurrence is than if the words were independent</li><li><strong>Problem:</strong><ul><li>in practice, PMI is computed with counts, so it is over-sensitive to the chance co-occurrence of infrequent words</li></ul></li><li><strong>Improvement:</strong> use positive PMI (PPMI)<ul><li>change all negative PMI values to 0 (because for infrequent words, not enough data to accurately determine negative PMI values)</li><li>smoothing in PMI computation (see J &amp; M)</li></ul></li></ul><h2 id="1-3-Compositionality-in-vector-space"><a href="#1-3-Compositionality-in-vector-space" class="headerlink" title="1.3 Compositionality in vector space"></a>1.3 Compositionality in vector space</h2><p>Compositionality implies some operator $\oplus$ such that<br>$$<br>\text{meaning}(w_1w_2) = \text{meaning}(w_1) \oplus \text{meaning}(w_2)<br>$$</p><h1 id="2-Measure-similarity"><a href="#2-Measure-similarity" class="headerlink" title="2. Measure similarity"></a>2. Measure similarity</h1><ul><li>Euclidean distance</li><li>Dot product</li><li>Normalised dot product (the cosine of the angle between vectors)</li><li>Other<ul><li>Jaccard measure</li><li>Dice measure</li><li>Jenson-Shannon divergence</li><li>…</li></ul></li></ul><h1 id="3-Evaluation"><a href="#3-Evaluation" class="headerlink" title="3. Evaluation"></a>3. Evaluation</h1><ul><li>Extrinsic: IR, QA, automatic essay marking, …</li><li>Intrinsic<ul><li>relatedness judgement</li><li>word association</li></ul></li></ul><h2 id="3-1-Relatedness-judgement"><a href="#3-1-Relatedness-judgement" class="headerlink" title="3.1 Relatedness judgement"></a>3.1 Relatedness judgement</h2><p>E.g. on a scale of 1-10, how related are the two words lated?</p><p>lemon-truth = 1</p><p>lemon-orange = 10</p><ul><li>Answers depend a lot on how the question is asked</li></ul><h2 id="3-2-Word-association"><a href="#3-2-Word-association" class="headerlink" title="3.2 Word association"></a>3.2 Word association</h2><p>Say the first word that comes to ming</p><p>Collect the data and provide probabilities:</p><img src="https://waylonli.com/img/mdimg/image-20200310103655820.png" alt="image-20200310103655820" style="zoom:40%;" /><h2 id="3-3-Dimension-reduction-learn-a-more-compact-space"><a href="#3-3-Dimension-reduction-learn-a-more-compact-space" class="headerlink" title="3.3 Dimension reduction: learn a more compact space"></a>3.3 Dimension reduction: learn a more compact space</h2><ul><li>LSA (Latent Semantic Analysis)</li><li>Neural network methods</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Natural-Language-Processing</category>
+      
+      <category>Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>NLP</tag>
+      
+      <tag>Semantics</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>13-Heads, Dependency parsing</title>
+    <link href="/2020/10/12/14-Lexical%20Semantics/"/>
+    <url>/2020/10/12/14-Lexical%20Semantics/</url>
+    
+    <content type="html"><![CDATA[<p><strong>Goal:</strong> </p><ul><li>a machine which can answer questions in natural language</li><li>can access to KB</li><li>can access to vast quantities of English text</li></ul><h1 id="1-Semantics"><a href="#1-Semantics" class="headerlink" title="1. Semantics"></a>1. Semantics</h1><h2 id="1-1-Lexical-and-Sentential"><a href="#1-1-Lexical-and-Sentential" class="headerlink" title="1.1 Lexical and Sentential"></a>1.1 Lexical and Sentential</h2><p><strong>Lexical semantics:</strong> the meaning of individual words</p><p><strong>Sentential semantics:</strong> how word meanings combine (e.g. who did that to whom; when, how, why…)</p><h2 id="1-2-Problems"><a href="#1-2-Problems" class="headerlink" title="1.2 Problems"></a>1.2 Problems</h2><ul><li><strong>Senses:</strong> words may have different meanings (need to disambiguate between them)</li><li><strong>Synonyms:</strong> words may have the same meaning</li><li><strong>Ontology (hyponym &amp; hypernym):</strong> words can refer to a subset or superset of the concept referred to by another word (A is a B relationships)</li><li><strong>Similarity &amp; gradation:</strong> words may be related in other ways</li><li><strong>Inference</strong></li></ul><p>PS: some of these problems can be solved with a good ontology (e.g. WordNet)</p><h1 id="2-WordNet"><a href="#2-WordNet" class="headerlink" title="2. WordNet"></a>2. WordNet</h1><p>WordNet is a <strong>hand-built</strong> resource containing 117,000 synsets</p><p><strong>Relations:</strong> </p><ul><li>hyponym / hypernym (IS-A: chair-furniture)</li><li>meronym (PART-WHOLE: leg-chair)</li><li>antonym (OPPOSITES: good -bad)</li></ul><h1 id="3-Word-sense-ambiguity"><a href="#3-Word-sense-ambiguity" class="headerlink" title="3. Word sense ambiguity"></a>3. Word sense ambiguity</h1><p>Words can have multiple senses</p><p>A way to define senses: different sense = different translation</p><h2 id="3-1-Semantics-ambiguity-types"><a href="#3-1-Semantics-ambiguity-types" class="headerlink" title="3.1 Semantics ambiguity types"></a>3.1 Semantics ambiguity types</h2><ul><li><strong>Polysemy</strong>: a word has related meanings</li><li><strong>Homonymy:</strong> a word has unrelated meanings</li><li><strong>Synonymy:</strong> different words can mean the same thing</li></ul><h2 id="3-2-Word-sense-disambiguation-WSD"><a href="#3-2-Word-sense-disambiguation-WSD" class="headerlink" title="3.2 Word sense disambiguation (WSD)"></a>3.2 Word sense disambiguation (WSD)</h2><p><strong>Task:</strong> Given a sense ambiguous word, ﬁnd the sense in a given context</p><p><strong>Classifier:</strong></p><ul><li>Naive Bayes</li><li>Decision lists</li><li>Decision trees</li></ul><h3 id="3-1-1-Naive-Bayes-for-WSD"><a href="#3-1-1-Naive-Bayes-for-WSD" class="headerlink" title="3.1.1 Naive Bayes for WSD"></a>3.1.1 Naive Bayes for WSD</h3><img src="https://waylonli.com/img/mdimg/image-20200509183539534.png" alt="image-20200509183539534" style="zoom:42%;" /><h3 id="3-1-2-Features"><a href="#3-1-2-Features" class="headerlink" title="3.1.2 Features"></a>3.1.2 Features</h3><ul><li>Directly neighbouring words</li><li>Any content words in a 50 word window</li><li>Syntactically related words</li><li>Syntactic role in sense</li><li>Topic of the text</li><li>POS tag, surrounding POS tags</li></ul><h2 id="3-3-Evaluation"><a href="#3-3-Evaluation" class="headerlink" title="3.3 Evaluation"></a>3.3 Evaluation</h2><p><strong>Extrinsic:</strong> test as part of IR, QA, or MT system</p><p><strong>Intrinsic:</strong> evaluate classification accuracy or precision / recall against gold-standard senses</p><p><strong>Baseline:</strong> choose the most frequent sense</p><h2 id="3-4-Issues-with-WSD"><a href="#3-4-Issues-with-WSD" class="headerlink" title="3.4 Issues with WSD"></a>3.4 Issues with WSD</h2><ul><li>Not always clear how fine-grained the gold-standard should be</li><li>Difficult / expensive to annotate corpora with fine-grained senses</li><li>Classifier must be trained separately for each word<ul><li>hard to learn anything for <strong>infrequent or unseen words</strong> </li><li>requires new annotations for each new word</li><li>motivates unsupervised and semi-supervised methods</li></ul></li></ul><h1 id="4-Semantic-classes"><a href="#4-Semantic-classes" class="headerlink" title="4. Semantic classes"></a>4. Semantic classes</h1><p><strong>Methods:</strong> define coarse-grained semantic categories like <code>PERSON, LOCATION, ARTIFACT</code></p><ul><li><strong>Named entity recognition (NER):</strong> recognise and classify perper names in text is important for many applications</li><li>Supersense tagging</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Natural-Language-Processing</category>
+      
+      <category>Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>NLP</tag>
+      
+      <tag>Semantics</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>13-Heads, Dependency parsing</title>
+    <link href="/2020/10/11/13-Heads,%20Dpendency%20parsing/"/>
+    <url>/2020/10/11/13-Heads,%20Dpendency%20parsing/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-Parser-evaluation"><a href="#1-Parser-evaluation" class="headerlink" title="1. Parser evaluation"></a>1. Parser evaluation</h1><p><strong>Correct:</strong> if there is a gold constituent that spans the same sentence positions</p><p><strong>Hasher measure:</strong> also require the constituent labels to match</p><ul><li><p>precision</p></li><li><p>recall</p></li><li><p><strong>F-score (balances precision and recall):</strong><br>$$<br>\frac{2pr}{p+r}<br>$$</p></li></ul><h1 id="2-Lexicalisation"><a href="#2-Lexicalisation" class="headerlink" title="2. Lexicalisation"></a>2. Lexicalisation</h1><h2 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1 Introduction"></a>2.1 Introduction</h2><p><strong>Problem:</strong> replacing one word with another with the same POS will never result in a different parsing decision, even though it should</p><p><strong>Solution:</strong> adding the lexical head of the phrase</p><h2 id="2-2-Pros-amp-Cons"><a href="#2-2-Pros-amp-Cons" class="headerlink" title="2.2 Pros &amp; Cons"></a>2.2 Pros &amp; Cons</h2><p><strong>Pros:</strong></p><ul><li>makes the grammar more specific</li></ul><p><strong>Cons:</strong></p><ul><li>leads to huge grammar blowup and very sparse data</li></ul><h2 id="2-3-Improvement"><a href="#2-3-Improvement" class="headerlink" title="2.3 Improvement"></a>2.3 Improvement</h2><ul><li>complex smoothing schemes (similar to N-gram interpolation / backoff)</li><li>increasing emphasis on automatically learned subcategories</li></ul><h2 id="2-4-Lexicalised-constituency-parse"><a href="#2-4-Lexicalised-constituency-parse" class="headerlink" title="2.4 Lexicalised constituency parse"></a>2.4 Lexicalised constituency parse</h2><p><strong>Direct dependency parsing:</strong></p><ul><li><p><strong>Transition-based (shift-reduce)</strong></p><p>Train a classiﬁer as the oracle to predict next action (Shift, LeftArc, or RightArc), and proceed left-to-right through the sentence</p><p>$O(n)$ time</p></li><li><p><strong>Graph-based</strong></p><p>From the fully connected directed graph of all possible edges, choose the best ones that form a tree</p><p>Edge-factored models: classiﬁer assigns a nonne g ative score to each possible edge ; maximum spanning tree algorithm ﬁnds the spanning tree with highest total score</p><p>$O(n^2)$ time</p></li></ul><h3 id="Head-Rules"><a href="#Head-Rules" class="headerlink" title="Head Rules"></a>Head Rules</h3><img src="https://waylonli.com/img/mdimg/image-20200303103851003.png" alt="image-20200303103851003" style="zoom:40%;" /><h1 id="3-Phrase-Structure-amp-Dependencies"><a href="#3-Phrase-Structure-amp-Dependencies" class="headerlink" title="3. Phrase Structure &amp; Dependencies"></a>3. Phrase Structure &amp; Dependencies</h1><p>In language with free word order, phrase structure grammars don’t make as much sense</p><img src="https://waylonli.com/img/mdimg/image-20200509163948725.png" alt="image-20200509163948725" style="zoom:40%;" /><h2 id="3-1-Pros-and-Cons"><a href="#3-1-Pros-and-Cons" class="headerlink" title="3.1 Pros and Cons"></a>3.1 Pros and Cons</h2><p><strong>Pros:</strong></p><ul><li>Sensible framework for free word order languages</li><li>Identifies syntactic relations directly</li><li>Dependency pairs / chains can make good features in classifiers, for information extraction</li><li>Parsers can be very fast</li></ul><p><strong>Cons:</strong></p><ul><li>The assumption of asymmetric binary relations is not always right (e.g. parse dogs and cats)</li></ul><h2 id="3-2-Edge-labels"><a href="#3-2-Edge-labels" class="headerlink" title="3.2 Edge labels"></a>3.2 Edge labels</h2><p><strong>Labels:</strong> subject, direct object, determiner, adjective modifier, adverbial modifier</p><img src="https://waylonli.com/img/mdimg/image-20200509164310427.png" alt="image-20200509164310427" style="zoom:40%;" /><h2 id="3-3-Dependency-Paths"><a href="#3-3-Dependency-Paths" class="headerlink" title="3.3 Dependency Paths"></a>3.3 Dependency Paths</h2><p>For information extraction tasks involving real-world relationships between entities, chains of dependencies can provide good features</p><img src="https://waylonli.com/img/mdimg/image-20200509164410511.png" alt="image-20200509164410511" style="zoom:46%;" /><p><strong>Projectivity:</strong></p><p>A sentence’s dependency parse is <strong>projective</strong> if every subtree occupies a contiguous span of the sentence</p><ul><li>= The dependency parse can be drawn on top of the sentence without any crossing edges</li></ul><p><strong>Nonprojectivity:</strong></p><ul><li>Nonprojectivity is rare in English, but quite common in many langauges</li></ul><img src="https://waylonli.com/img/mdimg/image-20200509164643457.png" alt="image-20200509164643457" style="zoom:40%;" /><h1 id="4-Dependency-Parsing"><a href="#4-Dependency-Parsing" class="headerlink" title="4. Dependency Parsing"></a>4. Dependency Parsing</h1><h2 id="4-1-CKY"><a href="#4-1-CKY" class="headerlink" title="4.1 CKY"></a>4.1 CKY</h2><p>CKY can be adapated, but efficiency is not good: obvious approach is $O(Gn^5)$; Eisner algorithm can bring it down to $O(Gn^3)$ </p><h2 id="4-2-Transition-based-Shift-reduce"><a href="#4-2-Transition-based-Shift-reduce" class="headerlink" title="4.2 Transition-based: Shift reduce"></a>4.2 Transition-based: Shift reduce</h2><p><strong>3 possible actions:</strong></p><ul><li><strong>LeftArc:</strong> assign head-dependent relation between $s_1$ and $s_2$; pop $s_2$</li><li><strong>RightArc:</strong> assign head-dependent relation between $s_2$ and $s_1$; pop $s_1$</li><li><strong>Shift:</strong> put $w_1$ on top of the stack</li></ul><h2 id="4-3-Graph-based"><a href="#4-3-Graph-based" class="headerlink" title="4.3 Graph-based"></a>4.3 Graph-based</h2><img src="https://waylonli.com/img/mdimg/image-20200509165131026.png" alt="image-20200509165131026" style="zoom:50%;" /><h2 id="4-4-Comparison"><a href="#4-4-Comparison" class="headerlink" title="4.4 Comparison"></a>4.4 Comparison</h2><img src="https://waylonli.com/img/mdimg/image-20200304233448525.png" alt="image-20200304233448525" style="zoom:46%;" /><h1 id="5-Choosing-a-Parser"><a href="#5-Choosing-a-Parser" class="headerlink" title="5. Choosing a Parser"></a>5. Choosing a Parser</h1><ul><li>Target representation: constituency or dependency?</li><li>Efficiency</li><li>Incrementality: parse the whole sentence at once, or obtain partial left-to-right analyses / expectations</li><li>Retrainable system or not</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Natural-Language-Processing</category>
+      
+      <category>Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>NLP</tag>
+      
+      <tag>Parsing</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>11,12-Syntax and Parsing</title>
     <link href="/2020/05/11/11,12-Syntax%20and%20Parsing/"/>
     <url>/2020/05/11/11,12-Syntax%20and%20Parsing/</url>
