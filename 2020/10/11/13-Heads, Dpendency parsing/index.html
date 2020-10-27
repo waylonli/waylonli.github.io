@@ -226,7 +226,7 @@
             
               <p class="note note-info">
                 
-                  Last update：5 minutes ago
+                  Last update：12 minutes ago
                 
               </p>
             
@@ -238,8 +238,9 @@
 </li>
 <li><p>recall</p>
 </li>
-<li><p><strong>F-score (balances precision and recall):</strong><br>$$<br>\frac{2pr}{p+r}<br>$$</p>
-</li>
+<li><p><strong>F-score (balances precision and recall):</strong></p>
+<script type="math/tex; mode=display">
+\frac{2pr}{p+r}</script></li>
 </ul>
 <h1 id="2-Lexicalisation"><a href="#2-Lexicalisation" class="headerlink" title="2. Lexicalisation"></a>2. Lexicalisation</h1><h2 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1 Introduction"></a>2.1 Introduction</h2><p><strong>Problem:</strong> replacing one word with another with the same POS will never result in a different parsing decision, even though it should</p>
 <p><strong>Solution:</strong> adding the lexical head of the phrase</p>
@@ -267,11 +268,9 @@
 <p>$O(n^2)$ time</p>
 </li>
 </ul>
-<h3 id="Head-Rules"><a href="#Head-Rules" class="headerlink" title="Head Rules"></a>Head Rules</h3><img src="https://waylonli.com/img/mdimg/image-20200303103851003.png" alt="image-20200303103851003" style="zoom:40%;" />
-
+<h3 id="Head-Rules"><a href="#Head-Rules" class="headerlink" title="Head Rules"></a>Head Rules</h3><p><img src="https://waylonli.com/img/mdimg/image-20200303103851003.png" alt="image-20200303103851003" style="zoom:40%;" /></p>
 <h1 id="3-Phrase-Structure-amp-Dependencies"><a href="#3-Phrase-Structure-amp-Dependencies" class="headerlink" title="3. Phrase Structure &amp; Dependencies"></a>3. Phrase Structure &amp; Dependencies</h1><p>In language with free word order, phrase structure grammars don’t make as much sense</p>
-<img src="https://waylonli.com/img/mdimg/image-20200509163948725.png" alt="image-20200509163948725" style="zoom:40%;" />
-
+<p><img src="https://waylonli.com/img/mdimg/image-20200509163948725.png" alt="image-20200509163948725" style="zoom:40%;" /></p>
 <h2 id="3-1-Pros-and-Cons"><a href="#3-1-Pros-and-Cons" class="headerlink" title="3.1 Pros and Cons"></a>3.1 Pros and Cons</h2><p><strong>Pros:</strong></p>
 <ul>
 <li>Sensible framework for free word order languages</li>
@@ -284,11 +283,9 @@
 <li>The assumption of asymmetric binary relations is not always right (e.g. parse dogs and cats)</li>
 </ul>
 <h2 id="3-2-Edge-labels"><a href="#3-2-Edge-labels" class="headerlink" title="3.2 Edge labels"></a>3.2 Edge labels</h2><p><strong>Labels:</strong> subject, direct object, determiner, adjective modifier, adverbial modifier</p>
-<img src="https://waylonli.com/img/mdimg/image-20200509164310427.png" alt="image-20200509164310427" style="zoom:40%;" />
-
+<p><img src="https://waylonli.com/img/mdimg/image-20200509164310427.png" alt="image-20200509164310427" style="zoom:40%;" /></p>
 <h2 id="3-3-Dependency-Paths"><a href="#3-3-Dependency-Paths" class="headerlink" title="3.3 Dependency Paths"></a>3.3 Dependency Paths</h2><p>For information extraction tasks involving real-world relationships between entities, chains of dependencies can provide good features</p>
-<img src="https://waylonli.com/img/mdimg/image-20200509164410511.png" alt="image-20200509164410511" style="zoom:46%;" />
-
+<p><img src="https://waylonli.com/img/mdimg/image-20200509164410511.png" alt="image-20200509164410511" style="zoom:46%;" /></p>
 <p><strong>Projectivity:</strong></p>
 <p>A sentence’s dependency parse is <strong>projective</strong> if every subtree occupies a contiguous span of the sentence</p>
 <ul>
@@ -298,8 +295,7 @@
 <ul>
 <li>Nonprojectivity is rare in English, but quite common in many langauges</li>
 </ul>
-<img src="https://waylonli.com/img/mdimg/image-20200509164643457.png" alt="image-20200509164643457" style="zoom:40%;" />
-
+<p><img src="https://waylonli.com/img/mdimg/image-20200509164643457.png" alt="image-20200509164643457" style="zoom:40%;" /></p>
 <h1 id="4-Dependency-Parsing"><a href="#4-Dependency-Parsing" class="headerlink" title="4. Dependency Parsing"></a>4. Dependency Parsing</h1><h2 id="4-1-CKY"><a href="#4-1-CKY" class="headerlink" title="4.1 CKY"></a>4.1 CKY</h2><p>CKY can be adapated, but efficiency is not good: obvious approach is $O(Gn^5)$; Eisner algorithm can bring it down to $O(Gn^3)$ </p>
 <h2 id="4-2-Transition-based-Shift-reduce"><a href="#4-2-Transition-based-Shift-reduce" class="headerlink" title="4.2 Transition-based: Shift reduce"></a>4.2 Transition-based: Shift reduce</h2><p><strong>3 possible actions:</strong></p>
 <ul>
@@ -307,10 +303,8 @@
 <li><strong>RightArc:</strong> assign head-dependent relation between $s_2$ and $s_1$; pop $s_1$</li>
 <li><strong>Shift:</strong> put $w_1$ on top of the stack</li>
 </ul>
-<h2 id="4-3-Graph-based"><a href="#4-3-Graph-based" class="headerlink" title="4.3 Graph-based"></a>4.3 Graph-based</h2><img src="https://waylonli.com/img/mdimg/image-20200509165131026.png" alt="image-20200509165131026" style="zoom:50%;" />
-
-<h2 id="4-4-Comparison"><a href="#4-4-Comparison" class="headerlink" title="4.4 Comparison"></a>4.4 Comparison</h2><img src="https://waylonli.com/img/mdimg/image-20200304233448525.png" alt="image-20200304233448525" style="zoom:46%;" />
-
+<h2 id="4-3-Graph-based"><a href="#4-3-Graph-based" class="headerlink" title="4.3 Graph-based"></a>4.3 Graph-based</h2><p><img src="https://waylonli.com/img/mdimg/image-20200509165131026.png" alt="image-20200509165131026" style="zoom:50%;" /></p>
+<h2 id="4-4-Comparison"><a href="#4-4-Comparison" class="headerlink" title="4.4 Comparison"></a>4.4 Comparison</h2><p><img src="https://waylonli.com/img/mdimg/image-20200304233448525.png" alt="image-20200304233448525" style="zoom:46%;" /></p>
 <h1 id="5-Choosing-a-Parser"><a href="#5-Choosing-a-Parser" class="headerlink" title="5. Choosing a Parser"></a>5. Choosing a Parser</h1><ul>
 <li>Target representation: constituency or dependency?</li>
 <li>Efficiency</li>
@@ -351,7 +345,7 @@
                     
                       <a href="/2020/10/12/14-Lexical%20Semantics/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">13-Heads, Dependency parsing</span>
+                        <span class="hidden-mobile">13-Lexical Semantics</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
