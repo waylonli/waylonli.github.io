@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://waylonli.github.io/"/>
-  <updated>2020-06-13T17:07:04.852Z</updated>
+  <updated>2020-10-27T00:05:57.283Z</updated>
   <id>http://waylonli.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Singular Value Decomposition</title>
+    <link href="http://waylonli.github.io/2020/10/27/SVD/"/>
+    <id>http://waylonli.github.io/2020/10/27/SVD/</id>
+    <published>2020-10-27T23:39:42.000Z</published>
+    <updated>2020-10-27T00:05:57.283Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-What-is-SVD-Singular-Value-Decomposition"><a href="#1-What-is-SVD-Singular-Value-Decomposition" class="headerlink" title="1. What is SVD (Singular Value Decomposition)?"></a>1. What is SVD (Singular Value Decomposition)?</h1><h2 id="1-1-Definition"><a href="#1-1-Definition" class="headerlink" title="1.1 Definition"></a>1.1 Definition</h2><p>Define $\bold{X} = (\vec{x_1})$  as a $n\times m$ matrix ($n \ge m$). A fraction of $\bold{X}$ is:<br>$$<br>\bold{X} = \bold{U}\bold{\Sigma}\bold{V}^\top<br>$$<br>where:</p><ul><li><p>$\bold{U}$: $n \times n$ unitary matrix ($\bold{U}^* = \bold{U}^{-1}$)</p></li><li><p>$\bold{\Sigma}$: $n \times m$ rectangular diagonal matrix with non-negative real numbers on the diagonal</p><p>$\bold{\Sigma} = \begin{bmatrix} \sigma_1 \\ &amp; \sigma_2 \\ &amp; &amp; \ddots \\ &amp; &amp; &amp; \sigma_m \\ 0 &amp; 0 &amp; \dots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \dots &amp; 0 \end{bmatrix}$, $\sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_m \ge 0$ </p></li></ul><ul><li>$\bold{V}$: $m\times m$ unitary matrix</li></ul><h2 id="1-2-Singular-value-and-singular-vector"><a href="#1-2-Singular-value-and-singular-vector" class="headerlink" title="1.2 Singular value and singular vector"></a>1.2 Singular value and singular vector</h2><p><strong>Singular value:</strong> the value on the diagonal in matrix $\bold{\Sigma}$ </p><p><strong>Singular vector:</strong></p><ul><li>Left singular vector: $\bold{U} = (\vec{u_1}, \vec{u_2}, \dots , \vec{u_n})$  are the left singular vectors of matrix $\bold{M}$ </li><li>Right singular vector: $\bold{V} = (\vec{v_1}, \vec{v_2}, \dots , \vec{v_m})$ are the right singular vectors of matrix $\bold{M}$ </li></ul><h1 id="2-Matrix-Approximation"><a href="#2-Matrix-Approximation" class="headerlink" title="2. Matrix Approximation"></a>2. Matrix Approximation</h1><p>Notice that  there are only $m$ singular values, we have the Eckand-Young theorem (1936):<br>$$<br>\bold{X} = \sigma_1 u_1 v_1^\top + \sigma_2 u_2 v_2^\top + \dots + \sigma_m u_m v_m^\top + \bold{0} \approx \bold{\tilde{U}}\bold{\tilde{\Sigma}}\bold{\tilde{V}}^\top<br>$$</p><h1 id="3-Dominant-Correlations"><a href="#3-Dominant-Correlations" class="headerlink" title="3. Dominant Correlations"></a>3. Dominant Correlations</h1><p>$$<br>\bold{X}^\top \bold{X} = \begin{bmatrix} x_1^\top x_1 &amp; x_1^\top x_2 &amp; \dots &amp; x_1^\top x_m \\ x_2^\top x_1 &amp; x_2^\top x_2 &amp; \dots &amp; x_2^\top x_m \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ x_m^\top x_1 &amp; x_m^\top x_2 &amp; \dots &amp; x_m^\top x_m    \end{bmatrix} \\ \  \\ \ \\ \bold{X} = \bold{\hat{U}}\bold{\hat{\Sigma}}\bold{V}^\top \text{(economy SVD)} \\ \ \\ \bold{X}^\top = \bold{V} \bold{\hat{\Sigma}}\bold{\hat{U}}^\top<br>\\ \ \\<br>\bold{X}^\top \bold{X} = \bold{V}\bold{\hat{\Sigma}}\underbrace{\bold{\hat{U}}^\top \bold{\hat{U}}}<em>{\bold{\mathbb{I}}}\bold{\hat{\Sigma}}\bold{V}^\top = \bold{V} \hat{\bold{\Sigma}}^2 \bold{V}^\top \Rightarrow \bold{X}^\top \bold{X}\underbrace{\bold{V}}</em>{\text{eigenvectors}} = \bold{V} \underbrace{\hat{\bold{\Sigma}}^2}_{\text{eigenvalues}} \\ \ \\</p><p>\bold{X} \bold{X}^\top = \bold{\hat{U}}\bold{\hat{\Sigma}}\underbrace{\bold{V}^\top \bold{V}}<em>{\bold{\mathbb{I}}}\bold{\hat{\Sigma}}\bold{\hat{U}}^\top = \bold{\hat{U}} \hat{\bold{\Sigma}}^2 \bold{\hat{U}}^\top \Rightarrow \bold{X} \bold{X}^\top\underbrace{\bold{\hat{U}}}</em>{\text{eigenvectors}} = \bold{\hat{U}} \underbrace{\hat{\bold{\Sigma}}^2}_{\text{eigenvalues}}<br>$$</p><h1 id="4-SVD-and-Truncation"><a href="#4-SVD-and-Truncation" class="headerlink" title="4. SVD and Truncation"></a>4. SVD and Truncation</h1><p>In $\bold{X} = \bold{U}\bold{\Sigma}\bold{V}^\top$, we can choose $r$ columns of $\bold{U}$ and $\bold{V}$. “How to choose $r$” is a fundamental problem in SVD.<br>$$<br>\bold{X} = \bold{\tilde{U}}_r\bold{\tilde{\Sigma}}_r\bold{\tilde{V}}_r^\top<br>$$<br>Generally we need to set a threshold for $\log \sigma$ and choose those $\sigma$s beyond the threshold on the diagonal of $\bold{\Sigma}$.</p><p><strong>Recommending extra reading:</strong> <a href="https://arxiv.org/pdf/1305.5870.pdf" target="_blank" rel="noopener">Gavish-Donoho (2014)</a></p><p>Applying a Gaussian noise to $\bold{X}$:<br>$$<br>\bold{X} = \bold{X}<em>{\text{true}} + \delta \bold{X}</em>{\text{noise}}<br>$$<br>PS: I did not mange to fully understand the idea here, more details about the truncation can be found in the video and the paper using the URL in this section</p><h1 id="5-Example-Image-Compression"><a href="#5-Example-Image-Compression" class="headerlink" title="5. Example: Image Compression"></a>5. Example: Image Compression</h1><p>To better understand what SVD does in a practical task, we consider a image processing task. It is easy to represent an image using a matrix. After calculate the SVD of this matrix, by choosing different $r$, we can keep different features of the image. When we choose to keep all the singular values, we can get the original image.</p><img src="https://waylonli.com/img/mdimg/image-20201026234621629.png" alt="image-20201026234621629" style="zoom:100%;" /><p><strong>Videos</strong>:</p><ul><li><a href="https://www.youtube.com/watch?v=gXbThCXjZFM" target="_blank" rel="noopener">Overview</a></li><li><a href="https://www.youtube.com/watch?v=nbBvuuNVfco" target="_blank" rel="noopener">Mathematical Overview</a></li><li><a href="https://www.youtube.com/watch?v=xy3QyyhiuY4" target="_blank" rel="noopener">Matrix Approximation</a></li><li><a href="https://www.youtube.com/watch?v=WmDnaoY2Ivs" target="_blank" rel="noopener">Dominant Correlations</a></li><li><a href="https://www.youtube.com/watch?v=QQ8vxj-9OfQ&list=PLMrJAkhIeNNSVjnsviglFoY2nXildDCcv&index=5" target="_blank" rel="noopener">Image Compression</a></li><li><a href="https://www.youtube.com/watch?v=9vJDjkx825k&list=PLMrJAkhIeNNSVjnsviglFoY2nXildDCcv&index=34" target="_blank" rel="noopener">Optimal Truncation</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;1-What-is-SVD-Singular-Value-Decomposition&quot;&gt;&lt;a href=&quot;#1-What-is-SVD-Singular-Value-Decomposition&quot; class=&quot;headerlink&quot; title=&quot;1. What 
+      
+    
+    </summary>
+    
+    
+      <category term="Machine Learning" scheme="http://waylonli.github.io/categories/Machine-Learning/"/>
+    
+      <category term="Notes" scheme="http://waylonli.github.io/categories/Machine-Learning/Notes/"/>
+    
+    
+      <category term="SVD" scheme="http://waylonli.github.io/tags/SVD/"/>
+    
+      <category term="Dimension Reduction" scheme="http://waylonli.github.io/tags/Dimension-Reduction/"/>
+    
+  </entry>
   
   <entry>
     <title>11,12-Syntax and Parsing</title>
