@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      219 words
+      208 words
     </span>
   
 
@@ -226,13 +226,14 @@
             
               <p class="note note-info">
                 
-                  Last update：a few seconds ago
+                  Last update：a minute ago
                 
               </p>
             
             <article class="markdown-body">
               <p>An interesting discover of using <code>i++</code> and <code>++i</code> in Java loop</p>
 <a id="more"></a>
+
 <p>In general cases,</p>
 <ul>
 <li><code>i++</code> in Java means use the value of <code>i</code> and increase it by 1 after finish.</li>
@@ -245,32 +246,40 @@ i = <span class="hljs-number">1</span>;
 <span class="hljs-keyword">int</span> output2 = ++i;
 System.out.println(output1);
 System.out.println(output2);</code></pre>
+
 <p>Output:</p>
 <pre><code class="hljs java"><span class="hljs-number">1</span>
 <span class="hljs-number">2</span></code></pre>
+
+
+
 <p>However, in for loop:</p>
 <pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) &#123;
 	System.out.println(i);
 &#125;</code></pre>
+
 <p>And:</p>
 <pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; ++i) &#123;
 	System.out.println(i);
 &#125;</code></pre>
+
 <p>The output are both:</p>
 <pre><code class="hljs java"><span class="hljs-number">1</span>
 <span class="hljs-number">2</span>
 <span class="hljs-number">3</span>
 <span class="hljs-number">4</span>
 <span class="hljs-number">5</span></code></pre>
+
 <p>These two methods can basically be rewritten as:</p>
 <pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>;) &#123;
 	System.out.println(i);
 	i++; <span class="hljs-comment">// or ++i</span>
 &#125;</code></pre>
-<p>After searching for reasons, a developer introduces in a blog that though the output for using <code>i++</code> and <code>++i</code> are the same, <code>i++</code> needs a temporary variable to store the origin value before increasing, while there is no such a process in <code>++i</code>.$^{[1]}$ Therefore, the running time of <code>i++</code> is longer than <code>++i</code>, which is shown in the blog.</p>
-<p>This shows that we should use <code>++i</code> instead of <code>i++</code>, which can somehow improve the performance.   </p>
-<p><strong>References:</strong></p>
-<p>[1] <a href="https://blog.csdn.net/github_37847975/article/details/77369851" target="_blank" rel="noopener">https://blog.csdn.net/github_37847975/article/details/77369851</a></p>
+
+
+
+<p>After searching for reasons, a developer introduces in a blog that though the output for using <code>i++</code> and <code>++i</code> are the same, <code>i++</code> needs a temporary variable to store the origin value before increasing, while there is no such a process in <code>++i</code>. Therefore, the running time of <code>i++</code> is longer than <code>++i</code>, which is shown in the blog.</p>
+<p>This shows that we should use <code>++i</code> instead of <code>i++</code>, which can somehow improve the performance.</p>
 
             </article>
             <hr>
