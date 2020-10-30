@@ -243,8 +243,9 @@
 <li>usually ignore stopwords</li>
 <li>usually use a large window around the target word</li>
 </ul>
-<h3 id="1-2-2-Weights"><a href="#1-2-2-Weights" class="headerlink" title="1.2.2 Weights"></a>1.2.2 Weights</h3><p><strong>Mutual information:</strong><br>$$<br>\text{PMI}(x,y) = \log_2 \frac{P(x,y)}{P(x)P(y)}<br>$$</p>
-<ul>
+<h3 id="1-2-2-Weights"><a href="#1-2-2-Weights" class="headerlink" title="1.2.2 Weights"></a>1.2.2 Weights</h3><p><strong>Mutual information:</strong></p>
+<script type="math/tex; mode=display">
+\text{PMI}(x,y) = \log_2 \frac{P(x,y)}{P(x)P(y)}</script><ul>
 <li>PMI tells us how much more / less likely the cooccurrence is than if the words were independent</li>
 <li><strong>Problem:</strong><ul>
 <li>in practice, PMI is computed with counts, so it is over-sensitive to the chance co-occurrence of infrequent words</li>
@@ -256,8 +257,9 @@
 </ul>
 </li>
 </ul>
-<h2 id="1-3-Compositionality-in-vector-space"><a href="#1-3-Compositionality-in-vector-space" class="headerlink" title="1.3 Compositionality in vector space"></a>1.3 Compositionality in vector space</h2><p>Compositionality implies some operator $\oplus$ such that<br>$$<br>\text{meaning}(w_1w_2) = \text{meaning}(w_1) \oplus \text{meaning}(w_2)<br>$$</p>
-<h1 id="2-Measure-similarity"><a href="#2-Measure-similarity" class="headerlink" title="2. Measure similarity"></a>2. Measure similarity</h1><ul>
+<h2 id="1-3-Compositionality-in-vector-space"><a href="#1-3-Compositionality-in-vector-space" class="headerlink" title="1.3 Compositionality in vector space"></a>1.3 Compositionality in vector space</h2><p>Compositionality implies some operator $\oplus$ such that</p>
+<script type="math/tex; mode=display">
+\text{meaning}(w_1w_2) = \text{meaning}(w_1) \oplus \text{meaning}(w_2)</script><h1 id="2-Measure-similarity"><a href="#2-Measure-similarity" class="headerlink" title="2. Measure similarity"></a>2. Measure similarity</h1><ul>
 <li>Euclidean distance</li>
 <li>Dot product</li>
 <li>Normalised dot product (the cosine of the angle between vectors)</li>
@@ -285,8 +287,7 @@
 </ul>
 <h2 id="3-2-Word-association"><a href="#3-2-Word-association" class="headerlink" title="3.2 Word association"></a>3.2 Word association</h2><p>Say the first word that comes to ming</p>
 <p>Collect the data and provide probabilities:</p>
-<img src="https://waylonli.com/img/mdimg/image-20200310103655820.png" alt="image-20200310103655820" style="zoom:40%;" />
-
+<p><img src="https://waylonli.com/img/mdimg/image-20200310103655820.png" alt="image-20200310103655820" style="zoom:40%;" /></p>
 <h2 id="3-3-Dimension-reduction-learn-a-more-compact-space"><a href="#3-3-Dimension-reduction-learn-a-more-compact-space" class="headerlink" title="3.3 Dimension reduction: learn a more compact space"></a>3.3 Dimension reduction: learn a more compact space</h2><ul>
 <li>LSA (Latent Semantic Analysis)</li>
 <li>Neural network methods</li>

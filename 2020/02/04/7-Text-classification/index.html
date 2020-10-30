@@ -233,7 +233,6 @@
             <article class="markdown-body">
               <p>Introduce two different methods to do text classification: Naive Bayes and Maximum Entropy</p>
 <a id="more"></a>
-
 <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p><strong>Application:</strong></p>
 <ul>
 <li>spam detection (binary: spam / not spam)</li>
@@ -260,23 +259,27 @@
 <li>Naive Bayes</li>
 <li>Maximum Entropy (multinomial logistic regression)</li>
 </ul>
-<h1 id="2-Naive-Bayes"><a href="#2-Naive-Bayes" class="headerlink" title="2. Naive Bayes"></a>2. Naive Bayes</h1><h2 id="2-1-Model"><a href="#2-1-Model" class="headerlink" title="2.1 Model"></a>2.1 Model</h2><p>$$<br>\hat{c} = \underset{c\in C}{\operatorname{argmax}} P(c\mid d) = \underset{c\in C}{\operatorname{argmax}} \frac{P(d \mid c)P(c)}{P(d)} = \underset{c\in C}{\operatorname{argmax}}P(d \mid c)P(c)<br>$$</p>
-<ul>
-<li><p>Naive Bayes assumption: $P(d \mid c) = P(f_1, f_2,\dots ,f_n \mid c) \approx P(f_1 \mid c)P(f_2\mid c)\dots P(f_n \mid c)$<br>$$<br>\ \\ \hat{P}(f_i \mid c) = \frac{\text{count}(f_i,c)+\alpha}{\sum_{f \in F}(\text{count}(f,c)+\alpha)}<br>$$<br>PS: $\alpha$ needs to be added in calculations for every class, so the total count should add $\left |F\right |*\alpha$ </p>
+<h1 id="2-Naive-Bayes"><a href="#2-Naive-Bayes" class="headerlink" title="2. Naive Bayes"></a>2. Naive Bayes</h1><h2 id="2-1-Model"><a href="#2-1-Model" class="headerlink" title="2.1 Model"></a>2.1 Model</h2><script type="math/tex; mode=display">
+\hat{c} = \underset{c\in C}{\operatorname{argmax}} P(c\mid d) = \underset{c\in C}{\operatorname{argmax}} \frac{P(d \mid c)P(c)}{P(d)} = \underset{c\in C}{\operatorname{argmax}}P(d \mid c)P(c)</script><ul>
+<li><p>Naive Bayes assumption: $P(d \mid c) = P(f_1, f_2,\dots ,f_n \mid c) \approx P(f_1 \mid c)P(f_2\mid c)\dots P(f_n \mid c)$ </p>
+<script type="math/tex; mode=display">
+\ \\ \hat{P}(f_i \mid c) = \frac{\text{count}(f_i,c)+\alpha}{\sum_{f \in F}(\text{count}(f,c)+\alpha)}</script><p>PS: $\alpha$ needs to be added in calculations for every class, so the total count should add $\left |F\right |*\alpha$ </p>
 <ul>
 <li>$F$: the set of possible features</li>
 <li>$\alpha$: smoothing parameter</li>
 <li>all features not shown earlier before have $\hat{P}(f_i \mid +) = \frac{\alpha}{68+\alpha \left |F\right |}$ </li>
 </ul>
 </li>
-<li><p>$P(c)$: estimated with MLE<br>$$<br>\hat{P}(c) = \frac{N_c}{N}<br>$$</p>
-</li>
+<li><p>$P(c)$: estimated with MLE</p>
+<script type="math/tex; mode=display">
+\hat{P}(c) = \frac{N_c}{N}</script></li>
 </ul>
 <h2 id="2-2-Step"><a href="#2-2-Step" class="headerlink" title="2.2 Step"></a>2.2 Step</h2><ul>
 <li><p>Test document $d$ </p>
 </li>
-<li><p>Calculate<br>$$<br>P(+ \mid d) \propto P(+) \prod_{i=1}^n P(f_i \mid +) \\ \  \\ P(-\mid d) \propto P(-) \prod_{i=1}^n P(f_i \mid -)<br>$$</p>
-</li>
+<li><p>Calculate</p>
+<script type="math/tex; mode=display">
+P(+ \mid d) \propto P(+) \prod_{i=1}^n P(f_i \mid +) \\ \  \\ P(-\mid d) \propto P(-) \prod_{i=1}^n P(f_i \mid -)</script></li>
 <li><p>Choose the one with larger value</p>
 </li>
 </ul>
@@ -285,8 +288,9 @@
 <li>Use subset of $\left | F \right |$ (e.g. ignore stop words)</li>
 <li>Use more complex features (e.g. bigrams, etc.)</li>
 </ul>
-<h2 id="2-4-Deal-with-very-small-numbers-underflow-use-costs"><a href="#2-4-Deal-with-very-small-numbers-underflow-use-costs" class="headerlink" title="2.4 Deal with very small numbers (underflow): use costs"></a>2.4 Deal with very small numbers (underflow): use costs</h2><p>Find the lowest cost classification<br>$$<br>\hat{c} = \underset{c\in C}{\operatorname{argmin}}  (-\log P(c) + \sum_{i=1}^n - \log P(f_i \mid c))<br>$$</p>
-<ul>
+<h2 id="2-4-Deal-with-very-small-numbers-underflow-use-costs"><a href="#2-4-Deal-with-very-small-numbers-underflow-use-costs" class="headerlink" title="2.4 Deal with very small numbers (underflow): use costs"></a>2.4 Deal with very small numbers (underflow): use costs</h2><p>Find the lowest cost classification</p>
+<script type="math/tex; mode=display">
+\hat{c} = \underset{c\in C}{\operatorname{argmin}}  (-\log P(c) + \sum_{i=1}^n - \log P(f_i \mid c))</script><ul>
 <li>Costs are negative log probabilities</li>
 <li>Can avoid underflow by turning multiplication to sum</li>
 <li>Look for the lowest cost overall</li>
@@ -322,8 +326,8 @@
 </ul>
 </li>
 </ul>
-<h1 id="3-Maximum-Entropy-Model"><a href="#3-Maximum-Entropy-Model" class="headerlink" title="3. Maximum Entropy Model"></a>3. Maximum Entropy Model</h1><h2 id="3-1-Model"><a href="#3-1-Model" class="headerlink" title="3.1 Model"></a>3.1 Model</h2><p>$$<br>P(c \mid \vec{x}) = \frac{1}{Z}\exp(\sum_i w_i f_i(\vec{x},c)) \\ \ \\ \text{where } Z = \sum_{c’} \exp(\sum_iw_i f_i(\vec{x},c))<br>$$</p>
-<ul>
+<h1 id="3-Maximum-Entropy-Model"><a href="#3-Maximum-Entropy-Model" class="headerlink" title="3. Maximum Entropy Model"></a>3. Maximum Entropy Model</h1><h2 id="3-1-Model"><a href="#3-1-Model" class="headerlink" title="3.1 Model"></a>3.1 Model</h2><script type="math/tex; mode=display">
+P(c \mid \vec{x}) = \frac{1}{Z}\exp(\sum_i w_i f_i(\vec{x},c)) \\ \ \\ \text{where } Z = \sum_{c'} \exp(\sum_iw_i f_i(\vec{x},c))</script><ul>
 <li><strong>Multinomial logistic regression</strong>, model $P(c \mid d)$ directly instead of using Bayes’ rule</li>
 <li>Use vector to represent the observed data</li>
 <li>End up choosing the class for whose $\vec{w} \cdot \vec{f}$ is the highest</li>
@@ -333,7 +337,9 @@
 <li>For each class, $\vec{w}$ varies since each word cause different influence on the class</li>
 </ul>
 <h2 id="3-2-Training"><a href="#3-2-Training" class="headerlink" title="3.2 Training"></a>3.2 Training</h2><p><strong>Conditional maximum likelihood estimation (CMLE):</strong></p>
-<p>Given instances $x^{(1)} \dots x^{(N)}$ with labels $c^{(1)}\dots c^{(N)}$<br>$$<br>\vec{w} = \underset{\vec{w}}{\operatorname{argmax}} \sum_j \log P(c^{(j)}\mid x^{(j)})<br>$$<br><strong>Avoid overfitting:</strong> regularisation</p>
+<p>Given instances $x^{(1)} \dots x^{(N)}$ with labels $c^{(1)}\dots c^{(N)}$</p>
+<script type="math/tex; mode=display">
+\vec{w} = \underset{\vec{w}}{\operatorname{argmax}} \sum_j \log P(c^{(j)}\mid x^{(j)})</script><p><strong>Avoid overfitting:</strong> regularisation</p>
 <h2 id="3-3-Pros-amp-Cons"><a href="#3-3-Pros-amp-Cons" class="headerlink" title="3.3 Pros &amp; Cons"></a>3.3 Pros &amp; Cons</h2><p><strong>Pros:</strong></p>
 <ul>
 <li>Better performance</li>
@@ -347,30 +353,34 @@
 <li>The probabilistic model we are building should follow whatever constraints we impose on it</li>
 <li>But beyond these constraints we should follow Occam’s Razor, make the fewest possible assumptions</li>
 </ul>
-<h1 id="4-Summary"><a href="#4-Summary" class="headerlink" title="4. Summary"></a>4. Summary</h1><h2 id="4-1-Differences"><a href="#4-1-Differences" class="headerlink" title="4.1 Differences"></a>4.1 Differences</h2><table>
+<h1 id="4-Summary"><a href="#4-Summary" class="headerlink" title="4. Summary"></a>4. Summary</h1><h2 id="4-1-Differences"><a href="#4-1-Differences" class="headerlink" title="4.1 Differences"></a>4.1 Differences</h2><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center">Naive Bayes</th>
-<th align="center">MaxEnt</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">Naive Bayes</th>
+<th style="text-align:center">MaxEnt</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">Model</td>
-<td align="center">MLE (maximum likelihood estimation)<br />Bayes’ rule</td>
-<td align="center">CMLE (conditional maximum likelihood estimation)<br />Multinomial logistic regression</td>
+<tbody>
+<tr>
+<td style="text-align:center">Model</td>
+<td style="text-align:center">MLE (maximum likelihood estimation)<br />Bayes’ rule</td>
+<td style="text-align:center">CMLE (conditional maximum likelihood estimation)<br />Multinomial logistic regression</td>
 </tr>
 <tr>
-<td align="center">Features</td>
-<td align="center">Directly observed</td>
-<td align="center">Use vector representation<br />Features are functions that depend on both observation $\vec{x}$ and class $c$</td>
+<td style="text-align:center">Features</td>
+<td style="text-align:center">Directly observed</td>
+<td style="text-align:center">Use vector representation<br />Features are functions that depend on both observation $\vec{x}$ and class $c$</td>
 </tr>
 <tr>
-<td align="center">Assumption</td>
-<td align="center">Conditionally independent assumption</td>
-<td align="center">None</td>
+<td style="text-align:center">Assumption</td>
+<td style="text-align:center">Conditionally independent assumption</td>
+<td style="text-align:center">None</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="4-2-Similarity"><a href="#4-2-Similarity" class="headerlink" title="4.2 Similarity"></a>4.2 Similarity</h2><ul>
 <li>Both are easily available in standard ML toolkits</li>
 <li>Both need to choose what features are good to use </li>
