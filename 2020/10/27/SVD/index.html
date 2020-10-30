@@ -252,12 +252,12 @@
 <li>Right singular vector: $ \mathbf{V} = (\vec{v_1}, \vec{v_2}, \dots , \vec{v_m}) $ are the right singular vectors of matrix $\mathbf{X}$ </li>
 </ul>
 <h1 id="2-Matrix-Approximation"><a href="#2-Matrix-Approximation" class="headerlink" title="2. Matrix Approximation"></a>2. Matrix Approximation</h1><p>Notice that  there are only $m$ singular values, we have the Eckand-Young theorem (1936):<br>$$<br>\mathbf{X} = \sigma_1 u_1 v_1^\top + \sigma_2 u_2 v_2^\top + \dots + \sigma_m u_m v_m^\top + \mathbf{0} \approx \mathbf{\tilde{U}}\mathbf{\tilde{\Sigma}}\mathbf{\tilde{V}}^\top<br>$$</p>
-<h1 id="3-Dominant-Correlations"><a href="#3-Dominant-Correlations" class="headerlink" title="3. Dominant Correlations"></a>3. Dominant Correlations</h1><img src="https://waylonli.com/img/mdimg/image-20201027133303454.png" alt="image-20201027133303454" style="zoom:50%;" />
+<h1 id="3-Dominant-Correlations"><a href="#3-Dominant-Correlations" class="headerlink" title="3. Dominant Correlations"></a>3. Dominant Correlations</h1><img src="https://waylonli.com/img/mdimg/image-20201027133303454.png" alt="image-20201027133303454" style="zoom:50%;" align=center />
 
 <h1 id="4-SVD-and-Truncation"><a href="#4-SVD-and-Truncation" class="headerlink" title="4. SVD and Truncation"></a>4. SVD and Truncation</h1><p>In $\mathbf{X} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^\top$, we can choose $r$ columns of $\mathbf{U}$ and $\mathbf{V}$. “How to choose $r$” is a fundamental problem in SVD.<br>$$<br>\mathbf{X} = \mathbf{\tilde{U}}_r\mathbf{\tilde{\Sigma}}_r\mathbf{\tilde{V}}_r^\top<br>$$<br>Generally we need to set a threshold for $\log \sigma$ and choose those $\sigma$s beyond the threshold on the diagonal of $\mathbf{\Sigma}$.</p>
 <p><strong>Recommending extra reading:</strong> <a href="https://arxiv.org/pdf/1305.5870.pdf" target="_blank" rel="noopener">Gavish-Donoho (2014)</a></p>
 <p>Applying a Gaussian noise to $\mathbf{X}$:</p>
-<img src="https://waylonli.com/img/mdimg/image-20201030042756738.png" alt="image-20201030042756738" style="zoom:50%;" />
+<img src="https://waylonli.com/img/mdimg/image-20201030042756738.png" alt="image-20201030042756738" style="zoom:50%;" align=center />
 
 
 <p>PS: I did not mange to fully understand the idea here, more details about the truncation can be found in the video and the paper using the URL in this section</p>
