@@ -266,6 +266,29 @@
   </entry>
   
   <entry>
+    <title>Interesting exploration of i++ and ++i in Java</title>
+    <link href="http://waylonli.github.io/2020/02/24/Interesting-exploration-of-i-and-i-in-Java/"/>
+    <id>http://waylonli.github.io/2020/02/24/Interesting-exploration-of-i-and-i-in-Java/</id>
+    <published>2020-02-24T03:10:42.000Z</published>
+    <updated>2020-10-30T03:12:21.659Z</updated>
+    
+    <content type="html"><![CDATA[<p>An interesting discover of using <code>i++</code> and <code>++i</code> in Java loop</p><a id="more"></a><p>In general cases,</p><ul><li><code>i++</code> in Java means use the value of <code>i</code> and increase it by 1 after finish.</li><li><code>++i</code> in Java means firstly increase <code>i</code> by 1 and use it afterwards</li></ul><p>E.g.</p><pre><code class="hljs java"><span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;<span class="hljs-keyword">int</span> output1 = i++;i = <span class="hljs-number">1</span>;<span class="hljs-keyword">int</span> output2 = ++i;System.out.println(output1);System.out.println(output2);</code></pre><p>Output:</p><pre><code class="hljs java"><span class="hljs-number">1</span><span class="hljs-number">2</span></code></pre><p>However, in for loop:</p><pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) &#123;System.out.println(i);&#125;</code></pre><p>And:</p><pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; ++i) &#123;System.out.println(i);&#125;</code></pre><p>The output are both:</p><pre><code class="hljs java"><span class="hljs-number">1</span><span class="hljs-number">2</span><span class="hljs-number">3</span><span class="hljs-number">4</span><span class="hljs-number">5</span></code></pre><p>These two methods can basically be rewritten as:</p><pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>;) &#123;System.out.println(i);i++; <span class="hljs-comment">// or ++i</span>&#125;</code></pre><p>After searching for reasons, a developer introduces in a blog that though the output for using <code>i++</code> and <code>++i</code> are the same, <code>i++</code> needs a temporary variable to store the origin value before increasing, while there is no such a process in <code>++i</code>.$^{[1]}$ Therefore, the running time of <code>i++</code> is longer than <code>++i</code>, which is shown in the blog.</p><p>This shows that we should use <code>++i</code> instead of <code>i++</code>, which can somehow improve the performance.   </p><p><strong>References:</strong></p><p>[1] <a href="https://blog.csdn.net/github_37847975/article/details/77369851" target="_blank" rel="noopener">https://blog.csdn.net/github_37847975/article/details/77369851</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;An interesting discover of using &lt;code&gt;i++&lt;/code&gt; and &lt;code&gt;++i&lt;/code&gt; in Java loop&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://waylonli.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://waylonli.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>8,9-POS tagging and HMMs</title>
     <link href="http://waylonli.github.io/2020/02/11/8,9-POS-tagging-and-HMMs/"/>
     <id>http://waylonli.github.io/2020/02/11/8,9-POS-tagging-and-HMMs/</id>

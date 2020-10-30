@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="Waylon Li">
   <meta name="keywords" content="">
-  <title>Real-Time Speech Recognition Using Python | Waylon&#39;s blog</title>
+  <title>Interesting exploration of i++ and ++i in Java | Waylon&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -158,14 +158,14 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/postcover/python-sp.jpg') no-repeat center center;
+         style="background: url('/img/postcover/java.jpeg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                Real-Time Speech Recognition Using Python
+                Interesting exploration of i++ and ++i in Java
               
             </span>
 
@@ -173,8 +173,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-03-05 23:52">
-      March 5, 2020 pm
+    <time datetime="2020-02-24 03:10">
+      February 24, 2020 am
     </time>
   </div>
 
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      162 words
+      219 words
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      4
        mins
     </span>
   
@@ -226,50 +226,51 @@
             
               <p class="note note-info">
                 
-                  Last update：8 months ago
+                  Last update：a few seconds ago
                 
               </p>
             
             <article class="markdown-body">
-              <h1 id="1-Environment"><a href="#1-Environment" class="headerlink" title="1. Environment"></a>1. Environment</h1><h2 id="1-1-Pyaudio"><a href="#1-1-Pyaudio" class="headerlink" title="1.1 Pyaudio"></a>1.1 Pyaudio</h2><a id="more"></a>
+              <p>An interesting discover of using <code>i++</code> and <code>++i</code> in Java loop</p>
+<a id="more"></a>
+<p>In general cases,</p>
 <ul>
-<li>Windows: <code>pip install pyaudio</code></li>
-<li>Linux: <code>sudo apt-get install python-pyaudio python3-pyaudio</code> </li>
-<li>Mac OSX: <code>brew install portaudio</code> (need to <a href="https://osxdaily.com/2018/03/07/how-install-homebrew-mac-os/" target="_blank" rel="noopener">install Homebrew</a> on your mac first); then <code>pip install pyaudio</code></li>
+<li><code>i++</code> in Java means use the value of <code>i</code> and increase it by 1 after finish.</li>
+<li><code>++i</code> in Java means firstly increase <code>i</code> by 1 and use it afterwards</li>
 </ul>
-<h2 id="1-2-SpeechRecognition-package"><a href="#1-2-SpeechRecognition-package" class="headerlink" title="1.2 SpeechRecognition package"></a>1.2 SpeechRecognition package</h2><p><code>pip install SpeechRecognition</code></p>
-<p><a href="https://pypi.org/project/SpeechRecognition/" target="_blank" rel="noopener"><strong>Package webpage</strong></a></p>
-<h1 id="2-Example-code"><a href="#2-Example-code" class="headerlink" title="2. Example code"></a>2. Example code</h1><p>Here is an example for recognising ‘yes’ and ‘no’:</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> speech_recognition <span class="hljs-keyword">as</span> sr
-<span class="hljs-keyword">import</span> os
-
-
-<span class="hljs-comment"># obtain audio from the microphone</span>
-r = sr.Recognizer()
-t = <span class="hljs-literal">True</span>
-
-<span class="hljs-keyword">while</span> t:
-    <span class="hljs-keyword">with</span> sr.Microphone() <span class="hljs-keyword">as</span> source:
-        r.adjust_for_ambient_noise(source, duration = <span class="hljs-number">0.5</span>)  
-        print(<span class="hljs-string">'say something'</span>)
-
-        audio = r.record(source, duration = <span class="hljs-number">2</span>)    <span class="hljs-comment"># listen for 2 seconds</span>
-    
-    output = r.recognize_google(audio, show_all = <span class="hljs-literal">True</span>)
-
-    <span class="hljs-keyword">if</span> (len(output) &lt; <span class="hljs-number">1</span>):
-        print(<span class="hljs-string">"Say louder"</span>)    <span class="hljs-comment"># if the recogniser did not recognise anything from the microphone, ask speaker to say louder</span>
-    <span class="hljs-keyword">else</span>:
-        possible = [word[<span class="hljs-string">'transcript'</span>] <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> output[<span class="hljs-string">'alternative'</span>]]    <span class="hljs-comment"># extract all the possible phrase from return dictionary</span>
-
-        <span class="hljs-keyword">if</span> (<span class="hljs-string">"yes"</span> <span class="hljs-keyword">in</span> possible):
-            print(<span class="hljs-string">"yes"</span>)
-            t = <span class="hljs-literal">False</span>
-        <span class="hljs-keyword">if</span> (<span class="hljs-string">"no"</span> <span class="hljs-keyword">in</span> possible):
-            print(<span class="hljs-string">"no"</span>)
-            t = <span class="hljs-literal">False</span>
-        <span class="hljs-keyword">else</span>:
-            print(<span class="hljs-string">"Say it again"</span>)</code></pre>
+<p>E.g.</p>
+<pre><code class="hljs java"><span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">int</span> output1 = i++;
+i = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">int</span> output2 = ++i;
+System.out.println(output1);
+System.out.println(output2);</code></pre>
+<p>Output:</p>
+<pre><code class="hljs java"><span class="hljs-number">1</span>
+<span class="hljs-number">2</span></code></pre>
+<p>However, in for loop:</p>
+<pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) &#123;
+	System.out.println(i);
+&#125;</code></pre>
+<p>And:</p>
+<pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; ++i) &#123;
+	System.out.println(i);
+&#125;</code></pre>
+<p>The output are both:</p>
+<pre><code class="hljs java"><span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+<span class="hljs-number">3</span>
+<span class="hljs-number">4</span>
+<span class="hljs-number">5</span></code></pre>
+<p>These two methods can basically be rewritten as:</p>
+<pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>;) &#123;
+	System.out.println(i);
+	i++; <span class="hljs-comment">// or ++i</span>
+&#125;</code></pre>
+<p>After searching for reasons, a developer introduces in a blog that though the output for using <code>i++</code> and <code>++i</code> are the same, <code>i++</code> needs a temporary variable to store the origin value before increasing, while there is no such a process in <code>++i</code>.$^{[1]}$ Therefore, the running time of <code>i++</code> is longer than <code>++i</code>, which is shown in the blog.</p>
+<p>This shows that we should use <code>++i</code> instead of <code>i++</code>, which can somehow improve the performance.   </p>
+<p><strong>References:</strong></p>
+<p>[1] <a href="https://blog.csdn.net/github_37847975/article/details/77369851" target="_blank" rel="noopener">https://blog.csdn.net/github_37847975/article/details/77369851</a></p>
 
             </article>
             <hr>
@@ -279,9 +280,7 @@ t = <span class="hljs-literal">True</span>
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Natural-Language-Processing/">Natural-Language-Processing</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Natural-Language-Processing/Tutorials/">Tutorials</a>
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
                     
                   </div>
                 
@@ -289,9 +288,7 @@ t = <span class="hljs-literal">True</span>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/NLP/">NLP</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Speech-Recognition/">Speech-Recognition</a>
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
                     
                   </div>
                 
@@ -302,9 +299,9 @@ t = <span class="hljs-literal">True</span>
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/03/26/10-Annotation-and-Evaluation/">
+                      <a href="/2020/03/05/Real-Time-Speech-Recognition-Using-Python/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">10-Annotation & Evaluation</span>
+                        <span class="hidden-mobile">Real-Time Speech Recognition Using Python</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -312,8 +309,8 @@ t = <span class="hljs-literal">True</span>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/02/24/Interesting-exploration-of-i-and-i-in-Java/">
-                        <span class="hidden-mobile">Interesting exploration of i++ and ++i in Java</span>
+                      <a href="/2020/02/11/8,9-POS-tagging-and-HMMs/">
+                        <span class="hidden-mobile">8,9-POS tagging and HMMs</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
