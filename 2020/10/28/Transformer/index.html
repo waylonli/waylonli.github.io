@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#1e2022">
+  <meta name="description" content="">
+  <meta name="author" content="Waylon Li">
+  <meta name="keywords" content="">
+  <title>Transformer - Attention Is All You Need | Waylon&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1630899_isc0bdyllg8.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Waylon's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Waylon's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/postcover/Attention.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+                Transformer - Attention Is All You Need
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-10-28 00:00">
+      October 28, 2020 am
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k words
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      32
+       mins
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  Last update：a few seconds ago
+                
+              </p>
+            
+            <article class="markdown-body">
+              <p>Brief introduction to the famous paper about Transformers: Attention Is All You Need</p>
+<a id="more"></a>
+
+<h1 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762.pdf">Paper: Attention Is All You Need</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/leviswind/pytorch-transformer">Github link of Transformer</a></p>
+<h1 id="1-Background"><a href="#1-Background" class="headerlink" title="1. Background"></a>1. Background</h1><ul>
+<li>encoder-decoder</li>
+<li>self attention</li>
+<li>feed-forward network</li>
+<li>positional encoding</li>
+</ul>
+<p><strong>Dataset:</strong> WMT 2014 English-to-French translation task</p>
+<p><strong>Evaluation:</strong> BLEU (bilingual evaluation understudy)</p>
+<ul>
+<li><p>BLEU computes the modified precision metric using n-grams to measure the similarity between the candidate text and reference text. The idea is, if a word in reference is already matched, this word cannot be matched again.</p>
+</li>
+<li><p>$\text{Count}_{\text{clip}} = \min (\text{count, Max_Ref_Count})$</p>
+<p>$$<br>P_n = \frac{\sum_{C \in \text{\{Candidates\}}} \sum_{\text{n-gram} \in C} \text{Count}<em>{\text{clip}}(\text{n-gram})}{\sum</em>{C’ \in \text{\{Candidates\}}} \sum_{\text{n-gram}’ \in C’} \text{Count}(\text{n-gram}’)}<br>$$</p>
+<p>$$<br>\text{BLEU} = \text{BP} \times \exp(\sum_{n=1}^N \mathbf{w_n}\log P_n)<br>$$</p>
+<ul>
+<li>$\text{BP}$ (Brevity Penalty) will be 1 if the length of candidate is the same as the length of reference translation.</li>
+<li>$N$: n-grams</li>
+<li>$\mathbf{w_n}$: the weight of each modified precision</li>
+</ul>
+</li>
+</ul>
+<p>Before transformer was introduced, sequence-to-sequence models, especially LSTM, dominated the down-stream NLP tasks. Transformer introduced self-attention which made the attention mechanisms more parallelizable and more efficient. Using self-attention to replace LSTM, it achieved a better accuracy on translation tasks.</p>
+<p><strong>Pretraining model based on transformer:</strong> BERT (using the encoder of transformer), GPT (using the decoder of transformer), ALBERT</p>
+<h1 id="2-Seq2Seq-and-Attention"><a href="#2-Seq2Seq-and-Attention" class="headerlink" title="2. Seq2Seq and Attention"></a>2. Seq2Seq and Attention</h1><p><img src="https://raw.githubusercontent.com/6chaoran/nlp/master/nmt/image/encoder-highlighted.png" alt="https://raw.githubusercontent.com/6chaoran/nlp/master/nmt/image/encoder-highlighted.png"></p>
+<p>$$\text{Attention}(Q,K,V) = \text{softmax}(QK^\top)V$$</p>
+<p>Details about Seq2Seq model will be updated in another blog post in the future. </p>
+<p>Stanford 224N gives an introduction to Sequence-to-Sequence Models and Attention:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://web.stanford.edu/class/cs224n/slides/cs224n-2020-lecture08-nmt.pdf">Slides</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=XXtpJxZBa2c&list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z&index=8">Video</a></li>
+</ul>
+<h1 id="3-Transformer"><a href="#3-Transformer" class="headerlink" title="3. Transformer"></a>3. Transformer</h1><h2 id="3-1-Architecture"><a href="#3-1-Architecture" class="headerlink" title="3.1 Architecture"></a>3.1 Architecture</h2><img src="https://waylonli.com/img/mdimg/transformer/Untitled.png" alt="untitled" style="zoom:100%;" />
+
+<p><strong>Encoder</strong>: As it is stated in the paper, </p>
+<ul>
+<li>the encoder consists of 6 identical layers</li>
+<li>there are two sub-layers in each layer: 1) a multi-head self-attention mechanism and 2) a simple, positional fully connected feed-forward network</li>
+<li>in each sub-layer, layer normalisation and residual connection are applied</li>
+</ul>
+<p><strong>Decoder:</strong></p>
+<ul>
+<li>the decoder also consists of 6 identical layers</li>
+<li>there are three sub-layers in each layer: 1) a <strong>masked</strong> multi-head self-attention mechanism, 2) a simple, positional fully connected feed-forward network and 3) a multi-head attention over the output of the encoder stack</li>
+<li>in each sub-layer, layer normalisation and residual connection are applied</li>
+</ul>
+<p><strong>Layer Normalisation</strong></p>
+<p>$$LN(x_i)= \alpha\times \frac{x_i - \mu_L}{\sqrt{\sigma^2 + \epsilon}} + \beta$$</p>
+<img src="https://waylonli.com/img/mdimg/transformer/Untitled%201.png" alt="Untitled%201.png" style="zoom:100%;" />
+
+<p><strong>Why we use a mask in the decoder?</strong></p>
+<blockquote>
+<p>This modified self-attention mechanism is used to prevent positions from attending to subsequent positions.</p>
+</blockquote>
+<p>There are two kinds of masks being applied in the transformer: sequence mask and padding mask. Padding mask is applied in all the scaled dot-product attention while sequence mask is only used in the decoder.</p>
+<p><strong>Mask 1: Sequence Mask</strong></p>
+<p>During training, in a supervised learning task, we can see the reference translation so that cheating will possibly occur in this situation. In the figure below we can see the attention matrix. Each row in the matrix represents an output and each column represent an input. Attention matrix shows the correlation between output and input. In this case, applying a lower triangular mask on the matrix can let the following output only depend on the previous output.</p>
+<img src="https://waylonli.com/img/mdimg/transformer/Untitled%202.png" alt="Untitled%202.png" style="zoom:100%;" />
+
+<p><strong>Mask 2: Padding Mask</strong></p>
+<p>We need to align the sequences since the sequence length in different batches are different. The attention mechanism should not focus on those positions. One way to deal with those meaningless positions is to assign a very negative value to those positions so that after softmax, the probability will be extremely closed to 0.</p>
+<h2 id="3-2-Attention"><a href="#3-2-Attention" class="headerlink" title="3.2 Attention"></a>3.2 Attention</h2><blockquote>
+<p>An attention function can be described as mapping a query and a set of key-value pairs to an output, where the query, keys, values, and output are all vectors.</p>
+</blockquote>
+<img src="https://waylonli.com/img/mdimg/transformer/Untitled%203.png" alt="Untitled%203.png" style="zoom:100%;" />
+
+<h3 id="3-2-1-Scaled-Dot-Product-Attention"><a href="#3-2-1-Scaled-Dot-Product-Attention" class="headerlink" title="3.2.1 Scaled Dot-Product Attention"></a>3.2.1 Scaled Dot-Product Attention</h3><img src="https://waylonli.com/img/mdimg/transformer/Untitled%204.png" alt="Untitled%204.png" style="zoom:100%;" />
+
+<p><strong>Input (after embedding):</strong> </p>
+<ul>
+<li>$\mathbf{}$$\mathbf{x_1}$: <code>[batch_size, 1, embedding_dim = 512]</code></li>
+<li>$\mathbf{x_2}$: <code>[batch_size, 1, embedding_dim = 512]</code></li>
+</ul>
+<p><strong>Parameters:</strong> </p>
+<ul>
+<li>$\mathbf{W}^Q: 512\times 64$</li>
+<li>$\mathbf{W}^K: 512\times 64$</li>
+<li>$\mathbf{W}^V: 512\times 64$</li>
+</ul>
+<p>$$<br>\text{Attention}(Q,K,V) = \text{softmax}(\frac{QK^\top}{\sqrt{d_k}})V<br>$$</p>
+<p>So, what is $Q,K,V$? In the self-attention of encoder, $Q,K,V$ come from the output of the previous encoder layer. Especially, for the first layer, they are the sum of word embedding and positional encoding. In decoder, $Q,K,V$ come from the output of the previous decoder layer. Similarly, in the first layer, they are also the sum of word embedding and positional encoding. The difference between decoder and encoder, as it is mentioned before, the decoder uses mask to hide the information in the following steps. In the encoder-decoder attention, $Q$ comes from the output of previous decoder layer while $K,V$ come from the output of the encoder so that the decoder can attend over all positions in the input squence.</p>
+<img src="https://waylonli.com/img/mdimg/transformer/Untitled%205.png" alt="Untitled%205.png" style="zoom:100%;" />
+
+<p>$d_k$ is the dimension of keys. When $d_k$ is large, the dot-production might get huge so that the gradients of the softmax function can be extremely small (since $\exp$ will also scale the huge value in the denominator). Dividing it by the dimension can prevent this issue from happening.</p>
+<p><strong>Encoder example:</strong></p>
+<img src="https://waylonli.com/img/mdimg/transformer/Untitled%206.png" alt="Untitled%206.png" style="zoom:100%;" />
+
+<p>In the figure above, multiplying $q_1, k_1$ and $q_1, k_2$ and applying a softmax, we can get a higher probability for “thinking-thinking” than “thinking-machines”. This shows that the influence on “thinking” itself is greater than the influence on “machines”, which is certain. The following computation is shown in the figure below.</p>
+<img src="https://waylonli.com/img/mdimg/transformer/Untitled%207.png" alt="Untitled%207.png" style="zoom:100%;" />
+
+<p>$b_1$ (or $b^1$ in this figure) represents the sum of similarity score of word $x_1$ (or $x^1$ in this figure) to all the other words in this sentence.</p>
+<h3 id="3-2-2-Multi-Head-Attention"><a href="#3-2-2-Multi-Head-Attention" class="headerlink" title="3.2.2 Multi-Head Attention"></a>3.2.2 Multi-Head Attention</h3><p>Just like its name, multi-head means we split $Q,K,V$ into several pieces (heads) using a linear projection and do parallel computing. The figure below shows an example of the computing using 2 heads. The “split” here does not mean we split the $Q,K,V$ matrices. It means that instead of initialising one set of $Q,K,V$ matrices, we initialise $h$ set (in the paper $h = 8$). So we will get $h$ of $Z$ at the end. However, the feed-forward network cannot accept multiple matrices as the input, so we choose to concatenate these $h$ matrices to one, and initialise a $W^O$ matrix. Multiplying the concatenated matrix $Z$  with $W^O$ gives us the output.</p>
+<img src="https://waylonli.com/img/mdimg/transformer/Untitled%208.png" alt="Untitled%208.png" style="zoom:100%;" />
+
+<p>The shape of the matrices mentioned in the figure below (the setting in the paper):</p>
+<ul>
+<li>$X, R: m\times 512$</li>
+<li>$W^K,W^Q,W^V: 512\times 64$</li>
+<li>$Q,K,V: m \times 64$</li>
+<li>$Z_i: m \times 64$</li>
+<li>$Z: m\times 64*8 = m \times 512$</li>
+<li>$W^O: 512\times 512$</li>
+</ul>
+<img src="https://waylonli.com/img/mdimg/transformer/Untitled%209.png" alt="Untitled%209.png" style="zoom:100%;" />
+
+<p>$$\text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, \dots , \text{head}_h)W^O \\ \text{where } \text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)$$</p>
+<p>The projections are parameter matrices $W_i^Q \in \R^{d_\text{model} \times d_k}, W_i^K \in \R^{d_\text{model} \times d_k}, W_i^V \in \R^{d_\text{model} \times d_v},$ and $W_i^O \in \R^{hd_v \times d_\text{model}}$.</p>
+<h3 id="3-2-3-Short-Summary-of-Attention"><a href="#3-2-3-Short-Summary-of-Attention" class="headerlink" title="3.2.3 Short Summary of Attention"></a>3.2.3 Short Summary of Attention</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>Queries</th>
+<th>Keys</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>encoder-encoder</td>
+<td>encoder-inputs</td>
+<td>encoder-inputs</td>
+<td>encoder-inputs</td>
+</tr>
+<tr>
+<td>encoder-decoder</td>
+<td>decoder-inputs</td>
+<td>encoder-inputs</td>
+<td>encoder-inputs</td>
+</tr>
+<tr>
+<td>decoder-decoder</td>
+<td>decoder-inputs</td>
+<td>decoder-inputs</td>
+<td>decoder-inputs</td>
+</tr>
+</tbody></table>
+<p>We can see from the table that in encoder-decoder attention, the queries are different from keys and values while they are the same in encoder-encoder attention and decoder-decoder attention. One more thing we need to care about is that we are using several encoder / decoder layers, we have to make sure that the outputs are in the same size as the inputs. The size is always be $(\text{batch_size} \times \text{sequence_length} \times \text{embedding_dim})$.</p>
+<h2 id="3-3-Feed-Forward-Network"><a href="#3-3-Feed-Forward-Network" class="headerlink" title="3.3 Feed-Forward Network"></a>3.3 Feed-Forward Network</h2><p>The encoder and decoder also contain s a fully connected feed-forward network. The feed-forward network consists of two layers: 1) linear activation function, 2) ReLU. $x$ is the output of self-attention and $W_1, W_2, b_1, b_2$ are the parameters to learn.</p>
+<p>$$<br>\text{FFN}(x) = \max (0, xW_1+b_1)W_2 +b_2<br>$$</p>
+<h2 id="3-4-Positional-Encoding"><a href="#3-4-Positional-Encoding" class="headerlink" title="3.4 Positional Encoding"></a>3.4 Positional Encoding</h2><blockquote>
+<p>Since our model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence.</p>
+</blockquote>
+<p>$$<br>PE_{(pos,2i)} = \sin (\frac{pos}{10000^{2i/d_\text{model}}})<br>$$</p>
+<p>$$<br>PE_{(pos,2i+1)} = \cos (\frac{pos}{10000^{2i/d_\text{model}}})<br>$$</p>
+<ul>
+<li>$i$: dimension</li>
+<li>$pos$: position</li>
+<li>$d_\text{model}$: the embedding dimension</li>
+</ul>
+<p>For example, if we have a token where $pos =3$ and $d_\text{model} = 512$, the positional encoding will be:</p>
+<p>$$<br>(\sin \frac{3}{10000^{0/256}}, \cos \frac{3}{10000^{1/256}}, \sin \frac{3}{10000^{2/256}}, \cos \frac{3}{10000^{3/256}}, \dots)<br>$$<br>That means for even positions, we use $\sin$ for encoding while using $\cos$ for odd positions. Positional encoding uses the absolute position encoder. However, the relative position also contains significant information. That’s why we use trigonometric functions.</p>
+<p>$$<br>\sin(\alpha+\beta) = \sin \alpha \cos \beta + \cos \alpha \sin \beta \\ \cos(\alpha + \beta) = \cos \alpha \cos \beta - \sin \alpha \sin \beta<br>$$<br>Therefore, for any offset $k$ between a pair of tokens, $PE(pos + k)$ can be represented by $PE(pos)$ and $PE(k)$, which means we can represent the relative positions.</p>
+<h1 id="4-Experimental-Setup-and-Result"><a href="#4-Experimental-Setup-and-Result" class="headerlink" title="4. Experimental Setup and Result"></a>4. Experimental Setup and Result</h1><p>The experimental setup including the hardware information and hyperparameters can be viewed in the original paper. They evaluated the model on English-to-German task and English-to-French task  and both achieved higher accuracy than the SOTA models at that time.</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Natural-Language-Processing/">Natural-Language-Processing</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Natural-Language-Processing/Papers/">Papers</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Attention/">Attention</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Transformer/">Transformer</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Pretraining/">Pretraining</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/27/SVD/">
+                        <span class="hidden-mobile">Singular Value Decomposition</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "7iGPIsAxoTYyjkXybT6IEgH7-MdYXbMMI",
+          app_key: "obmTFYbknTdYvr6gRyqlHKvq",
+          placeholder: "Say something",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "en",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            Total views: 
+            <span id="busuanzi_value_site_pv"></span>
+            
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            Total visitors: 
+            <span id="busuanzi_value_site_uv"></span>
+            
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+  
+<script src="/js/iconfont.js"></script>
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "left",
+      visible: "hover",
+      
+      icon: "#"
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
