@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      32
+      31
        mins
     </span>
   
@@ -245,17 +245,18 @@
 <p><strong>Dataset:</strong> WMT 2014 English-to-French translation task</p>
 <p><strong>Evaluation:</strong> BLEU (bilingual evaluation understudy)</p>
 <ul>
-<li><p>BLEU computes the modified precision metric using n-grams to measure the similarity between the candidate text and reference text. The idea is, if a word in reference is already matched, this word cannot be matched again.</p>
-</li>
-<li><p>$\text{Count}_{\text{clip}} = \min (\text{count, Max_Ref_Count})$</p>
-<p>$$<br>P_n = \frac{\sum_{C \in \text{\{Candidates\}}} \sum_{\text{n-gram} \in C} \text{Count}<em>\text{clip}(\text{n-gram})}{\sum</em>{C’ \in \text{\{Candidates\}}} \sum_{  \text{n-gram’} \in C’} \text{Count}(\text{n-gram}’)}<br>$$</p>
-<p>$$<br>\text{BLEU} = \text{BP} \times \exp(\sum_{n=1}^N \mathbf{w_n}\log P_n)<br>$$</p>
+<li>BLEU computes the modified precision metric using n-grams to measure the similarity between the candidate text and reference text. The idea is, if a word in reference is already matched, this word cannot be matched again.</li>
+<li>$\text{Count}_{\text{clip}} = \min (\text{count, Max_Ref_Count})$</li>
+</ul>
+<img src="https://waylonli.com/img/mdimg/image-20201101202636902.png" alt="image-20201101202636902" style="zoom:50%;" />
+$$
+\text{BLEU} = \text{BP} \times \exp(\sum_{n=1}^N \mathbf{w_n}\log P_n)
+$$
+
 <ul>
 <li>$\text{BP}$ (Brevity Penalty) will be 1 if the length of candidate is the same as the length of reference translation.</li>
 <li>$N$: n-grams</li>
 <li>$\mathbf{w_n}$: the weight of each modified precision</li>
-</ul>
-</li>
 </ul>
 <p>Before transformer was introduced, sequence-to-sequence models, especially LSTM, dominated the down-stream NLP tasks. Transformer introduced self-attention which made the attention mechanisms more parallelizable and more efficient. Using self-attention to replace LSTM, it achieved a better accuracy on translation tasks.</p>
 <p><strong>Pretraining model based on transformer:</strong> BERT (using the encoder of transformer), GPT (using the decoder of transformer), ALBERT</p>
