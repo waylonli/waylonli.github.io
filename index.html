@@ -44,7 +44,7 @@
 
 
   <script  src="/js/utils.js" ></script>
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Waylon's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Waylon's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -202,7 +202,10 @@
         
           
         
-        <div>Brief introduction to Singular Value Decomposition (SVD)</div>
+        <div>Brief introduction to Singular Value Decomposition (SVD)
+
+
+1. What is SVD (Singular Value Decomposition)?1.1 DefinitionDefine $ \mathbf{ X } = (\vec{x_1}) $  as a $n\times m$ matrix ($n \ge m$). A fra</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -686,7 +689,15 @@ annotators (expertise? traini</div>
         
           
         
-        <div>Use Hidden Markov Models to do POS tagging</div>
+        <div>Use Hidden Markov Models to do POS tagging
+
+
+Notation:
+
+Sequence of observation overtime (sentence): $ O=o_1\dots o_T $ 
+
+Sequence of states (tags): $Q=q^1\dots q^N$
+Sequence states over time: $Q = q_</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -853,7 +864,24 @@ annotators (expertise? traini</div>
       searchFunc(path, 'local-search-input', 'local-search-result');
       this.onclick = null
     }
-  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 

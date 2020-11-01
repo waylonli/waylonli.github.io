@@ -53,7 +53,7 @@
 
 
   <script  src="/js/utils.js" ></script>
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Waylon's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Waylon's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -226,7 +226,7 @@
             
               <p class="note note-info">
                 
-                  Last update：an hour ago
+                  Last update：2 days ago
                 
               </p>
             
@@ -356,7 +356,7 @@ System.out.println(output2);</code></pre>
     }
     createObserver(loadValine, 'vcomments');
   </script>
-  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
       powered by Valine.</a></noscript>
 
 
@@ -593,7 +593,7 @@ System.out.println(output2);</code></pre>
 
     <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
 </script>
 
 <script type="text/x-mathjax-config">
@@ -605,7 +605,7 @@ System.out.println(output2);</code></pre>
   });
 </script>
 
-<script type="text/javascript" src="custom_mathjax_source">
+<script type="text/javascript" src="{{ src }}">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->

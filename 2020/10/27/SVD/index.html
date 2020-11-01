@@ -53,7 +53,7 @@
 
 
   <script  src="/js/utils.js" ></script>
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Waylon's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Waylon's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -226,13 +226,13 @@
             
               <p class="note note-info">
                 
-                  Last update：a few seconds ago
+                  Last update：3 minutes ago
                 
               </p>
             
             <article class="markdown-body">
               <p>Brief introduction to Singular Value Decomposition (SVD)</p>
-<a id="more"></a>
+<!-- more  -->
 
 <h1 id="1-What-is-SVD-Singular-Value-Decomposition"><a href="#1-What-is-SVD-Singular-Value-Decomposition" class="headerlink" title="1. What is SVD (Singular Value Decomposition)?"></a>1. What is SVD (Singular Value Decomposition)?</h1><h2 id="1-1-Definition"><a href="#1-1-Definition" class="headerlink" title="1.1 Definition"></a>1.1 Definition</h2><p>Define $ \mathbf{ X } = (\vec{x_1}) $  as a $n\times m$ matrix ($n \ge m$). A fraction of $\mathbf{X}$ is:<br>$$<br>\mathbf{X} = \mathbf{ U }\mathbf{ \Sigma } \mathbf{ V }^\top<br>$$<br>where:</p>
 <ul>
@@ -255,7 +255,7 @@
 <h1 id="3-Dominant-Correlations"><a href="#3-Dominant-Correlations" class="headerlink" title="3. Dominant Correlations"></a>3. Dominant Correlations</h1><img src="https://waylonli.com/img/mdimg/image-20201027133303454.png" alt="image-20201027133303454" style="zoom:50%;" align=center />
 
 <h1 id="4-SVD-and-Truncation"><a href="#4-SVD-and-Truncation" class="headerlink" title="4. SVD and Truncation"></a>4. SVD and Truncation</h1><p>In $\mathbf{X} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^\top$, we can choose $r$ columns of $\mathbf{U}$ and $\mathbf{V}$. “How to choose $r$” is a fundamental problem in SVD.<br>$$<br>\mathbf{X} = \mathbf{\tilde{U}}_r\mathbf{\tilde{\Sigma}}_r\mathbf{\tilde{V}}_r^\top<br>$$<br>Generally we need to set a threshold for $\log \sigma$ and choose those $\sigma$s beyond the threshold on the diagonal of $\mathbf{\Sigma}$.</p>
-<p><strong>Recommending extra reading:</strong> <a href="https://arxiv.org/pdf/1305.5870.pdf" target="_blank" rel="noopener">Gavish-Donoho (2014)</a></p>
+<p><strong>Recommending extra reading:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1305.5870.pdf">Gavish-Donoho (2014)</a></p>
 <p>Applying a Gaussian noise to $\mathbf{X}$:</p>
 <p>$$<br>\mathbf{X} = \mathbf{X}_\text{true} + \delta \mathbf{X}_\text{noise}<br>$$</p>
 <p>PS: I did not mange to fully understand the idea here, more details about the truncation can be found in the video and the paper using the URL in this section</p>
@@ -266,12 +266,12 @@
 
 <p><strong>Videos</strong>:</p>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=gXbThCXjZFM" target="_blank" rel="noopener">Overview</a></li>
-<li><a href="https://www.youtube.com/watch?v=nbBvuuNVfco" target="_blank" rel="noopener">Mathematical Overview</a></li>
-<li><a href="https://www.youtube.com/watch?v=xy3QyyhiuY4" target="_blank" rel="noopener">Matrix Approximation</a></li>
-<li><a href="https://www.youtube.com/watch?v=WmDnaoY2Ivs" target="_blank" rel="noopener">Dominant Correlations</a></li>
-<li><a href="https://www.youtube.com/watch?v=QQ8vxj-9OfQ&list=PLMrJAkhIeNNSVjnsviglFoY2nXildDCcv&index=5" target="_blank" rel="noopener">Image Compression</a></li>
-<li><a href="https://www.youtube.com/watch?v=9vJDjkx825k&list=PLMrJAkhIeNNSVjnsviglFoY2nXildDCcv&index=34" target="_blank" rel="noopener">Optimal Truncation</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=gXbThCXjZFM">Overview</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=nbBvuuNVfco">Mathematical Overview</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=xy3QyyhiuY4">Matrix Approximation</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=WmDnaoY2Ivs">Dominant Correlations</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=QQ8vxj-9OfQ&list=PLMrJAkhIeNNSVjnsviglFoY2nXildDCcv&index=5">Image Compression</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=9vJDjkx825k&list=PLMrJAkhIeNNSVjnsviglFoY2nXildDCcv&index=34">Optimal Truncation</a></li>
 </ul>
 
             </article>
@@ -345,7 +345,7 @@
     }
     createObserver(loadValine, 'vcomments');
   </script>
-  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
       powered by Valine.</a></noscript>
 
 
@@ -582,7 +582,7 @@
 
     <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
 </script>
 
 <script type="text/x-mathjax-config">
@@ -594,7 +594,7 @@
   });
 </script>
 
-<script type="text/javascript" src="custom_mathjax_source">
+<script type="text/javascript" src="{{ src }}">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->

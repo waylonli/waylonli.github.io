@@ -53,7 +53,7 @@
 
 
   <script  src="/js/utils.js" ></script>
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Waylon's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Waylon's blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -287,16 +287,16 @@
 <h3 id="3-1-3-CKY-algorithm-Cocke-Kasami-Younger"><a href="#3-1-3-CKY-algorithm-Cocke-Kasami-Younger" class="headerlink" title="3.1.3 CKY algorithm (Cocke, Kasami, Younger)"></a>3.1.3 CKY algorithm (Cocke, Kasami, Younger)</h3><p><strong>Idea:</strong> bottom-up, breadth-first parsing</p>
 <p><strong>Assumption:</strong> grammar in Chomsky Normal Form</p>
 <p><strong>Pseudocode:</strong></p>
-<pre><code class="hljs python">for len = 1 to n:						# number of words in constituent
-	for i = 0 to (n-len):			# start position
-    j = i + len							# end position
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> <span class="hljs-built_in">len</span> = <span class="hljs-number">1</span> to n:						<span class="hljs-comment"># number of words in constituent</span>
+	<span class="hljs-keyword">for</span> i = <span class="hljs-number">0</span> to (n-<span class="hljs-built_in">len</span>):			<span class="hljs-comment"># start position</span>
+    j = i + <span class="hljs-built_in">len</span>							<span class="hljs-comment"># end position</span>
     for each A-&gt;B where c[i,j] has B:
-      # process unary rules
-      add A to c[i,j] with a pointer to B
-    for k = (i+1) to (j-1):
-      # process binary rules
+      <span class="hljs-comment"># process unary rules</span>
+      add A to c[i,j] <span class="hljs-keyword">with</span> a pointer to B
+    <span class="hljs-keyword">for</span> k = (i+<span class="hljs-number">1</span>) to (j<span class="hljs-number">-1</span>):
+      <span class="hljs-comment"># process binary rules</span>
       for each (A-&gt;B C) where c[i,k] has B and c[k,j] has C:
-        add A to c[i,j] with pointers to B and C</code></pre>
+        add A to c[i,j] <span class="hljs-keyword">with</span> pointers to B <span class="hljs-keyword">and</span> C</code></pre>
 
 <p><strong>Time complexity:</strong> $O(Gn^3)$ </p>
 <p>e.g. Slide 11 pp.5-11</p>
@@ -432,7 +432,7 @@
     }
     createObserver(loadValine, 'vcomments');
   </script>
-  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
       powered by Valine.</a></noscript>
 
 
@@ -669,7 +669,7 @@
 
     <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
 </script>
 
 <script type="text/x-mathjax-config">
@@ -681,7 +681,7 @@
   });
 </script>
 
-<script type="text/javascript" src="custom_mathjax_source">
+<script type="text/javascript" src="{{ src }}">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
